@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Platform</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Styling -->
+    <style>
+        body {
+            background-color: #f5f7fa;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 22px;
+            letter-spacing: 0.5px;
+        }
+
+        .card {
+            border-radius: 14px;
+        }
+
+        .btn {
+            border-radius: 8px;
+            padding: 6px 14px;
+        }
+
+        footer {
+            font-size: 14px;
+        }
+
+        .alert {
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- 🚀 NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm px-4">
+    <a class="navbar-brand" href="/">ServiceApp</a>
+
+    <!-- Mobile Toggle -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar Content -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="ms-auto d-flex align-items-center gap-2">
+
+            {% if user.is_authenticated %}
+
+                {% if user.role == 'customer' %}
+                    <a href="/users/dashboard/" class="btn btn-warning">My Bookings</a>
+
+                {% elif user.role == 'provider' %}
+                    <a href="/provider/dashboard/" class="btn btn-info">Provider Dashboard</a>
+
+                {% elif user.is_superuser %}
+                    <!-- 🔥 FIXED ADMIN BUTTON -->
+                    <a href="/admin-panel/dashboard/" class="btn btn-secondary">Admin Dashboard</a>
+                {% endif %}
+
+                <a href="/users/logout/" class="btn btn-danger">Logout</a>
+
+            {% else %}
+                <a href="/users/login/" class="btn btn-outline-light">Login</a>
+                <a href="/users/register/" class="btn btn-primary">Register</a>
+            {% endif %}
+
+        </div>
+    </div>
+</nav>
+
+
+<!-- 🚀 ALERT MESSAGES -->
+{% if messages %}
+<div class="container mt-3">
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show shadow-sm">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+
+<!-- 🚀 MAIN CONTENT -->
+<div class="container mt-4">
+    {% block content %}
+    {% endblock %}
+</div>
+
+
+<!-- 🚀 FOOTER -->
+<footer class="bg-dark text-light text-center py-3 mt-5">
+    <p class="mb-0">© 2026 Service Platform | Built with Django</p>
+</footer>
+
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<!-- 🔥 ADMIN BACK BUTTON FIX -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const isAdmin = "{{ request.user.is_superuser|yesno:'true,false' }}" === "true";
+
+        if (isAdmin && window.location.pathname.startsWith("/admin-panel")) {
+
+            // Push state so browser back doesn't go to home
+            history.pushState(null, null, location.href);
+
+            window.addEventListener("popstate", function () {
+                window.location.href = "/admin-panel/dashboard/";
+            });
+        }
+    });
+</script>
+
+</body>
+</html>

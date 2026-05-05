@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 class="mb-4">Our Services</h2>
+
+
+<form method="GET" class="mb-4">
+    <input type="text" name="q" placeholder="Search services..." class="form-control mb-2">
+
+    <select name="category" class="form-control mb-2">
+        <option value="">All Categories</option>
+        {% for cat in categories %}
+            <option value="{{ cat.id }}">{{ cat.name }}</option>
+        {% endfor %}
+    </select>
+
+    <button class="btn btn-primary">Search</button>
+</form>
+
+<div class="row">
+    {% for service in services %}
+    <div class="col-md-4 mb-4">
+        <div class="card shadow-sm">
+            {% if service.image %}
+                <img src="{{ service.image.url }}" class="card-img-top" height="200">
+            {% endif %}
+            <div class="card-body">
+                <h5>{{ service.name }}</h5>
+                <p>{{ service.description }}</p>
+                <p><strong>₹{{ service.price }}</strong></p>
+                <a href="/booking/book/?service={{ service.id }}" class="btn btn-success">Book Now</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

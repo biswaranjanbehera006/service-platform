@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+    body {
+        background: linear-gradient(135deg, #1f4037, #99f2c8);
+        min-height: 100vh;
+    }
+
+    .login-card {
+        border-radius: 16px;
+        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        transition: 0.3s;
+    }
+
+    .login-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .form-control {
+        border-radius: 10px;
+        padding: 10px;
+    }
+
+    .btn-custom {
+        border-radius: 10px;
+        font-weight: 500;
+        padding: 10px;
+    }
+
+    .logo-title {
+        font-weight: 700;
+        color: #2c3e50;
+    }
+
+    .sub-text {
+        font-size: 14px;
+        color: #666;
+    }
+</style>
+
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 90vh;">
+
+    <div class="col-lg-4 col-md-6 col-sm-10">
+
+        <div class="login-card p-4">
+
+            <!-- HEADER -->
+            <div class="text-center mb-4">
+                <h3 class="logo-title">Welcome Back 👋</h3>
+                <p class="sub-text">Login to continue your services</p>
+            </div>
+
+            <!-- ERROR MESSAGE -->
+            {% if error %}
+                <div class="alert alert-danger text-center">
+                    {{ error }}
+                </div>
+            {% endif %}
+
+            <!-- LOGIN FORM -->
+            <form method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ next|default:'' }}">
+
+                <!-- USERNAME -->
+                <div class="mb-3">
+                    <label class="form-label">Username</label>
+                    <input type="text" name="username" class="form-control" placeholder="Enter username" required>
+                </div>
+
+                <!-- PASSWORD -->
+                <div class="mb-3 position-relative">
+                    <label class="form-label">Password</label>
+                    <input type="password" id="password" name="password" class="form-control" placeholder="Enter password" required>
+
+                    <!-- SHOW PASSWORD BUTTON -->
+                    <span onclick="togglePassword()" 
+                          style="position:absolute; right:15px; top:38px; cursor:pointer;">
+                        👁️
+                    </span>
+                </div>
+
+                <!-- LOGIN BUTTON -->
+                <button class="btn btn-success w-100 btn-custom mb-3">
+                    🔐 Login
+                </button>
+
+            </form>
+
+            <!-- EXTRA ACTIONS -->
+            <div class="text-center">
+                <a href="/" class="btn btn-outline-secondary btn-sm me-2">🏠 Home</a>
+                <a href="/users/register/" class="btn btn-outline-primary btn-sm">Create Account</a>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- JS -->
+<script>
+    function togglePassword() {
+        const pass = document.getElementById("password");
+        pass.type = pass.type === "password" ? "text" : "password";
+    }
+</script>
+
+{% endblock %}

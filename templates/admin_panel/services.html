@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container-fluid mt-4 px-4">
+
+    <!-- 🔷 HEADER -->
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap">
+        <div>
+            <h2 class="fw-bold mb-0">Service Management</h2>
+            <small class="text-muted">Manage all platform services</small>
+        </div>
+
+        <!-- FUTURE ADD BUTTON -->
+       <a href="{% url 'add_service' %}" class="btn btn-primary">
+            ➕ Add Service
+        </a>
+    </div>
+
+    <!-- 🔷 CARD -->
+    <div class="card shadow-lg border-0">
+
+        <div class="card-body p-0">
+
+            <div class="table-responsive">
+
+                <table class="table align-middle text-center mb-0">
+
+                    <thead class="table-dark">
+                        <tr>
+                            <th>#</th>
+                            <th>Service Name</th>
+                            <th>Description</th>
+                            <th>Providers</th>
+                            <th>Created</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {% for service in services %}
+                        <tr>
+
+                            <!-- ID -->
+                            <td>{{ forloop.counter }}</td>
+
+                            <!-- NAME -->
+                            <td class="fw-semibold">
+                                {{ service.name }}
+                            </td>
+
+                            <!-- DESCRIPTION -->
+                            <td>
+                                <small class="text-muted">
+                                    {{ service.description|default:"No description" }}
+                                </small>
+                            </td>
+
+                            <!-- PROVIDERS COUNT -->
+                            <td>
+                                <span class="badge bg-info px-3 py-2">
+                                    {{ service.providers.count }} Providers
+                                </span>
+                            </td>
+
+                            <!-- CREATED DATE -->
+                            <td>
+                                <small>
+                                    {{ service.created_at|date:"M d, Y"|default:"-" }}
+                                </small>
+                            </td>
+
+                            <!-- ACTIONS -->
+                            <td>
+
+                                <!-- DELETE -->
+                                <a href="{% url 'delete_service' service.id %}"
+                                   class="btn btn-danger btn-sm"
+                                   onclick="return confirm('Are you sure you want to delete this service?');">
+                                    Delete
+                                </a>
+
+                            </td>
+
+                        </tr>
+                        {% endfor %}
+
+                        <!-- EMPTY STATE -->
+                        {% if not services %}
+                        <tr>
+                            <td colspan="6" class="py-5 text-muted">
+                                <h5>No services found</h5>
+                                <p class="mb-0">Start by adding a new service</p>
+                            </td>
+                        </tr>
+                        {% endif %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- 🔥 PROFESSIONAL STYLING -->
+<style>
+
+    .card {
+        border-radius: 16px;
+    }
+
+    .table thead th {
+        font-weight: 600;
+        letter-spacing: 0.5px;
+    }
+
+    .table tbody tr {
+        transition: 0.25s ease;
+    }
+
+    .table tbody tr:hover {
+        background-color: #f8f9fa;
+        transform: scale(1.01);
+    }
+
+    .btn {
+        border-radius: 8px;
+        padding: 5px 12px;
+    }
+
+    .badge {
+        border-radius: 6px;
+        font-size: 12px;
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 768px) {
+
+        .table {
+            font-size: 13px;
+        }
+
+        .btn {
+            font-size: 12px;
+            padding: 4px 8px;
+        }
+
+        .badge {
+            font-size: 10px;
+        }
+    }
+
+</style>
+
+{% endblock %}

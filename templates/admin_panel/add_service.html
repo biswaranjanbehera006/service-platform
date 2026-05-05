@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="card shadow-lg p-4 border-0">
+
+        <h3 class="mb-4">Add New Service</h3>
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <label>Category</label>
+                {{ form.category }}
+            </div>
+
+            <div class="mb-3">
+                <label>Service Name</label>
+                {{ form.name }}
+            </div>
+
+            <div class="mb-3">
+                <label>Description</label>
+                {{ form.description }}
+            </div>
+
+            <div class="mb-3">
+                <label>Price</label>
+                {{ form.price }}
+            </div>
+
+            <div class="mb-3">
+                <label>Image</label>
+                {{ form.image }}
+            </div>
+
+            <button class="btn btn-success w-100">Add Service</button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

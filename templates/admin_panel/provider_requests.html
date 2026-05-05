@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <!-- 🔷 HEADER -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold">Provider Applications</h2>
+    </div>
+
+    <!-- 🔍 FILTER + SEARCH -->
+    <div class="card p-3 shadow-sm mb-4">
+
+        <form method="GET" class="row g-2">
+
+            <!-- SEARCH -->
+            <div class="col-md-4">
+                <input type="text" name="q" value="{{ search_query }}" 
+                       class="form-control" placeholder="Search by username...">
+            </div>
+
+            <!-- STATUS FILTER -->
+            <div class="col-md-3">
+                <select name="status" class="form-select">
+                    <option value="">All Status</option>
+                    <option value="pending" {% if status == 'pending' %}selected{% endif %}>Pending</option>
+                    <option value="approved" {% if status == 'approved' %}selected{% endif %}>Approved</option>
+                    <option value="rejected" {% if status == 'rejected' %}selected{% endif %}>Rejected</option>
+                </select>
+            </div>
+
+            <!-- BUTTONS -->
+            <div class="col-md-5 d-flex gap-2">
+                <button class="btn btn-primary w-100">Search</button>
+                <a href="/admin-panel/providers/" class="btn btn-secondary w-100">Reset</a>
+            </div>
+
+        </form>
+
+    </div>
+
+    <!-- 🔷 TABLE -->
+    <div class="card shadow-lg border-0">
+
+        <div class="table-responsive">
+            <table class="table align-middle text-center mb-0">
+
+                <thead class="table-dark">
+                    <tr>
+                        <th>User</th>
+                        <th>Status</th>
+                        <th>Documents</th>
+                        <th>Service</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% for app in applications %}
+                    <tr>
+
+                        <!-- USER -->
+                        <td class="fw-semibold">{{ app.user.username }}</td>
+
+                        <!-- STATUS -->
+                        <td>
+                            {% if app.status == 'pending' %}
+                                <span class="badge bg-warning text-dark">Pending</span>
+                            {% elif app.status == 'approved' %}
+                                <span class="badge bg-success">Approved</span>
+                            {% else %}
+                                <span class="badge bg-danger">Rejected</span>
+                            {% endif %}
+                        </td>
+
+                        <!-- DOCUMENTS -->
+                        <td>
+                            {% if app.aadhar_card %}
+                                <a href="{{ app.aadhar_card.url }}" target="_blank">Aadhar</a> |
+                            {% endif %}
+                            {% if app.cv %}
+                                <a href="{{ app.cv.url }}" target="_blank">CV</a> |
+                            {% endif %}
+                            {% if app.passport_photo %}
+                                <a href="{{ app.passport_photo.url }}" target="_blank">Photo</a> |
+                            {% endif %}
+                            {% if app.driving_license %}
+                                <a href="{{ app.driving_license.url }}" target="_blank">License</a>
+                            {% endif %}
+                        </td>
+
+                        <!-- SERVICE -->
+                        <td>
+                            {% for service in app.services.all %}
+                                <span class="badge bg-info">{{ service.name }}</span>
+                            {% endfor %}
+                        </td>
+
+                        <!-- ACTION -->
+                        <td>
+                            {% if app.status == 'pending' %}
+                                <a href="{% url 'approve_provider' app.id %}" class="btn btn-success btn-sm">
+                                    Approve
+                                </a>
+                                <a href="{% url 'reject_provider' app.id %}" class="btn btn-danger btn-sm">
+                                    Reject
+                                </a>
+                            {% else %}
+                                <span class="text-muted">No Action</span>
+                            {% endif %}
+                        </td>
+
+                    </tr>
+                    {% endfor %}
+
+                    {% if not applications %}
+                    <tr>
+                        <td colspan="5" class="py-4 text-muted">
+                            No results found
+                        </td>
+                    </tr>
+                    {% endif %}
+
+                </tbody>
+
+            </table>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
