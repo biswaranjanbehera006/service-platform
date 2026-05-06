@@ -2,22 +2,33 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.core.mail import send_mail
+from django.conf import settings
+from django.contrib.auth import get_user_model
 
 from .forms import RegisterForm
+from .models import EmailOTP
 from providers.models import ProviderApplication
 from bookings.models import Booking
 
 
+# =========================
 # ✅ REGISTER
+# =========================
 def register_view(request):
 
     if request.method == 'POST':
         form = RegisterForm(request.POST, request.FILES)
 
         if form.is_valid():
-            user = form.save()
+            user = form.save(commit=False)
 
-            # 🔥 Provider application creation
+            # 🔥 BLOCK USER UNTIL VERIFIED
+            user.is_active = False
+            user.is_email_verified = False
+            user.save()
+
+            # 🔥 SAVE PROVIDER FILES
             if user.role == 'provider':
                 application = ProviderApplication.objects.create(
                     user=user,
@@ -31,12 +42,21 @@ def register_view(request):
                 if services:
                     application.services.set(services)
 
-                messages.info(request, "⏳ Your provider application is submitted. Wait for admin approval.")
-            else:
-                messages.success(request, "✅ Registration successful!")
+            # 🔥 CREATE OTP
+            otp_obj = EmailOTP.objects.create(user=user)
+            otp_obj.generate_otp()
 
-            login(request, user)
-            return redirect('home')
+            # 🔥 SEND EMAIL
+            send_mail(
+                "Email Verification",
+                f"Your OTP is: {otp_obj.otp}",
+                settings.EMAIL_HOST_USER,
+                [user.email],
+                fail_silently=False,
+            )
+
+            messages.info(request, "📧 OTP sent to your email")
+            return redirect('verify_email', user_id=user.id)
 
         else:
             messages.error(request, "⚠️ Please fix the errors below.")
@@ -44,12 +64,43 @@ def register_view(request):
     else:
         form = RegisterForm()
 
-    return render(request, 'users/register.html', {
-        'form': form
-    })
+    return render(request, 'users/register.html', {'form': form})
 
 
-# ✅ LOGIN (FIXED REDIRECT + PROVIDER VALIDATION)
+# =========================
+# ✅ VERIFY EMAIL
+# =========================
+def verify_email(request, user_id):
+
+    User = get_user_model()
+    user = get_object_or_404(User, id=user_id)
+
+    otp_obj = EmailOTP.objects.filter(user=user).last()
+
+    if request.method == 'POST':
+        entered_otp = request.POST.get('otp')
+
+        if otp_obj and otp_obj.otp == entered_otp:
+
+            # 🔥 ACTIVATE USER
+            user.is_active = True
+            user.is_email_verified = True
+            user.save()
+
+            messages.success(request, "✅ Email verified successfully!")
+
+            login(request, user)
+            return redirect('home')
+
+        else:
+            messages.error(request, "❌ Invalid OTP")
+
+    return render(request, 'users/verify.html', {'user': user})
+
+
+# =========================
+# ✅ LOGIN
+# =========================
 def login_view(request):
 
     next_url = request.GET.get('next') or request.POST.get('next')
@@ -63,30 +114,38 @@ def login_view(request):
 
         if user:
 
-            # 🔥 PROVIDER VALIDATION
+            # 🚨 HARD BLOCK (MOST IMPORTANT)
+            if not user.is_active:
+                messages.warning(request, "📧 Please verify your email first.")
+                return redirect('verify_email', user_id=user.id)
+
+            # 🚨 DOUBLE CHECK EMAIL
+            if not user.is_email_verified:
+                messages.warning(request, "📧 Please verify your email.")
+                return redirect('verify_email', user_id=user.id)
+
+            # 🔥 PROVIDER CHECK
             if user.role == 'provider':
                 try:
                     application = ProviderApplication.objects.get(user=user)
 
                     if application.status == 'pending':
-                        messages.warning(request, "⏳ Your application is under review. Please wait for approval.")
+                        messages.warning(request, "⏳ Application under review.")
                         return redirect('login')
 
                     elif application.status == 'rejected':
-                        messages.error(request, "❌ Your application was rejected. Contact support.")
+                        messages.error(request, "❌ Application rejected.")
                         return redirect('login')
 
                 except ProviderApplication.DoesNotExist:
-                    messages.error(request, "⚠️ No provider application found. Please register again.")
+                    messages.error(request, "⚠️ No provider application found.")
                     return redirect('register')
 
             login(request, user)
 
-            # 🔥 FIXED NEXT REDIRECT (IMPORTANT)
             if next_url and next_url not in ['/', 'None']:
                 return redirect(next_url)
 
-            # 🔥 ROLE BASED REDIRECT (FIXED)
             if user.is_superuser or user.role == 'admin':
                 return redirect('admin_dashboard')
 
@@ -99,12 +158,12 @@ def login_view(request):
         else:
             messages.error(request, "❌ Invalid username or password.")
 
-    return render(request, 'users/login.html', {
-        'next': next_url
-    })
+    return render(request, 'users/login.html', {'next': next_url})
 
 
+# =========================
 # ✅ USER DASHBOARD
+# =========================
 @login_required
 def user_dashboard(request):
 
@@ -120,7 +179,9 @@ def user_dashboard(request):
     })
 
 
+# =========================
 # ❌ CANCEL BOOKING
+# =========================
 @login_required
 def cancel_booking(request, id):
 
@@ -133,7 +194,6 @@ def cancel_booking(request, id):
     booking.status = 'cancelled'
     booking.save()
 
-    # 🔥 Free provider
     if booking.provider:
         booking.provider.is_available = True
         booking.provider.save()
@@ -143,7 +203,9 @@ def cancel_booking(request, id):
     return redirect('user_dashboard')
 
 
+# =========================
 # ✅ LOGOUT
+# =========================
 def logout_view(request):
     logout(request)
     messages.info(request, "👋 Logged out successfully.")
