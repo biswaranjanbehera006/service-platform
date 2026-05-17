@@ -1,0 +1,546 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container-fluid py-4 px-lg-4 px-3 bg-light min-vh-100">
+
+    <!-- HEADER -->
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+
+        <!-- LEFT -->
+        <div>
+
+            <span class="badge bg-dark rounded-pill px-3 py-2 mb-3">
+
+                Admin Booking Management
+
+            </span>
+
+            <h1 class="fw-bold mb-1">
+
+                Manage Bookings
+
+            </h1>
+
+            <p class="text-muted mb-0">
+
+                View and manage all customer bookings professionally
+
+            </p>
+
+        </div>
+
+        <!-- RIGHT -->
+        <div>
+
+            <a
+                href="{% url 'admin_dashboard' %}"
+                class="btn btn-outline-dark rounded-pill px-4 shadow-sm"
+            >
+
+                <i class="bi bi-arrow-left me-2"></i>
+
+                Back
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- FILTER CARD -->
+    <div class="card border-0 shadow-sm rounded-5 mb-4">
+
+        <div class="card-body p-4">
+
+            <form method="GET">
+
+                <div class="row g-3 align-items-center">
+
+                    <!-- SEARCH -->
+                    <div class="col-lg-5">
+
+                        <div class="input-group">
+
+                            <span class="input-group-text bg-white border-end-0 rounded-start-pill">
+
+                                <i class="bi bi-search"></i>
+
+                            </span>
+
+                            <input
+                                type="text"
+                                name="q"
+                                value="{{ query }}"
+                                class="form-control border-start-0 rounded-end-pill py-3"
+                                placeholder="Search user or service..."
+                            >
+
+                        </div>
+
+                    </div>
+
+                    <!-- STATUS -->
+                    <div class="col-lg-3">
+
+                        <select
+                            name="status"
+                            class="form-select rounded-pill py-3"
+                        >
+
+                            <option value="">
+
+                                All Status
+
+                            </option>
+
+                            <option value="pending">
+
+                                Pending
+
+                            </option>
+
+                            <option value="accepted">
+
+                                Accepted
+
+                            </option>
+
+                            <option value="completed">
+
+                                Completed
+
+                            </option>
+
+                            <option value="cancelled">
+
+                                Cancelled
+
+                            </option>
+
+                            <option value="rejected">
+
+                                Rejected
+
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <!-- BUTTON -->
+                    <div class="col-lg-4">
+
+                        <div class="d-flex gap-2">
+
+                            <button
+                                class="btn btn-dark rounded-pill py-3 w-100"
+                            >
+
+                                <i class="bi bi-search me-2"></i>
+
+                                Search
+
+                            </button>
+
+                            <a
+                                href="{% url 'manage_bookings' %}"
+                                class="btn btn-outline-dark rounded-pill py-3 w-100"
+                            >
+
+                                <i class="bi bi-arrow-clockwise me-2"></i>
+
+                                Reset
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- STATS -->
+    <div class="row g-4 mb-4">
+
+        <!-- TOTAL -->
+        <div class="col-xl-3 col-md-6">
+
+            <div class="card border-0 shadow-sm rounded-5 h-100">
+
+                <div class="card-body p-4">
+
+                    <small class="text-muted fw-semibold">
+
+                        Total Bookings
+
+                    </small>
+
+                    <h2 class="fw-bold mt-2">
+
+                        {{ total_bookings }}
+
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- COMPLETED -->
+        <div class="col-xl-3 col-md-6">
+
+            <div class="card border-0 shadow-sm rounded-5 h-100">
+
+                <div class="card-body p-4">
+
+                    <small class="text-muted fw-semibold">
+
+                        Completed Jobs
+
+                    </small>
+
+                    <h2 class="fw-bold mt-2 text-success">
+
+                        {{ completed_bookings }}
+
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- PENDING -->
+        <div class="col-xl-3 col-md-6">
+
+            <div class="card border-0 shadow-sm rounded-5 h-100">
+
+                <div class="card-body p-4">
+
+                    <small class="text-muted fw-semibold">
+
+                        Pending Orders
+
+                    </small>
+
+                    <h2 class="fw-bold mt-2 text-warning">
+
+                       {{ pending_bookings }}
+
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- REVENUE -->
+        <div class="col-xl-3 col-md-6">
+
+            <div class="card border-0 shadow-sm rounded-5 h-100">
+
+                <div class="card-body p-4">
+
+                    <small class="text-muted fw-semibold">
+
+                        Revenue
+
+                    </small>
+
+                    <h2 class="fw-bold mt-2 text-primary">
+
+                      ₹{{ total_revenue }}
+
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- BOOKING TABLE -->
+    <div class="card border-0 shadow-sm rounded-5 overflow-hidden">
+
+        <!-- TOP -->
+        <div class="card-header bg-white border-0 p-4">
+
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+
+                <div>
+
+                    <h4 class="fw-bold mb-1">
+
+                        Booking Records
+
+                    </h4>
+
+                    <small class="text-muted">
+
+                        Complete booking overview
+
+                    </small>
+
+                </div>
+
+                <span class="badge bg-dark rounded-pill px-3 py-2">
+
+                    {{ bookings|length }} Records
+
+                </span>
+
+            </div>
+
+        </div>
+
+        <!-- TABLE -->
+        <div class="table-responsive">
+
+            <table class="table align-middle mb-0">
+
+                <thead class="table-dark">
+
+                    <tr>
+
+                        <th>User</th>
+
+                        <th>Service</th>
+
+                        <th>Provider</th>
+
+                        <th>Amount</th>
+
+                        <th>Status</th>
+
+                        <th>Payment</th>
+
+                        <th>Date</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for booking in bookings %}
+
+                    <tr>
+
+                        <!-- USER -->
+                        <td>
+
+                            <div class="fw-semibold">
+
+                                {{ booking.user.username }}
+
+                            </div>
+
+                            <small class="text-muted">
+
+                                {{ booking.phone }}
+
+                            </small>
+
+                        </td>
+
+                        <!-- SERVICE -->
+                        <td>
+
+                            <span class="fw-semibold">
+
+                                {{ booking.service.name }}
+
+                            </span>
+
+                        </td>
+
+                        <!-- PROVIDER -->
+                        <td>
+
+                            {% if booking.provider %}
+
+                                <span class="badge bg-success rounded-pill px-3 py-2">
+
+                                    {{ booking.provider.user.username }}
+
+                                </span>
+
+                            {% else %}
+
+                                <span class="badge bg-secondary rounded-pill px-3 py-2">
+
+                                    Not Assigned
+
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+                        <!-- AMOUNT -->
+                        <td>
+
+                            <span class="fw-bold text-primary">
+
+                                ₹{{ booking.amount }}
+
+                            </span>
+
+                        </td>
+
+                        <!-- STATUS -->
+                        <td>
+
+                            {% if booking.status == 'pending' %}
+
+                                <span class="badge bg-warning text-dark rounded-pill px-3 py-2">
+
+                                    Pending
+
+                                </span>
+
+                            {% elif booking.status == 'accepted' %}
+
+                                <span class="badge bg-info rounded-pill px-3 py-2">
+
+                                    Accepted
+
+                                </span>
+
+                            {% elif booking.status == 'completed' %}
+
+                                <span class="badge bg-success rounded-pill px-3 py-2">
+
+                                    Completed
+
+                                </span>
+
+                            {% elif booking.status == 'cancelled' %}
+
+                                <span class="badge bg-danger rounded-pill px-3 py-2">
+
+                                    Cancelled
+
+                                </span>
+
+                            {% else %}
+
+                                <span class="badge bg-dark rounded-pill px-3 py-2">
+
+                                    Rejected
+
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+                        <!-- PAYMENT -->
+                        <td>
+
+                            {% if booking.payment_status == 'success' %}
+
+                                <span class="badge bg-success rounded-pill px-3 py-2">
+
+                                    Paid
+
+                                </span>
+
+                            {% elif booking.payment_status == 'failed' %}
+
+                                <span class="badge bg-danger rounded-pill px-3 py-2">
+
+                                    Failed
+
+                                </span>
+
+                            {% else %}
+
+                                <span class="badge bg-warning text-dark rounded-pill px-3 py-2">
+
+                                    Pending
+
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+                        <!-- DATE -->
+                        <td>
+
+                            <small class="fw-semibold d-block">
+
+                                {{ booking.created_at|date:"M d, Y" }}
+
+                            </small>
+
+                            <small class="text-muted">
+
+                                {{ booking.created_at|time:"h:i A" }}
+
+                            </small>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                    <!-- EMPTY -->
+                    {% if not bookings %}
+
+                    <tr>
+
+                        <td colspan="7" class="py-5">
+
+                            <div class="text-center">
+
+                                <i class="bi bi-calendar-x display-1 text-muted"></i>
+
+                                <h4 class="mt-3">
+
+                                    No Bookings Found
+
+                                </h4>
+
+                                <p class="text-muted mb-0">
+
+                                    Booking records will appear here
+
+                                </p>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                    {% endif %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <!-- SPACE -->
+    <div class="py-5"></div>
+
+</div>
+
+{% endblock %}

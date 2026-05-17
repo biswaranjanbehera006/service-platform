@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'bookings',
     'providers',
     'admin_panel',
+    'contact',
 ]
 
 
@@ -269,4 +270,12 @@ RAZORPAY_KEY_ID = config(
 
 RAZORPAY_KEY_SECRET = config(
     'RAZORPAY_KEY_SECRET'
+)
+
+
+
+
+
+ADMIN_EMAIL = config(
+    'ADMIN_EMAIL'
 )

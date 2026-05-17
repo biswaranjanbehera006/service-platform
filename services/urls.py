@@ -1,23 +1,23 @@
 from django.urls import path
-from .views import home, services_page, about_page, contact_page
+from .views import home, services_page, about_page
 
 urlpatterns = [
-    path('', home, name='home'),
+
     path(
-    'services/',
-    services_page,
-    name='services_page'
-),
+        '',
+        home,
+        name='home'
+    ),
 
-path(
-    'about/',
-    about_page,
-    name='about_page'
-),
+    path(
+        'services/',
+        services_page,
+        name='services_page'
+    ),
 
-path(
-    'contact/',
-    contact_page,
-    name='contact_page'
-),
+    path(
+        'about/',
+        about_page,
+        name='about_page'
+    ),
 ]

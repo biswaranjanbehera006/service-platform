@@ -10,6 +10,7 @@ from providers.models import Provider, ProviderApplication
 from bookings.models import Booking
 from services.models import Service
 from services.forms import ServiceForm
+from contact.models import Contact
 
 
 # =====================================================
@@ -18,7 +19,10 @@ from services.forms import ServiceForm
 def is_admin(user):
 
     return user.is_authenticated and (
-        user.is_superuser or user.role == 'admin'
+
+        user.is_superuser or
+
+        user.role == 'admin'
     )
 
 
@@ -28,10 +32,14 @@ def is_admin(user):
 def not_authorized(request):
 
     return render(
+
         request,
+
         'admin_panel/not_authorized.html',
+
         {
             'message': "Access Denied 🚫",
+
             'reason': "You do not have admin privileges."
         }
     )
@@ -59,6 +67,8 @@ def admin_dashboard(request):
     pending_providers = ProviderApplication.objects.filter(
         status='pending'
     ).count()
+
+    total_contacts = Contact.objects.count()
 
     # =========================================
     # COMPLETED BOOKINGS
@@ -89,6 +99,7 @@ def admin_dashboard(request):
     today = timezone.now().date()
 
     labels = []
+
     booking_data = []
 
     for i in range(6, -1, -1):
@@ -99,17 +110,31 @@ def admin_dashboard(request):
             created_at__date=day
         ).count()
 
-        labels.append(day.strftime('%a'))
+        labels.append(
+            day.strftime('%a')
+        )
 
-        booking_data.append(count)
+        booking_data.append(
+            count
+        )
 
     # =========================================
     # RECENT BOOKINGS
     # =========================================
     recent_bookings = Booking.objects.select_related(
+
         'user',
+
         'service'
+
     ).order_by('-created_at')[:5]
+
+    # =========================================
+    # RECENT CONTACTS
+    # =========================================
+    recent_contacts = Contact.objects.all().order_by(
+        '-created_at'
+    )[:5]
 
     # =========================================
     # CONTEXT
@@ -118,26 +143,102 @@ def admin_dashboard(request):
 
         # COUNTS
         'total_users': total_users,
+
         'total_providers': total_providers,
+
         'total_bookings': total_bookings,
+
         'pending_providers': pending_providers,
+
+        'total_contacts': total_contacts,
 
         # ANALYTICS
         'completed_jobs': completed_jobs,
+
         'active_providers': active_providers,
+
         'total_revenue': total_revenue,
 
         # CHART
         'chart_labels': labels,
+
         'chart_data': booking_data,
 
         # RECENT
         'recent_bookings': recent_bookings,
+
+        'recent_contacts': recent_contacts,
     }
 
     return render(
+
         request,
+
         'admin_panel/dashboard.html',
+
+        context
+    )
+
+
+# =====================================================
+# 💬 USER CONTACTS
+# =====================================================
+@login_required
+def user_contacts(request):
+
+    if not is_admin(request.user):
+
+        return not_authorized(request)
+
+    contacts = Contact.objects.all().order_by(
+        '-created_at'
+    )
+
+    # =========================================
+    # SEARCH
+    # =========================================
+    query = request.GET.get('q')
+
+    if query:
+
+        contacts = contacts.filter(
+
+            Q(name__icontains=query) |
+
+            Q(email__icontains=query) |
+
+            Q(subject__icontains=query)
+        )
+
+    # =========================================
+    # DATE FILTER
+    # =========================================
+    date = request.GET.get('date')
+
+    if date:
+
+        contacts = contacts.filter(
+            created_at__date=date
+        )
+
+    # =========================================
+    # CONTEXT
+    # =========================================
+    context = {
+
+        'contacts': contacts,
+
+        'query': query,
+
+        'date': date,
+    }
+
+    return render(
+
+        request,
+
+        'admin_panel/user_contacts.html',
+
         context
     )
 
@@ -178,11 +279,16 @@ def provider_requests(request):
         )
 
     return render(
+
         request,
+
         'admin_panel/provider_requests.html',
+
         {
             'applications': applications,
+
             'search_query': search_query,
+
             'status': status
         }
     )
@@ -199,18 +305,24 @@ def approve_provider(request, id):
         return not_authorized(request)
 
     application = get_object_or_404(
+
         ProviderApplication,
+
         id=id
     )
 
     if application.status == 'approved':
 
         messages.warning(
+
             request,
+
             "Already approved."
         )
 
-        return redirect('provider_requests')
+        return redirect(
+            'provider_requests'
+        )
 
     application.status = 'approved'
 
@@ -225,11 +337,15 @@ def approve_provider(request, id):
     )
 
     messages.success(
+
         request,
+
         f"✅ {application.user.username} approved"
     )
 
-    return redirect('provider_requests')
+    return redirect(
+        'provider_requests'
+    )
 
 
 # =====================================================
@@ -243,29 +359,39 @@ def reject_provider(request, id):
         return not_authorized(request)
 
     application = get_object_or_404(
+
         ProviderApplication,
+
         id=id
     )
 
     if application.status == 'rejected':
 
         messages.warning(
+
             request,
+
             "Already rejected."
         )
 
-        return redirect('provider_requests')
+        return redirect(
+            'provider_requests'
+        )
 
     application.status = 'rejected'
 
     application.save()
 
     messages.error(
+
         request,
+
         f"❌ {application.user.username} rejected"
     )
 
-    return redirect('provider_requests')
+    return redirect(
+        'provider_requests'
+    )
 
 
 # =====================================================
@@ -292,8 +418,11 @@ def manage_users(request):
         )
 
     return render(
+
         request,
+
         'admin_panel/users.html',
+
         {
             'users': users
         }
@@ -311,29 +440,39 @@ def toggle_user(request, id):
         return not_authorized(request)
 
     user = get_object_or_404(
+
         User,
+
         id=id
     )
 
     if user == request.user:
 
         messages.warning(
+
             request,
+
             "⚠️ You cannot block yourself."
         )
 
-        return redirect('manage_users')
+        return redirect(
+            'manage_users'
+        )
 
     user.is_active = not user.is_active
 
     user.save()
 
     messages.success(
+
         request,
+
         "User status updated ✅"
     )
 
-    return redirect('manage_users')
+    return redirect(
+        'manage_users'
+    )
 
 
 # =====================================================
@@ -347,27 +486,37 @@ def delete_user(request, id):
         return not_authorized(request)
 
     user = get_object_or_404(
+
         User,
+
         id=id
     )
 
     if user == request.user:
 
         messages.error(
+
             request,
+
             "❌ Cannot delete yourself."
         )
 
-        return redirect('manage_users')
+        return redirect(
+            'manage_users'
+        )
 
     user.delete()
 
     messages.error(
+
         request,
+
         "User deleted ❌"
     )
 
-    return redirect('manage_users')
+    return redirect(
+        'manage_users'
+    )
 
 
 # =====================================================
@@ -396,8 +545,11 @@ def manage_providers(request):
         )
 
     return render(
+
         request,
+
         'admin_panel/providers.html',
+
         {
             'providers': providers
         }
@@ -415,7 +567,9 @@ def toggle_provider(request, id):
         return not_authorized(request)
 
     provider = get_object_or_404(
+
         Provider,
+
         id=id
     )
 
@@ -424,11 +578,15 @@ def toggle_provider(request, id):
     provider.user.save()
 
     messages.success(
+
         request,
+
         "Provider status updated ✅"
     )
 
-    return redirect('manage_providers')
+    return redirect(
+        'manage_providers'
+    )
 
 
 # =====================================================
@@ -442,7 +600,9 @@ def delete_provider(request, id):
         return not_authorized(request)
 
     provider = get_object_or_404(
+
         Provider,
+
         id=id
     )
 
@@ -451,11 +611,15 @@ def delete_provider(request, id):
     provider.delete()
 
     messages.error(
+
         request,
+
         "Provider deleted ❌"
     )
 
-    return redirect('manage_providers')
+    return redirect(
+        'manage_providers'
+    )
 
 
 # =====================================================
@@ -469,7 +633,9 @@ def provider_reviews(request, id):
         return not_authorized(request)
 
     provider = get_object_or_404(
+
         Provider,
+
         id=id
     )
 
@@ -489,6 +655,7 @@ def provider_reviews(request, id):
 
         {
             'provider': provider,
+
             'reviews': reviews
         }
     )
@@ -507,8 +674,11 @@ def manage_services(request):
     services = Service.objects.all()
 
     return render(
+
         request,
+
         'admin_panel/services.html',
+
         {
             'services': services
         }
@@ -528,7 +698,9 @@ def add_service(request):
     if request.method == 'POST':
 
         form = ServiceForm(
+
             request.POST,
+
             request.FILES
         )
 
@@ -537,16 +709,22 @@ def add_service(request):
             form.save()
 
             messages.success(
+
                 request,
+
                 "✅ Service added successfully!"
             )
 
-            return redirect('manage_services')
+            return redirect(
+                'manage_services'
+            )
 
         else:
 
             messages.error(
+
                 request,
+
                 "⚠️ Please fix the errors below."
             )
 
@@ -555,8 +733,11 @@ def add_service(request):
         form = ServiceForm()
 
     return render(
+
         request,
+
         'admin_panel/add_service.html',
+
         {
             'form': form
         }
@@ -574,15 +755,122 @@ def delete_service(request, id):
         return not_authorized(request)
 
     service = get_object_or_404(
+
         Service,
+
         id=id
     )
 
     service.delete()
 
     messages.error(
+
         request,
+
         "Service deleted ❌"
     )
 
-    return redirect('manage_services')
+    return redirect(
+        'manage_services'
+    )
+
+
+
+
+
+
+# =====================================================
+# 📦 MANAGE BOOKINGS
+# =====================================================
+@login_required
+def manage_bookings(request):
+
+    if not is_admin(request.user):
+
+        return not_authorized(request)
+
+    bookings = Booking.objects.select_related(
+
+        'user',
+
+        'service',
+
+        'provider'
+
+    ).order_by('-created_at')
+
+    # =========================================
+    # SEARCH
+    # =========================================
+    query = request.GET.get('q')
+
+    if query:
+
+        bookings = bookings.filter(
+
+            Q(user__username__icontains=query) |
+
+            Q(service__name__icontains=query)
+        )
+
+    # =========================================
+    # STATUS FILTER
+    # =========================================
+    status = request.GET.get('status')
+
+    if status:
+
+        bookings = bookings.filter(
+            status=status
+        )
+
+    # =========================================
+    # ANALYTICS
+    # =========================================
+    total_bookings = bookings.count()
+
+    completed_bookings = bookings.filter(
+        status='completed'
+    ).count()
+
+    pending_bookings = bookings.filter(
+        status='pending'
+    ).count()
+
+    total_revenue = sum(
+
+        booking.amount
+
+        for booking in bookings.filter(
+            payment_status='success'
+        )
+    )
+
+    # =========================================
+    # CONTEXT
+    # =========================================
+    context = {
+
+        'bookings': bookings,
+
+        'query': query,
+
+        'status': status,
+
+        'total_bookings': total_bookings,
+
+        'completed_bookings': completed_bookings,
+
+        'pending_bookings': pending_bookings,
+
+        'total_revenue': total_revenue,
+    }
+
+    return render(
+
+        request,
+
+        'admin_panel/bookings.html',
+
+        context
+    )

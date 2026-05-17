@@ -58,6 +58,14 @@ urlpatterns = [
         'admin-panel/',
         include('admin_panel.urls')
     ),
+
+    # =========================================
+    # 📩 CONTACT
+    # =========================================
+    path(
+        'contact/',
+        include('contact.urls')
+    ),
 ]
 
 
