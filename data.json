@@ -1,0 +1,1596 @@
+[
+{
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2026-04-29T15:04:16.000Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "1",
+    "object_repr": "Home Services",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 2,
+  "fields": {
+    "action_time": "2026-04-29T15:04:30.302Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "2",
+    "object_repr": "Vehicle Services",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 3,
+  "fields": {
+    "action_time": "2026-04-29T15:04:39.648Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "3",
+    "object_repr": "Personal Services",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 4,
+  "fields": {
+    "action_time": "2026-04-29T15:06:23.319Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "1",
+    "object_repr": "AC Repair",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 5,
+  "fields": {
+    "action_time": "2026-04-29T15:07:43.647Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "2",
+    "object_repr": "Car Wash",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 6,
+  "fields": {
+    "action_time": "2026-04-29T15:08:13.570Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "3",
+    "object_repr": "Laundry",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 7,
+  "fields": {
+    "action_time": "2026-04-29T15:27:24.823Z",
+    "user": 1,
+    "content_type": 6,
+    "object_id": "2",
+    "object_repr": "provider1",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 8,
+  "fields": {
+    "action_time": "2026-04-29T15:28:22.574Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "1",
+    "object_repr": "provider1",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 9,
+  "fields": {
+    "action_time": "2026-04-29T18:35:00.927Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "1",
+    "object_repr": "provider1 - AC Repair - pending",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 10,
+  "fields": {
+    "action_time": "2026-04-29T18:56:39.658Z",
+    "user": 1,
+    "content_type": 6,
+    "object_id": "3",
+    "object_repr": "chenta",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Username\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 11,
+  "fields": {
+    "action_time": "2026-04-29T20:02:06.406Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "4",
+    "object_repr": "pradeep - AC Repair - accepted",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 12,
+  "fields": {
+    "action_time": "2026-04-29T20:49:10.176Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "2",
+    "object_repr": "provider2",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 13,
+  "fields": {
+    "action_time": "2026-04-29T20:49:28.047Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "2",
+    "object_repr": "provider2",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Services\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 14,
+  "fields": {
+    "action_time": "2026-04-29T20:50:57.198Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "6",
+    "object_repr": "peda - Car Wash - accepted",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Provider\", \"Status\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 15,
+  "fields": {
+    "action_time": "2026-04-29T21:50:15.678Z",
+    "user": 1,
+    "content_type": 11,
+    "object_id": "1",
+    "object_repr": "provider7 - approved",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 16,
+  "fields": {
+    "action_time": "2026-04-29T21:50:57.928Z",
+    "user": 1,
+    "content_type": 6,
+    "object_id": "13",
+    "object_repr": "provider7",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 17,
+  "fields": {
+    "action_time": "2026-04-29T21:51:34.776Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "3",
+    "object_repr": "provider7",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 18,
+  "fields": {
+    "action_time": "2026-04-29T21:58:13.692Z",
+    "user": 1,
+    "content_type": 11,
+    "object_id": "2",
+    "object_repr": "provider8 - approved",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Driving license\", \"Status\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 19,
+  "fields": {
+    "action_time": "2026-04-29T21:58:27.749Z",
+    "user": 1,
+    "content_type": 6,
+    "object_id": "15",
+    "object_repr": "provider8",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 20,
+  "fields": {
+    "action_time": "2026-04-29T22:16:00.182Z",
+    "user": 1,
+    "content_type": 11,
+    "object_id": "3",
+    "object_repr": "provider9 - approved",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 21,
+  "fields": {
+    "action_time": "2026-04-29T22:21:25.407Z",
+    "user": 1,
+    "content_type": 11,
+    "object_id": "4",
+    "object_repr": "provider10 - approved",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 22,
+  "fields": {
+    "action_time": "2026-04-29T23:01:30.009Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "7",
+    "object_repr": "judge - AC Repair - accepted",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Provider\", \"Status\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 23,
+  "fields": {
+    "action_time": "2026-04-29T23:08:46.188Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "3",
+    "object_repr": "Laundry",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Description\", \"Image\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 24,
+  "fields": {
+    "action_time": "2026-04-29T23:11:53.764Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "2",
+    "object_repr": "Car Wash",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Description\", \"Image\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 25,
+  "fields": {
+    "action_time": "2026-04-29T23:12:36.834Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "1",
+    "object_repr": "AC Repair",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Description\", \"Image\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 26,
+  "fields": {
+    "action_time": "2026-04-29T23:17:18.224Z",
+    "user": 1,
+    "content_type": 11,
+    "object_id": "4",
+    "object_repr": "provider10 - approved",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 27,
+  "fields": {
+    "action_time": "2026-04-29T23:17:18.224Z",
+    "user": 1,
+    "content_type": 11,
+    "object_id": "3",
+    "object_repr": "provider9 - approved",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 28,
+  "fields": {
+    "action_time": "2026-04-29T23:17:18.224Z",
+    "user": 1,
+    "content_type": 11,
+    "object_id": "2",
+    "object_repr": "provider8 - approved",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 29,
+  "fields": {
+    "action_time": "2026-04-29T23:17:18.224Z",
+    "user": 1,
+    "content_type": 11,
+    "object_id": "1",
+    "object_repr": "provider7 - approved",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 30,
+  "fields": {
+    "action_time": "2026-05-01T20:46:13.148Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "5",
+    "object_repr": "pradeep - AC Repair (accepted)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Provider\", \"Status\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 31,
+  "fields": {
+    "action_time": "2026-05-01T20:48:32.340Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "8",
+    "object_repr": "pradeep - AC Repair (pending)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 32,
+  "fields": {
+    "action_time": "2026-05-01T20:54:13.092Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "9",
+    "object_repr": "pradeep - Laundry (pending)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 1,
+  "fields": {
+    "name": "Can add log entry",
+    "content_type": 1,
+    "codename": "add_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 2,
+  "fields": {
+    "name": "Can change log entry",
+    "content_type": 1,
+    "codename": "change_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 3,
+  "fields": {
+    "name": "Can delete log entry",
+    "content_type": 1,
+    "codename": "delete_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 4,
+  "fields": {
+    "name": "Can view log entry",
+    "content_type": 1,
+    "codename": "view_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 5,
+  "fields": {
+    "name": "Can add permission",
+    "content_type": 3,
+    "codename": "add_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 6,
+  "fields": {
+    "name": "Can change permission",
+    "content_type": 3,
+    "codename": "change_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 7,
+  "fields": {
+    "name": "Can delete permission",
+    "content_type": 3,
+    "codename": "delete_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 8,
+  "fields": {
+    "name": "Can view permission",
+    "content_type": 3,
+    "codename": "view_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 9,
+  "fields": {
+    "name": "Can add group",
+    "content_type": 2,
+    "codename": "add_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 10,
+  "fields": {
+    "name": "Can change group",
+    "content_type": 2,
+    "codename": "change_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 11,
+  "fields": {
+    "name": "Can delete group",
+    "content_type": 2,
+    "codename": "delete_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 12,
+  "fields": {
+    "name": "Can view group",
+    "content_type": 2,
+    "codename": "view_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 13,
+  "fields": {
+    "name": "Can add content type",
+    "content_type": 4,
+    "codename": "add_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 14,
+  "fields": {
+    "name": "Can change content type",
+    "content_type": 4,
+    "codename": "change_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 15,
+  "fields": {
+    "name": "Can delete content type",
+    "content_type": 4,
+    "codename": "delete_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 16,
+  "fields": {
+    "name": "Can view content type",
+    "content_type": 4,
+    "codename": "view_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 17,
+  "fields": {
+    "name": "Can add session",
+    "content_type": 5,
+    "codename": "add_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 18,
+  "fields": {
+    "name": "Can change session",
+    "content_type": 5,
+    "codename": "change_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 19,
+  "fields": {
+    "name": "Can delete session",
+    "content_type": 5,
+    "codename": "delete_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 20,
+  "fields": {
+    "name": "Can view session",
+    "content_type": 5,
+    "codename": "view_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 21,
+  "fields": {
+    "name": "Can add user",
+    "content_type": 6,
+    "codename": "add_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 22,
+  "fields": {
+    "name": "Can change user",
+    "content_type": 6,
+    "codename": "change_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 23,
+  "fields": {
+    "name": "Can delete user",
+    "content_type": 6,
+    "codename": "delete_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 24,
+  "fields": {
+    "name": "Can view user",
+    "content_type": 6,
+    "codename": "view_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 25,
+  "fields": {
+    "name": "Can add category",
+    "content_type": 7,
+    "codename": "add_category"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 26,
+  "fields": {
+    "name": "Can change category",
+    "content_type": 7,
+    "codename": "change_category"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 27,
+  "fields": {
+    "name": "Can delete category",
+    "content_type": 7,
+    "codename": "delete_category"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 28,
+  "fields": {
+    "name": "Can view category",
+    "content_type": 7,
+    "codename": "view_category"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 29,
+  "fields": {
+    "name": "Can add service",
+    "content_type": 8,
+    "codename": "add_service"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 30,
+  "fields": {
+    "name": "Can change service",
+    "content_type": 8,
+    "codename": "change_service"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 31,
+  "fields": {
+    "name": "Can delete service",
+    "content_type": 8,
+    "codename": "delete_service"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 32,
+  "fields": {
+    "name": "Can view service",
+    "content_type": 8,
+    "codename": "view_service"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 33,
+  "fields": {
+    "name": "Can add provider",
+    "content_type": 9,
+    "codename": "add_provider"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 34,
+  "fields": {
+    "name": "Can change provider",
+    "content_type": 9,
+    "codename": "change_provider"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 35,
+  "fields": {
+    "name": "Can delete provider",
+    "content_type": 9,
+    "codename": "delete_provider"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 36,
+  "fields": {
+    "name": "Can view provider",
+    "content_type": 9,
+    "codename": "view_provider"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 37,
+  "fields": {
+    "name": "Can add booking",
+    "content_type": 10,
+    "codename": "add_booking"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 38,
+  "fields": {
+    "name": "Can change booking",
+    "content_type": 10,
+    "codename": "change_booking"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 39,
+  "fields": {
+    "name": "Can delete booking",
+    "content_type": 10,
+    "codename": "delete_booking"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 40,
+  "fields": {
+    "name": "Can view booking",
+    "content_type": 10,
+    "codename": "view_booking"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 41,
+  "fields": {
+    "name": "Can add provider application",
+    "content_type": 11,
+    "codename": "add_providerapplication"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 42,
+  "fields": {
+    "name": "Can change provider application",
+    "content_type": 11,
+    "codename": "change_providerapplication"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 43,
+  "fields": {
+    "name": "Can delete provider application",
+    "content_type": 11,
+    "codename": "delete_providerapplication"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 44,
+  "fields": {
+    "name": "Can view provider application",
+    "content_type": 11,
+    "codename": "view_providerapplication"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 1,
+  "fields": {
+    "app_label": "admin",
+    "model": "logentry"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 2,
+  "fields": {
+    "app_label": "auth",
+    "model": "group"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 3,
+  "fields": {
+    "app_label": "auth",
+    "model": "permission"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 4,
+  "fields": {
+    "app_label": "contenttypes",
+    "model": "contenttype"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 5,
+  "fields": {
+    "app_label": "sessions",
+    "model": "session"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 6,
+  "fields": {
+    "app_label": "users",
+    "model": "user"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 7,
+  "fields": {
+    "app_label": "services",
+    "model": "category"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 8,
+  "fields": {
+    "app_label": "services",
+    "model": "service"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 9,
+  "fields": {
+    "app_label": "providers",
+    "model": "provider"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 10,
+  "fields": {
+    "app_label": "bookings",
+    "model": "booking"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 11,
+  "fields": {
+    "app_label": "providers",
+    "model": "providerapplication"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "w9l4sd4qn83a7fusac3ui5n60ca96dru",
+  "fields": {
+    "session_data": "e30:1wItWo:OZfK2JgLnAaWVbXCV5RumlRcTa5srj3-zZsBM5RLqoo",
+    "expire_date": "2026-05-15T19:27:58.529Z"
+  }
+},
+{
+  "model": "users.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$IWFeWLjKZtNgD6DWoBuWLv$XhnYliTl8p8wuDd0YOQjbrg2mgUWSuhtEoMhTRyjrnU=",
+    "last_login": "2026-05-01T23:09:58.285Z",
+    "is_superuser": true,
+    "username": "biswojit",
+    "first_name": "",
+    "last_name": "",
+    "email": "biswojitsahoo2003@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-04-29T14:56:05.391Z",
+    "role": "",
+    "phone": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$cPqzqatS7fKnI9TL3IEkOQ$s5x2bX0Tw+89/bUMNBwMBnh2BSrmB+m8As5gXp3i6Q0=",
+    "last_login": "2026-04-29T19:59:34.884Z",
+    "is_superuser": false,
+    "username": "chenta",
+    "first_name": "",
+    "last_name": "",
+    "email": "pelore4723@hacknapp.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-04-29T18:55:35Z",
+    "role": "customer",
+    "phone": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$sN1wKsa9razANFqIVfuSIP$5mezsZqS4OPh/0PN4fx7hVl6k9AIHWfl7yU++yopU68=",
+    "last_login": "2026-04-29T19:57:51.682Z",
+    "is_superuser": false,
+    "username": "aditya",
+    "first_name": "",
+    "last_name": "",
+    "email": "pelore4723@hacknapp.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-04-29T19:52:47.636Z",
+    "role": "provider",
+    "phone": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 5,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$Dy2RhNcayJZC9HolweN8as$rLCbmue/dTTnWtlua0r9/nGOUWi6lZ8MBQtdbjZTEHQ=",
+    "last_login": "2026-05-04T05:47:41.145Z",
+    "is_superuser": false,
+    "username": "pradeep",
+    "first_name": "",
+    "last_name": "",
+    "email": "pelore4723@hacknapp.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-04-29T20:00:47.429Z",
+    "role": "customer",
+    "phone": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 6,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$cnG3JI90aLqzq17YORW9Wt$jGo/vIedrgatwB8cZ7rm22Utt/6uD1sYq7fUhMFqBX4=",
+    "last_login": "2026-04-29T20:19:21.405Z",
+    "is_superuser": false,
+    "username": "biswa",
+    "first_name": "",
+    "last_name": "",
+    "email": "biswaranjanbehera006@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-04-29T20:19:19.924Z",
+    "role": "admin",
+    "phone": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 8,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$UYqHK58TkFcNJ4dIKquwmd$pZybZDiye0qhrk8uFZ2PfcDY3P/svZljBUnrFMKk3ZA=",
+    "last_login": "2026-04-29T20:52:15.901Z",
+    "is_superuser": false,
+    "username": "peda",
+    "first_name": "",
+    "last_name": "",
+    "email": "pelore4723@hacknapp.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-04-29T20:37:37.593Z",
+    "role": "customer",
+    "phone": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 9,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$7IboXJk46jaQfOfje9kvMT$6lCE9o/Hhf8QlYZBZkxKWRb38rabr47Xu+0AAsSaoL4=",
+    "last_login": "2026-04-29T21:23:18.897Z",
+    "is_superuser": false,
+    "username": "provider3",
+    "first_name": "",
+    "last_name": "",
+    "email": "pelore4723@hacknapp.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-04-29T21:23:17.600Z",
+    "role": "provider",
+    "phone": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 10,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$cGXxJNiEzbAlAf9kYSUS3p$BvZi8+I2ahEt8LtS74ia7oyYBnTQtdD8+PFNCMtyn64=",
+    "last_login": "2026-04-29T21:32:19.155Z",
+    "is_superuser": false,
+    "username": "provider4",
+    "first_name": "",
+    "last_name": "",
+    "email": "pelore4723@hacknapp.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-04-29T21:32:17.690Z",
+    "role": "provider",
+    "phone": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 11,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$LlM55nrIp7UueNkEUVMRlD$7wffD33YkXzlDjlhjrdT3H2ZYTGD1oaZm6mWe7ZJjhA=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "provider5",
+    "first_name": "",
+    "last_name": "",
+    "email": "pelore4723@hacknapp.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-04-29T21:37:55.285Z",
+    "role": "provider",
+    "phone": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 12,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$WpLxlcnFLSVlvfAjliQtQJ$h2KKrmaCH4J6BbeLVlWbAfIBg9MlwNZv4zbCz8AM/p4=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "provider6",
+    "first_name": "",
+    "last_name": "",
+    "email": "pelore4723@hacknapp.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-04-29T21:39:26.749Z",
+    "role": "provider",
+    "phone": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 14,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$MXyEzHBXFmRkawrfdyVU8y$mTyRP15jkJm8ag2P/ECaXRPz8oz57Vl+//xtg4tUS1E=",
+    "last_login": "2026-04-29T21:55:16.911Z",
+    "is_superuser": false,
+    "username": "subham",
+    "first_name": "",
+    "last_name": "",
+    "email": "pelore4723@hacknapp.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-04-29T21:55:15.608Z",
+    "role": "customer",
+    "phone": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 15,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$CQPJ7dFPV2QSJCi6Mr6YLG$PD85GbL25ZEg+kCrm1Exaj7JQAa2tfi+yYAE6qKeQfk=",
+    "last_login": "2026-04-29T21:57:21Z",
+    "is_superuser": false,
+    "username": "provider8",
+    "first_name": "",
+    "last_name": "",
+    "email": "pelore4723@hacknapp.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-04-29T21:57:20Z",
+    "role": "provider",
+    "phone": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 16,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$sOV2qB1VomlOcbg8pNIJ9y$ZdGv9yGNK9u57+JtZzjqPJP0nmxO3MuCXip7pV4G0Sw=",
+    "last_login": "2026-04-29T22:15:42.162Z",
+    "is_superuser": false,
+    "username": "provider9",
+    "first_name": "",
+    "last_name": "",
+    "email": "pelore4723@hacknapp.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-04-29T22:15:40.435Z",
+    "role": "provider",
+    "phone": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 17,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$skW119HAXLKRlAq0nUd5Vi$KAuCiH97BeG60aZI+AGCR4BJeftskTl3aDAbfADteM0=",
+    "last_login": "2026-04-29T22:21:06.046Z",
+    "is_superuser": false,
+    "username": "provider10",
+    "first_name": "",
+    "last_name": "",
+    "email": "pelore4723@hacknapp.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-04-29T22:21:04.293Z",
+    "role": "provider",
+    "phone": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 19,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$VUK1FG1xgfQeLwMwPyQvuU$D9VXJt5tKc9m6QzHUYQZe32oSr56P7d8SxRzBFVAgk4=",
+    "last_login": "2026-04-29T22:43:00.354Z",
+    "is_superuser": false,
+    "username": "provider12",
+    "first_name": "",
+    "last_name": "",
+    "email": "pelore4723@hacknapp.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-04-29T22:40:10.453Z",
+    "role": "provider",
+    "phone": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 21,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$uxn5Dl5QjBlv4MevBcgkFk$yrlOqwBpF726RAhazHXiTq54l9bD7rwpFajEO/0v3FQ=",
+    "last_login": "2026-04-29T23:02:43.536Z",
+    "is_superuser": false,
+    "username": "provider14",
+    "first_name": "",
+    "last_name": "",
+    "email": "pelore4723@hacknapp.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-04-29T22:58:25.659Z",
+    "role": "provider",
+    "phone": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 22,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$7a1QQ7mXo6Bkl8JOfKB7xn$dTOuL9w6KC4ZcbD1S3sPbvMDWz4xv34Wr44xATnWIio=",
+    "last_login": "2026-04-29T23:03:32.706Z",
+    "is_superuser": false,
+    "username": "judge",
+    "first_name": "",
+    "last_name": "",
+    "email": "pelore4723@hacknapp.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-04-29T23:00:17.567Z",
+    "role": "customer",
+    "phone": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 23,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$w62bZBgZqk6Qe9iuzuNYMG$ZGWasnXe/gKhirP2f7MEfcppah1wnZXxMrOnEQ1FV3Q=",
+    "last_login": "2026-05-01T23:09:25.349Z",
+    "is_superuser": false,
+    "username": "provider19",
+    "first_name": "",
+    "last_name": "",
+    "email": "mowol29922@cadinr.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-05-01T20:10:29.541Z",
+    "role": "provider",
+    "phone": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "services.category",
+  "pk": 1,
+  "fields": {
+    "name": "Home Services"
+  }
+},
+{
+  "model": "services.category",
+  "pk": 2,
+  "fields": {
+    "name": "Vehicle Services"
+  }
+},
+{
+  "model": "services.category",
+  "pk": 3,
+  "fields": {
+    "name": "Personal Services"
+  }
+},
+{
+  "model": "services.service",
+  "pk": 1,
+  "fields": {
+    "category": 1,
+    "name": "AC Repair",
+    "description": "Professional AC repair service ensuring efficient cooling, quick fault diagnosis, reliable maintenance, and affordable solutions for homes and offices.",
+    "price": 1000.0,
+    "image": "services/ac_repare_service.jpeg",
+    "is_active": true,
+    "created_at": "2026-05-01T22:57:31.622Z",
+    "updated_at": "2026-05-01T22:57:31.647Z"
+  }
+},
+{
+  "model": "services.service",
+  "pk": 2,
+  "fields": {
+    "category": 2,
+    "name": "Car Wash",
+    "description": "Professional car wash service delivering spotless shine, thorough cleaning, paint protection, and fast, reliable care for every vehicle.",
+    "price": 700.0,
+    "image": "services/ChatGPT_Image_Apr_30_2026_04_40_52_AM.png",
+    "is_active": true,
+    "created_at": "2026-05-01T22:57:31.622Z",
+    "updated_at": "2026-05-01T22:57:31.647Z"
+  }
+},
+{
+  "model": "services.service",
+  "pk": 3,
+  "fields": {
+    "category": 3,
+    "name": "Laundry",
+    "description": "Professional laundry service offering clean, fresh clothes with quick turnaround, careful handling, and reliable pickup and delivery options.",
+    "price": 200.0,
+    "image": "services/ChatGPT_Image_Apr_30_2026_04_37_40_AM.png",
+    "is_active": true,
+    "created_at": "2026-05-01T22:57:31.622Z",
+    "updated_at": "2026-05-01T22:57:31.647Z"
+  }
+},
+{
+  "model": "bookings.booking",
+  "pk": 2,
+  "fields": {
+    "user": 1,
+    "service": 1,
+    "provider": null,
+    "date": "2026-04-30",
+    "time": "06:00:00",
+    "address": "hhhhhh",
+    "rating": null,
+    "review": null,
+    "status": "pending",
+    "created_at": "2026-04-29T18:41:00.923Z",
+    "updated_at": "2026-05-01T20:22:58.115Z"
+  }
+},
+{
+  "model": "bookings.booking",
+  "pk": 3,
+  "fields": {
+    "user": 3,
+    "service": 1,
+    "provider": null,
+    "date": "2026-04-30",
+    "time": "06:00:00",
+    "address": "jijij",
+    "rating": null,
+    "review": null,
+    "status": "pending",
+    "created_at": "2026-04-29T20:00:01.287Z",
+    "updated_at": "2026-05-01T20:22:58.115Z"
+  }
+},
+{
+  "model": "bookings.booking",
+  "pk": 4,
+  "fields": {
+    "user": 5,
+    "service": 1,
+    "provider": null,
+    "date": "2026-04-30",
+    "time": "06:00:00",
+    "address": "hjbnmlmnkjn",
+    "rating": null,
+    "review": null,
+    "status": "cancelled",
+    "created_at": "2026-04-29T20:01:24.728Z",
+    "updated_at": "2026-05-01T21:25:10.545Z"
+  }
+},
+{
+  "model": "bookings.booking",
+  "pk": 5,
+  "fields": {
+    "user": 5,
+    "service": 1,
+    "provider": 8,
+    "date": "2026-04-30",
+    "time": "06:00:00",
+    "address": "hujjiikkk",
+    "rating": 4,
+    "review": "j",
+    "status": "completed",
+    "created_at": "2026-04-29T20:09:46.046Z",
+    "updated_at": "2026-05-01T21:41:08.406Z"
+  }
+},
+{
+  "model": "bookings.booking",
+  "pk": 6,
+  "fields": {
+    "user": 8,
+    "service": 2,
+    "provider": null,
+    "date": "2026-04-30",
+    "time": "06:00:00",
+    "address": "jnklkhjb njkonjkb nkjlkm",
+    "rating": null,
+    "review": null,
+    "status": "completed",
+    "created_at": "2026-04-29T20:37:58.263Z",
+    "updated_at": "2026-05-01T20:22:58.115Z"
+  }
+},
+{
+  "model": "bookings.booking",
+  "pk": 7,
+  "fields": {
+    "user": 22,
+    "service": 1,
+    "provider": 6,
+    "date": "2026-04-30",
+    "time": "06:00:00",
+    "address": "jkbhknjbk nkmlkn",
+    "rating": null,
+    "review": null,
+    "status": "completed",
+    "created_at": "2026-04-29T23:00:32.123Z",
+    "updated_at": "2026-05-01T20:22:58.115Z"
+  }
+},
+{
+  "model": "bookings.booking",
+  "pk": 8,
+  "fields": {
+    "user": 5,
+    "service": 1,
+    "provider": 8,
+    "date": "2026-05-01",
+    "time": "06:00:00",
+    "address": "taj pavillion , acharya vihar , bhubaneswar",
+    "rating": 5,
+    "review": "nice",
+    "status": "completed",
+    "created_at": "2026-05-01T20:48:32.337Z",
+    "updated_at": "2026-05-01T21:40:35.762Z"
+  }
+},
+{
+  "model": "bookings.booking",
+  "pk": 9,
+  "fields": {
+    "user": 5,
+    "service": 3,
+    "provider": 8,
+    "date": "2026-05-01",
+    "time": "12:00:00",
+    "address": "bhubaneswar",
+    "rating": 5,
+    "review": "hey",
+    "status": "completed",
+    "created_at": "2026-05-01T20:54:13.089Z",
+    "updated_at": "2026-05-01T21:39:27.086Z"
+  }
+},
+{
+  "model": "bookings.booking",
+  "pk": 10,
+  "fields": {
+    "user": 5,
+    "service": 1,
+    "provider": null,
+    "date": "2026-04-30",
+    "time": "06:00:00",
+    "address": "werfrdsa",
+    "rating": null,
+    "review": null,
+    "status": "pending",
+    "created_at": "2026-05-01T21:41:35.851Z",
+    "updated_at": "2026-05-01T21:41:35.851Z"
+  }
+},
+{
+  "model": "bookings.booking",
+  "pk": 11,
+  "fields": {
+    "user": 5,
+    "service": 3,
+    "provider": 8,
+    "date": "2026-04-30",
+    "time": "12:00:00",
+    "address": "k,k",
+    "rating": null,
+    "review": null,
+    "status": "rejected",
+    "created_at": "2026-05-01T21:43:48.519Z",
+    "updated_at": "2026-05-01T21:44:15.778Z"
+  }
+},
+{
+  "model": "providers.provider",
+  "pk": 5,
+  "fields": {
+    "user": 19,
+    "is_available": true,
+    "experience": 0,
+    "rating": 0.0,
+    "created_at": "2026-05-01T21:24:33.343Z",
+    "services": [
+      1
+    ]
+  }
+},
+{
+  "model": "providers.provider",
+  "pk": 6,
+  "fields": {
+    "user": 21,
+    "is_available": true,
+    "experience": 0,
+    "rating": 0.0,
+    "created_at": "2026-05-01T21:24:33.343Z",
+    "services": [
+      1
+    ]
+  }
+},
+{
+  "model": "providers.provider",
+  "pk": 8,
+  "fields": {
+    "user": 23,
+    "is_available": true,
+    "experience": 0,
+    "rating": 4.7,
+    "created_at": "2026-05-01T21:24:33.343Z",
+    "services": [
+      3
+    ]
+  }
+},
+{
+  "model": "providers.providerapplication",
+  "pk": 6,
+  "fields": {
+    "user": 19,
+    "aadhar_card": "documents/BeauttiPalour_5zTdb4n.png",
+    "passport_photo": "documents/.a1_bEl2rIs.jpg",
+    "cv": "documents/Screenshot_2025-04-28_143344_jEV1yd7.png",
+    "driving_license": "documents/Screenshot_2025-04-28_143314_3SJPX4P.png",
+    "status": "approved",
+    "created_at": "2026-04-29T22:40:11.877Z",
+    "updated_at": "2026-05-01T21:24:33.356Z",
+    "services": [
+      1
+    ]
+  }
+},
+{
+  "model": "providers.providerapplication",
+  "pk": 8,
+  "fields": {
+    "user": 21,
+    "aadhar_card": "documents/Screenshot_2025-04-28_143430_wPRHAG0.png",
+    "passport_photo": "documents/Screenshot_2025-04-28_143519_eYMfSGu.png",
+    "cv": "documents/Screenshot_2025-04-28_143314_S1NXBKA.png",
+    "driving_license": "documents/Screenshot_2025-04-28_143519_HVIZoQY.png",
+    "status": "approved",
+    "created_at": "2026-04-29T22:58:27.003Z",
+    "updated_at": "2026-05-01T21:24:33.356Z",
+    "services": [
+      1
+    ]
+  }
+},
+{
+  "model": "providers.providerapplication",
+  "pk": 9,
+  "fields": {
+    "user": 23,
+    "aadhar_card": "documents/ChatGPT_Image_Apr_30_2026_04_37_40_AM.png",
+    "passport_photo": "documents/ac_repare_service.jpeg",
+    "cv": "documents/BeauttiPalour_2Jys5eR.png",
+    "driving_license": "documents/Screenshot_2025-04-28_143519_YkLHZ16.png",
+    "status": "approved",
+    "created_at": "2026-05-01T20:10:30.391Z",
+    "updated_at": "2026-05-01T21:24:33.356Z",
+    "services": [
+      3
+    ]
+  }
+}
+]

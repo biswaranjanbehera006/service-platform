@@ -1,5 +1,28 @@
-.env
-data.json
-node_modules/   
+# Python
 __pycache__/
+*.pyc
+
+# Virtual Environment
 venv/
+env/
+
+# Database
+db.sqlite3
+
+# Environment Variables
+.env
+
+# Static Files
+staticfiles/
+
+# Media Files
+media/
+
+# VS Code
+.vscode/
+
+# Mac Files
+.DS_Store
+
+# Logs
+*.log

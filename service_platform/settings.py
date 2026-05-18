@@ -22,10 +22,29 @@ SECRET_KEY = config(
     default='django-insecure-dev-key'
 )
 
-DEBUG = True
+# ✅ PRODUCTION DEBUG
+DEBUG = config(
+    'DEBUG',
+    default=False,
+    cast=bool
+)
 
-# 🔥 DEVELOPMENT
-ALLOWED_HOSTS = ['*']
+# ✅ ALLOWED HOSTS
+ALLOWED_HOSTS = [
+
+    '*',
+]
+
+
+# =========================
+# 🔐 CSRF TRUSTED ORIGINS
+# =========================
+CSRF_TRUSTED_ORIGINS = [
+
+    'https://*.onrender.com',
+
+    'https://*.ngrok-free.app',
+]
 
 
 # =========================
@@ -57,6 +76,9 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
 
     'django.middleware.security.SecurityMiddleware',
+
+    # ✅ WHITENOISE
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 
     'django.contrib.sessions.middleware.SessionMiddleware',
 
@@ -119,15 +141,20 @@ WSGI_APPLICATION = 'service_platform.wsgi.application'
 DATABASES = {
 
     'default': dj_database_url.parse(
+
         config('DATABASE_URL'),
+
         conn_max_age=0,
+
         ssl_require=True
     )
 
 }
 
 DATABASES['default']['OPTIONS'] = {
+
     'sslmode': 'require',
+
     'connect_timeout': 30,
 }
 
@@ -181,12 +208,19 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
+
     os.path.join(BASE_DIR, 'static')
 ]
 
+# ✅ PRODUCTION STATIC ROOT
 STATIC_ROOT = os.path.join(
     BASE_DIR,
     'staticfiles'
+)
+
+# ✅ WHITENOISE STORAGE
+STATICFILES_STORAGE = (
+    'whitenoise.storage.CompressedManifestStaticFilesStorage'
 )
 
 
@@ -260,10 +294,9 @@ EMAIL_HOST_PASSWORD = config(
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-
-
-
-#payement gateway
+# =========================
+# 💳 RAZORPAY
+# =========================
 RAZORPAY_KEY_ID = config(
     'RAZORPAY_KEY_ID'
 )
@@ -273,9 +306,9 @@ RAZORPAY_KEY_SECRET = config(
 )
 
 
-
-
-
+# =========================
+# 👨‍💼 ADMIN EMAIL
+# =========================
 ADMIN_EMAIL = config(
     'ADMIN_EMAIL'
 )
