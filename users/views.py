@@ -83,7 +83,7 @@ Service Platform Team
                 ''',
                 from_email=settings.EMAIL_HOST_USER,
                 recipient_list=[user.email],
-                fail_silently=False,
+                fail_silently=True,
             )
 
             messages.success(
