@@ -1,40 +1,85 @@
 from django.db import models
 
+# ☁️ CLOUDINARY
+from cloudinary.models import CloudinaryField
 
+
+# =========================================
 # 📂 CATEGORY MODEL
+# =========================================
 class Category(models.Model):
-    name = models.CharField(max_length=100, unique=True)
+
+    name = models.CharField(
+        max_length=100,
+        unique=True
+    )
 
     def __str__(self):
+
         return self.name
 
 
-# 🛠 SERVICE MODEL (UPDATED)
+# =========================================
+# 🛠 SERVICE MODEL
+# =========================================
 class Service(models.Model):
 
-    # 🔗 RELATION
+    # 🔗 CATEGORY RELATION
     category = models.ForeignKey(
+
         Category,
+
         on_delete=models.CASCADE,
+
         related_name='services'
     )
 
     # 📌 BASIC INFO
-    name = models.CharField(max_length=100)
-    description = models.TextField(blank=True, null=True)
+    name = models.CharField(
 
-    # 💰 PRICING
+        max_length=100
+    )
+
+    description = models.TextField(
+
+        blank=True,
+
+        null=True
+    )
+
+    # 💰 PRICE
     price = models.FloatField()
 
-    # 🖼 IMAGE
-    image = models.ImageField(upload_to='services/', blank=True, null=True)
+    # ☁️ CLOUDINARY IMAGE
+    image = CloudinaryField(
 
-    # ⭐ OPTIONAL STATUS (FOR FUTURE CONTROL)
-    is_active = models.BooleanField(default=True)
+        'image',
 
-    # ⏱ TRACKING (IMPORTANT FOR ADMIN UI)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+        blank=True,
 
+        null=True
+    )
+
+    # ✅ STATUS
+    is_active = models.BooleanField(
+
+        default=True
+    )
+
+    # ⏱ TIMESTAMPS
+    created_at = models.DateTimeField(
+
+        auto_now_add=True
+    )
+
+    updated_at = models.DateTimeField(
+
+        auto_now=True
+    )
+
+    # =========================================
+    # 🔥 STRING REPRESENTATION
+    # =========================================
     def __str__(self):
+
         return self.name

@@ -60,6 +60,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # CLOUDINARY
+    'cloudinary',
+    'cloudinary_storage',
+
     # CUSTOM APPS
     'users',
     'services',
@@ -311,4 +315,31 @@ RAZORPAY_KEY_SECRET = config(
 # =========================
 ADMIN_EMAIL = config(
     'ADMIN_EMAIL'
+)
+
+
+
+
+# =========================
+# ☁️ CLOUDINARY CONFIG
+# =========================
+
+CLOUDINARY_STORAGE = {
+
+    'CLOUD_NAME': config(
+        'CLOUDINARY_CLOUD_NAME'
+    ),
+
+    'API_KEY': config(
+        'CLOUDINARY_API_KEY'
+    ),
+
+    'API_SECRET': config(
+        'CLOUDINARY_API_SECRET'
+    ),
+}
+
+# ✅ DEFAULT FILE STORAGE
+DEFAULT_FILE_STORAGE = (
+    'cloudinary_storage.storage.MediaCloudinaryStorage'
 )
