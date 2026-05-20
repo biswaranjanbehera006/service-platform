@@ -6,8 +6,6 @@ from django.contrib.auth.decorators import login_required
 
 from django.contrib import messages
 
-from django.core.mail import send_mail
-
 from django.conf import settings
 
 from django.contrib.auth import get_user_model
@@ -107,53 +105,19 @@ def register_view(request):
                 otp_obj.generate_otp()
 
                 # =========================
-                # 🔥 SEND EMAIL SAFELY
+                # 🔥 SHOW OTP DIRECTLY
                 # =========================
-                try:
+                print(
+                    "OTP:",
+                    otp_obj.otp
+                )
 
-                    send_mail(
+                messages.success(
 
-                        subject='Email Verification OTP',
+                    request,
 
-                        message=f"""
-Hello {user.first_name},
-
-Your OTP for email verification is:
-
-{otp_obj.otp}
-
-Do not share this OTP with anyone.
-
-Service Platform Team
-                        """,
-
-                        from_email=settings.EMAIL_HOST_USER,
-
-                        recipient_list=[user.email],
-
-                        fail_silently=True,
-                    )
-
-                    messages.success(
-
-                        request,
-
-                        "📧 OTP sent successfully."
-                    )
-
-                except Exception as email_error:
-
-                    print(
-                        "EMAIL ERROR:",
-                        email_error
-                    )
-
-                    messages.warning(
-
-                        request,
-
-                        "⚠️ Account created but OTP email could not be sent."
-                    )
+                    f"✅ Account created successfully. Your OTP is: {otp_obj.otp}"
+                )
 
                 # =========================
                 # 🔥 REDIRECT TO VERIFY PAGE
@@ -646,53 +610,19 @@ def forgot_password(request):
         request.session['reset_user_id'] = user.id
 
         # =========================
-        # 🔥 SEND RESET EMAIL SAFELY
+        # 🔥 SHOW RESET OTP DIRECTLY
         # =========================
-        try:
+        print(
+            "RESET OTP:",
+            otp_obj.otp
+        )
 
-            send_mail(
+        messages.success(
 
-                subject='Password Reset OTP',
+            request,
 
-                message=f"""
-Hello {user.first_name},
-
-Your OTP for password reset is:
-
-{otp_obj.otp}
-
-Do not share this OTP with anyone.
-
-Service Platform Team
-                """,
-
-                from_email=settings.EMAIL_HOST_USER,
-
-                recipient_list=[user.email],
-
-                fail_silently=True,
-            )
-
-            messages.success(
-
-                request,
-
-                "📧 OTP sent successfully."
-            )
-
-        except Exception as email_error:
-
-            print(
-                "RESET EMAIL ERROR:",
-                email_error
-            )
-
-            messages.warning(
-
-                request,
-
-                "⚠️ OTP created but email could not be sent."
-            )
+            f"✅ Your password reset OTP is: {otp_obj.otp}"
+        )
 
         return redirect(
             'verify_reset_otp'
