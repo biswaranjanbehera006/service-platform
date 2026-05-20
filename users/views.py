@@ -1,19 +1,24 @@
 from django.shortcuts import render, redirect, get_object_or_404
+
 from django.contrib.auth import authenticate, login, logout
+
 from django.contrib.auth.decorators import login_required
+
 from django.contrib import messages
+
 from django.core.mail import send_mail
+
 from django.conf import settings
+
 from django.contrib.auth import get_user_model
-from django.contrib.auth.decorators import login_required
 
 from .forms import RegisterForm
+
 from .models import EmailOTP, User
+
 from providers.models import ProviderApplication
+
 from bookings.models import Booking
-
-
-
 
 
 # =========================
@@ -23,54 +28,94 @@ def register_view(request):
 
     if request.method == 'POST':
 
-        form = RegisterForm(request.POST, request.FILES)
+        form = RegisterForm(
+
+            request.POST,
+
+            request.FILES
+        )
 
         if form.is_valid():
 
-            user = form.save(commit=False)
+            try:
 
-            # 🔥 SAVE FULL NAME
-            user.first_name = form.cleaned_data.get('first_name')
+                # =========================
+                # 🔥 CREATE USER
+                # =========================
+                user = form.save(commit=False)
 
-            # 🔥 SAVE PHONE
-            user.phone = form.cleaned_data.get('phone')
-
-            # 🔥 BLOCK LOGIN UNTIL EMAIL VERIFIED
-            user.is_active = False
-            user.is_email_verified = False
-
-            user.save()
-
-            # =========================
-            # 🔥 PROVIDER APPLICATION
-            # =========================
-            if user.role == 'provider':
-
-                application = ProviderApplication.objects.create(
-                    user=user,
-                    aadhar_card=request.FILES.get('aadhar_card'),
-                    passport_photo=request.FILES.get('passport_photo'),
-                    cv=request.FILES.get('cv'),
-                    driving_license=request.FILES.get('driving_license'),
+                # 🔥 SAVE NAME
+                user.first_name = form.cleaned_data.get(
+                    'first_name'
                 )
 
-                services = form.cleaned_data.get('services')
+                # 🔥 SAVE PHONE
+                user.phone = form.cleaned_data.get(
+                    'phone'
+                )
 
-                if services:
-                    application.services.set(services)
+                # 🔥 EMAIL VERIFICATION REQUIRED
+                user.is_active = False
 
-            # =========================
-            # 🔥 CREATE OTP
-            # =========================
-            otp_obj = EmailOTP.objects.create(user=user)
-            otp_obj.generate_otp()
+                user.is_email_verified = False
 
-            # =========================
-            # 🔥 SEND EMAIL
-            # =========================
-            send_mail(
-                subject='Email Verification OTP',
-                message=f'''
+                user.save()
+
+                # =========================
+                # 🔥 PROVIDER APPLICATION
+                # =========================
+                if user.role == 'provider':
+
+                    application = ProviderApplication.objects.create(
+
+                        user=user,
+
+                        aadhar_card=request.FILES.get(
+                            'aadhar_card'
+                        ),
+
+                        passport_photo=request.FILES.get(
+                            'passport_photo'
+                        ),
+
+                        cv=request.FILES.get(
+                            'cv'
+                        ),
+
+                        driving_license=request.FILES.get(
+                            'driving_license'
+                        ),
+                    )
+
+                    services = form.cleaned_data.get(
+                        'services'
+                    )
+
+                    if services:
+
+                        application.services.set(
+                            services
+                        )
+
+                # =========================
+                # 🔥 CREATE OTP
+                # =========================
+                otp_obj = EmailOTP.objects.create(
+                    user=user
+                )
+
+                otp_obj.generate_otp()
+
+                # =========================
+                # 🔥 SEND EMAIL SAFELY
+                # =========================
+                try:
+
+                    send_mail(
+
+                        subject='Email Verification OTP',
+
+                        message=f"""
 Hello {user.first_name},
 
 Your OTP for email verification is:
@@ -80,31 +125,89 @@ Your OTP for email verification is:
 Do not share this OTP with anyone.
 
 Service Platform Team
-                ''',
-                from_email=settings.EMAIL_HOST_USER,
-                recipient_list=[user.email],
-                fail_silently=True,
-            )
+                        """,
 
-            messages.success(
-                request,
-                "📧 OTP sent to your email successfully."
-            )
+                        from_email=settings.EMAIL_HOST_USER,
 
-            return redirect('verify_email', user_id=user.id)
+                        recipient_list=[user.email],
+
+                        fail_silently=True,
+                    )
+
+                    messages.success(
+
+                        request,
+
+                        "📧 OTP sent successfully."
+                    )
+
+                except Exception as email_error:
+
+                    print(
+                        "EMAIL ERROR:",
+                        email_error
+                    )
+
+                    messages.warning(
+
+                        request,
+
+                        "⚠️ Account created but OTP email could not be sent."
+                    )
+
+                # =========================
+                # 🔥 REDIRECT TO VERIFY PAGE
+                # =========================
+                return redirect(
+
+                    'verify_email',
+
+                    user_id=user.id
+                )
+
+            except Exception as e:
+
+                print(
+                    "REGISTER ERROR:",
+                    e
+                )
+
+                messages.error(
+
+                    request,
+
+                    "❌ Registration failed. Please try again."
+                )
+
+                return redirect(
+                    'register'
+                )
 
         else:
+
+            print(form.errors)
+
             messages.error(
+
                 request,
+
                 "⚠️ Please correct the errors below."
             )
 
     else:
+
         form = RegisterForm()
 
-    return render(request, 'users/register.html', {
-        'form': form
-    })
+    return render(
+
+        request,
+
+        'users/register.html',
+
+        {
+            'form': form
+        }
+    )
 
 
 # =========================
@@ -114,9 +217,14 @@ def verify_email(request, user_id):
 
     User = get_user_model()
 
-    user = get_object_or_404(User, id=user_id)
+    user = get_object_or_404(
+        User,
+        id=user_id
+    )
 
-    otp_obj = EmailOTP.objects.filter(user=user).last()
+    otp_obj = EmailOTP.objects.filter(
+        user=user
+    ).last()
 
     if request.method == 'POST':
 
@@ -126,35 +234,61 @@ def verify_email(request, user_id):
 
             # 🔥 ACTIVATE USER
             user.is_active = True
+
             user.is_email_verified = True
+
             user.save()
 
             messages.success(
+
                 request,
+
                 "✅ Email verified successfully!"
             )
 
-            login(request, user)
+            login(
+                request,
+                user
+            )
 
             # 🔥 ROLE REDIRECT
             if user.role == 'admin':
-                return redirect('admin_dashboard')
+
+                return redirect(
+                    'admin_dashboard'
+                )
 
             elif user.role == 'provider':
-                return redirect('provider_dashboard')
+
+                return redirect(
+                    'provider_dashboard'
+                )
 
             else:
-                return redirect('home')
+
+                return redirect(
+                    'home'
+                )
 
         else:
+
             messages.error(
+
                 request,
+
                 "❌ Invalid OTP. Please try again."
             )
 
-    return render(request, 'users/verify.html', {
-        'user': user
-    })
+    return render(
+
+        request,
+
+        'users/verify.html',
+
+        {
+            'user': user
+        }
+    )
 
 
 # =========================
@@ -167,40 +301,52 @@ def login_view(request):
     if request.method == 'POST':
 
         username = request.POST.get('username')
+
         password = request.POST.get('password')
 
         user = authenticate(
+
             request,
+
             username=username,
+
             password=password
         )
 
         if user:
 
             # =========================
-            # 🚫 EMAIL VERIFICATION CHECK
+            # 🚫 EMAIL VERIFICATION
             # =========================
             if not user.is_active:
 
                 messages.warning(
+
                     request,
+
                     "📧 Please verify your email first."
                 )
 
                 return redirect(
+
                     'verify_email',
+
                     user_id=user.id
                 )
 
             if not user.is_email_verified:
 
                 messages.warning(
+
                     request,
+
                     "📧 Please verify your email."
                 )
 
                 return redirect(
+
                     'verify_email',
+
                     user_id=user.id
                 )
 
@@ -210,6 +356,7 @@ def login_view(request):
             if user.role == 'provider':
 
                 try:
+
                     application = ProviderApplication.objects.get(
                         user=user
                     )
@@ -217,37 +364,54 @@ def login_view(request):
                     if application.status == 'pending':
 
                         messages.warning(
+
                             request,
+
                             "⏳ Your provider application is under review."
                         )
 
-                        return redirect('login')
+                        return redirect(
+                            'login'
+                        )
 
                     elif application.status == 'rejected':
 
                         messages.error(
+
                             request,
+
                             "❌ Your provider application was rejected."
                         )
 
-                        return redirect('login')
+                        return redirect(
+                            'login'
+                        )
 
                 except ProviderApplication.DoesNotExist:
 
                     messages.error(
+
                         request,
+
                         "⚠️ Provider application not found."
                     )
 
-                    return redirect('register')
+                    return redirect(
+                        'register'
+                    )
 
             # =========================
             # ✅ LOGIN USER
             # =========================
-            login(request, user)
+            login(
+                request,
+                user
+            )
 
             messages.success(
+
                 request,
+
                 f"Welcome back, {user.first_name} 👋"
             )
 
@@ -255,26 +419,46 @@ def login_view(request):
             # 🔥 REDIRECT LOGIC
             # =========================
             if next_url and next_url not in ['/', 'None']:
+
                 return redirect(next_url)
 
             if user.is_superuser or user.role == 'admin':
-                return redirect('admin_dashboard')
+
+                return redirect(
+                    'admin_dashboard'
+                )
 
             elif user.role == 'provider':
-                return redirect('provider_dashboard')
+
+                return redirect(
+                    'provider_dashboard'
+                )
 
             else:
-                return redirect('home')
+
+                return redirect(
+                    'home'
+                )
 
         else:
+
             messages.error(
+
                 request,
+
                 "❌ Invalid username or password."
             )
 
-    return render(request, 'users/login.html', {
-        'next': next_url
-    })
+    return render(
+
+        request,
+
+        'users/login.html',
+
+        {
+            'next': next_url
+        }
+    )
 
 
 # =========================
@@ -284,15 +468,27 @@ def login_view(request):
 def user_dashboard(request):
 
     if request.user.role != 'customer':
-        return redirect('home')
+
+        return redirect(
+            'home'
+        )
 
     bookings = Booking.objects.filter(
+
         user=request.user
+
     ).order_by('-created_at')
 
-    return render(request, 'users/dashboard.html', {
-        'bookings': bookings
-    })
+    return render(
+
+        request,
+
+        'users/dashboard.html',
+
+        {
+            'bookings': bookings
+        }
+    )
 
 
 # =========================
@@ -302,34 +498,48 @@ def user_dashboard(request):
 def cancel_booking(request, id):
 
     booking = get_object_or_404(
+
         Booking,
+
         id=id,
+
         user=request.user
     )
 
     if booking.status in ['completed', 'cancelled']:
 
         messages.warning(
+
             request,
+
             "⚠️ This booking cannot be cancelled."
         )
 
-        return redirect('user_dashboard')
+        return redirect(
+            'user_dashboard'
+        )
 
     booking.status = 'cancelled'
+
     booking.save()
 
     # 🔥 MAKE PROVIDER AVAILABLE AGAIN
     if booking.provider:
+
         booking.provider.is_available = True
+
         booking.provider.save()
 
     messages.success(
+
         request,
+
         "❌ Booking cancelled successfully!"
     )
 
-    return redirect('user_dashboard')
+    return redirect(
+        'user_dashboard'
+    )
 
 
 # =========================
@@ -340,12 +550,15 @@ def logout_view(request):
     logout(request)
 
     messages.info(
+
         request,
+
         "👋 Logged out successfully."
     )
 
-    return redirect('home')
-
+    return redirect(
+        'home'
+    )
 
 
 # =========================
@@ -359,28 +572,39 @@ def profile_view(request):
     if request.method == 'POST':
 
         # 🔥 UPDATE NAME
-        user.first_name = request.POST.get('first_name')
+        user.first_name = request.POST.get(
+            'first_name'
+        )
 
         # 🔥 UPDATE PHONE
-        user.phone = request.POST.get('phone')
+        user.phone = request.POST.get(
+            'phone'
+        )
 
         # 🔥 UPDATE PROFILE IMAGE
         if request.FILES.get('profile_image'):
-            user.profile_image = request.FILES.get('profile_image')
+
+            user.profile_image = request.FILES.get(
+                'profile_image'
+            )
 
         user.save()
 
         messages.success(
+
             request,
+
             "✅ Profile updated successfully!"
         )
 
-        return redirect('profile')
+        return redirect(
+            'profile'
+        )
 
-    return render(request, 'users/profile.html')
-
-
-from django.shortcuts import render
+    return render(
+        request,
+        'users/profile.html'
+    )
 
 
 # =========================
@@ -392,31 +616,45 @@ def forgot_password(request):
 
         email = request.POST.get('email')
 
-        # 🔥 GET FIRST USER WITH EMAIL
-        user = User.objects.filter(email=email).first()
+        # 🔥 GET USER
+        user = User.objects.filter(
+            email=email
+        ).first()
 
         # ❌ EMAIL NOT FOUND
         if not user:
 
             messages.error(
+
                 request,
+
                 "❌ Email not registered."
             )
 
-            return redirect('forgot_password')
+            return redirect(
+                'forgot_password'
+            )
 
         # 🔥 CREATE OTP
-        otp_obj = EmailOTP.objects.create(user=user)
+        otp_obj = EmailOTP.objects.create(
+            user=user
+        )
 
         otp_obj.generate_otp()
 
-        # 🔥 SAVE USER ID IN SESSION
+        # 🔥 SAVE SESSION
         request.session['reset_user_id'] = user.id
 
-        # 🔥 SEND OTP EMAIL
-        send_mail(
-            subject='Password Reset OTP',
-            message=f'''
+        # =========================
+        # 🔥 SEND RESET EMAIL SAFELY
+        # =========================
+        try:
+
+            send_mail(
+
+                subject='Password Reset OTP',
+
+                message=f"""
 Hello {user.first_name},
 
 Your OTP for password reset is:
@@ -426,21 +664,44 @@ Your OTP for password reset is:
 Do not share this OTP with anyone.
 
 Service Platform Team
-            ''',
-            from_email=settings.EMAIL_HOST_USER,
-            recipient_list=[user.email],
-            fail_silently=False,
-        )
+                """,
 
-        messages.success(
-            request,
-            "📧 OTP sent successfully."
-        )
+                from_email=settings.EMAIL_HOST_USER,
 
-        return redirect('verify_reset_otp')
+                recipient_list=[user.email],
+
+                fail_silently=True,
+            )
+
+            messages.success(
+
+                request,
+
+                "📧 OTP sent successfully."
+            )
+
+        except Exception as email_error:
+
+            print(
+                "RESET EMAIL ERROR:",
+                email_error
+            )
+
+            messages.warning(
+
+                request,
+
+                "⚠️ OTP created but email could not be sent."
+            )
+
+        return redirect(
+            'verify_reset_otp'
+        )
 
     return render(
+
         request,
+
         'forgot_password.html'
     )
 
@@ -450,27 +711,37 @@ Service Platform Team
 # =========================
 def verify_reset_otp(request):
 
-    user_id = request.session.get('reset_user_id')
+    user_id = request.session.get(
+        'reset_user_id'
+    )
 
     # ❌ SESSION EXPIRED
     if not user_id:
 
         messages.error(
+
             request,
+
             "⚠️ Session expired."
         )
 
-        return redirect('forgot_password')
+        return redirect(
+            'forgot_password'
+        )
 
     # 🔥 GET USER
     user = get_object_or_404(
+
         User,
+
         id=user_id
     )
 
-    # 🔥 GET LATEST OTP
+    # 🔥 GET OTP
     otp_obj = EmailOTP.objects.filter(
+
         user=user
+
     ).last()
 
     if request.method == 'POST':
@@ -481,65 +752,89 @@ def verify_reset_otp(request):
         if otp_obj and otp_obj.otp == entered_otp:
 
             messages.success(
+
                 request,
+
                 "✅ OTP verified successfully."
             )
 
-            return redirect('reset_password')
+            return redirect(
+                'reset_password'
+            )
 
-        # ❌ INVALID OTP
         else:
 
             messages.error(
+
                 request,
+
                 "❌ Invalid OTP."
             )
 
     return render(
+
         request,
+
         'users/verify.html'
     )
+
 
 # =========================
 # ✅ RESET PASSWORD
 # =========================
 def reset_password(request):
 
-    user_id = request.session.get('reset_user_id')
+    user_id = request.session.get(
+        'reset_user_id'
+    )
 
     # ❌ SESSION EXPIRED
     if not user_id:
 
         messages.error(
+
             request,
+
             "⚠️ Session expired."
         )
 
-        return redirect('forgot_password')
+        return redirect(
+            'forgot_password'
+        )
 
     # 🔥 GET USER
     user = get_object_or_404(
+
         User,
+
         id=user_id
     )
 
     if request.method == 'POST':
 
-        password1 = request.POST.get('password1')
+        password1 = request.POST.get(
+            'password1'
+        )
 
-        password2 = request.POST.get('password2')
+        password2 = request.POST.get(
+            'password2'
+        )
 
         # ❌ PASSWORD NOT MATCH
         if password1 != password2:
 
             messages.error(
+
                 request,
+
                 "❌ Passwords do not match."
             )
 
-            return redirect('reset_password')
+            return redirect(
+                'reset_password'
+            )
 
-        # ✅ SET NEW PASSWORD
+        # ✅ UPDATE PASSWORD
         user.set_password(password1)
 
         user.save()
@@ -551,14 +846,19 @@ def reset_password(request):
         )
 
         messages.success(
+
             request,
+
             "✅ Password reset successful."
         )
 
-        return redirect('login')
+        return redirect(
+            'login'
+        )
 
     return render(
+
         request,
+
         'reset_password.html'
     )
-
