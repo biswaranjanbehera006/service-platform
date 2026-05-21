@@ -49,6 +49,7 @@ class RegisterForm(UserCreationForm):
     driving_license = forms.ImageField(required=False)
 
     class Meta:
+
         model = User
 
         fields = [
@@ -62,6 +63,7 @@ class RegisterForm(UserCreationForm):
         ]
 
         widgets = {
+
             'username': forms.TextInput(attrs={
                 'class': 'form-control',
                 'placeholder': 'Enter username'
@@ -74,13 +76,14 @@ class RegisterForm(UserCreationForm):
 
     # 🔥 APPLY BOOTSTRAP
     def __init__(self, *args, **kwargs):
+
         super().__init__(*args, **kwargs)
 
-        # REMOVE ADMIN ROLE
+        # 🚫 REMOVE ADMIN ROLE
         self.fields['role'].choices = [
             ('customer', 'Customer'),
             ('provider', 'Provider'),
-]
+        ]
 
         self.fields['password1'].widget.attrs.update({
             'class': 'form-control',
@@ -108,30 +111,92 @@ class RegisterForm(UserCreationForm):
             'class': 'form-control'
         })
 
-    # 🔥 UNIQUE EMAIL VALIDATION
+    # =========================
+    # ✅ UNIQUE EMAIL VALIDATION
+    # =========================
     def clean_email(self):
+
         email = self.cleaned_data.get('email')
 
         if User.objects.filter(email=email).exists():
+
             raise forms.ValidationError(
                 "This email is already registered."
             )
 
         return email
 
-    # 🔥 PHONE VALIDATION
+    # =========================
+    # ✅ PHONE VALIDATION
+    # =========================
     def clean_phone(self):
+
         phone = self.cleaned_data.get('phone')
 
         if len(phone) < 10:
+
             raise forms.ValidationError(
                 "Enter valid phone number."
             )
 
         return phone
 
-    # 🔥 PROVIDER VALIDATION
+    # =========================
+    # ✅ FILE SIZE VALIDATION
+    # =========================
+    def clean_aadhar_card(self):
+
+        file = self.cleaned_data.get('aadhar_card')
+
+        if file and file.size > 5 * 1024 * 1024:
+
+            raise forms.ValidationError(
+                "Aadhar card must be below 5MB."
+            )
+
+        return file
+
+    def clean_passport_photo(self):
+
+        file = self.cleaned_data.get('passport_photo')
+
+        if file and file.size > 5 * 1024 * 1024:
+
+            raise forms.ValidationError(
+                "Passport photo must be below 5MB."
+            )
+
+        return file
+
+    def clean_cv(self):
+
+        file = self.cleaned_data.get('cv')
+
+        if file and file.size > 5 * 1024 * 1024:
+
+            raise forms.ValidationError(
+                "CV must be below 5MB."
+            )
+
+        return file
+
+    def clean_driving_license(self):
+
+        file = self.cleaned_data.get('driving_license')
+
+        if file and file.size > 5 * 1024 * 1024:
+
+            raise forms.ValidationError(
+                "Driving license must be below 5MB."
+            )
+
+        return file
+
+    # =========================
+    # ✅ PROVIDER VALIDATION
+    # =========================
     def clean(self):
+
         cleaned_data = super().clean()
 
         role = cleaned_data.get('role')
@@ -139,26 +204,31 @@ class RegisterForm(UserCreationForm):
         if role == 'provider':
 
             if not cleaned_data.get('aadhar_card'):
+
                 raise forms.ValidationError(
                     "Aadhar card is required."
                 )
 
             if not cleaned_data.get('passport_photo'):
+
                 raise forms.ValidationError(
                     "Passport photo is required."
                 )
 
             if not cleaned_data.get('cv'):
+
                 raise forms.ValidationError(
                     "CV is required."
                 )
 
             if not cleaned_data.get('driving_license'):
+
                 raise forms.ValidationError(
                     "Driving license is required."
                 )
 
             if not cleaned_data.get('services'):
+
                 raise forms.ValidationError(
                     "Select at least one service."
                 )
