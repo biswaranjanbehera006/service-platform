@@ -18,6 +18,8 @@ from providers.models import ProviderApplication
 
 from bookings.models import Booking
 
+import resend
+resend.api_key = settings.RESEND_API_KEY
 
 # =========================
 # ✅ REGISTER
@@ -105,19 +107,73 @@ def register_view(request):
                 otp_obj.generate_otp()
 
                 # =========================
-                # 🔥 SHOW OTP DIRECTLY
+                # 🔥 SEND OTP USING RESEND
                 # =========================
-                print(
-                    "OTP:",
-                    otp_obj.otp
-                )
+                try:
 
-                messages.success(
+                    resend.Emails.send({
 
-                    request,
+                        "from": "onboarding@resend.dev",
 
-                    f"✅ Account created successfully. Your OTP is: {otp_obj.otp}"
-                )
+                        "to": user.email,
+
+                        "subject": "Email Verification OTP",
+
+                        "html": f"""
+
+                            <div style="font-family: Arial; padding: 20px;">
+
+                                <h2 style="color:#000;">
+                                    Email Verification
+                                </h2>
+
+                                <p>
+                                    Hello {user.first_name},
+                                </p>
+
+                                <p>
+                                    Your OTP verification code is:
+                                </p>
+
+                                <h1 style="letter-spacing: 5px; color:#000;">
+                                    {otp_obj.otp}
+                                </h1>
+
+                                <p>
+                                    Do not share this OTP with anyone.
+                                </p>
+
+                                <br>
+
+                                <p>
+                                    Service Platform Team
+                                </p>
+
+                            </div>
+
+                        """
+                    })
+
+                    messages.success(
+
+                        request,
+
+                        "📧 OTP sent successfully to your email."
+                    )
+
+                except Exception as resend_error:
+
+                    print(
+                        "RESEND ERROR:",
+                        resend_error
+                    )
+
+                    messages.warning(
+
+                        request,
+
+                        f"⚠️ Email failed but your OTP is: {otp_obj.otp}"
+                    )
 
                 # =========================
                 # 🔥 REDIRECT TO VERIFY PAGE
