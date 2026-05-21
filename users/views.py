@@ -7,8 +7,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 from django.conf import settings
+from django.core.mail import send_mail
 
 from django.contrib.auth import get_user_model
+from urllib3 import request
 
 from .forms import RegisterForm
 
@@ -18,8 +20,6 @@ from providers.models import ProviderApplication
 
 from bookings.models import Booking
 
-import resend
-resend.api_key = settings.RESEND_API_KEY
 
 # =========================
 # ✅ REGISTER
@@ -109,79 +109,23 @@ def register_view(request):
                 # =========================
                 # 🔥 SEND OTP USING RESEND
                 # =========================
-                try:
+                send_mail(
+                    'Your OTP Verification Code',
+                    f'Hello {user.first_name},\n\nYour OTP is: {otp_obj.otp}',
+                    settings.DEFAULT_FROM_EMAIL,
+                    [user.email],
+                    fail_silently=False,
+                )
 
-                    resend.Emails.send({
-
-                        "from": "onboarding@resend.dev",
-
-                        "to": user.email,
-
-                        "subject": "Email Verification OTP",
-
-                        "html": f"""
-
-                            <div style="font-family: Arial; padding: 20px;">
-
-                                <h2 style="color:#000;">
-                                    Email Verification
-                                </h2>
-
-                                <p>
-                                    Hello {user.first_name},
-                                </p>
-
-                                <p>
-                                    Your OTP verification code is:
-                                </p>
-
-                                <h1 style="letter-spacing: 5px; color:#000;">
-                                    {otp_obj.otp}
-                                </h1>
-
-                                <p>
-                                    Do not share this OTP with anyone.
-                                </p>
-
-                                <br>
-
-                                <p>
-                                    Service Platform Team
-                                </p>
-
-                            </div>
-
-                        """
-                    })
-
-                    messages.success(
-
-                        request,
-
-                        "📧 OTP sent successfully to your email."
-                    )
-
-                except Exception as resend_error:
-
-                    print(
-                        "RESEND ERROR:",
-                        resend_error
-                    )
-
-                    messages.warning(
-
-                        request,
-
-                        f"⚠️ Email failed but your OTP is: {otp_obj.otp}"
-                    )
-
+                messages.success(
+                    request,
+                    "📧 OTP sent successfully to your email."
+                )
                 # =========================
                 # 🔥 REDIRECT TO VERIFY PAGE
                 # =========================
                 return redirect(
-
                     'verify_email',
-
                     user_id=user.id
                 )
 
