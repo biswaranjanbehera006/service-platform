@@ -29,6 +29,11 @@ DEBUG = config(
     cast=bool
 )
 
+
+#Resend OTP
+RESEND_API_KEY = config('RESEND_API_KEY')
+
+
 # ✅ ALLOWED HOSTS
 ALLOWED_HOSTS = [
 
