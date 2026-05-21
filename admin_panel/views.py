@@ -328,6 +328,9 @@ def approve_provider(request, id):
 
     application.save()
 
+
+    
+
     provider, created = Provider.objects.get_or_create(
         user=application.user
     )

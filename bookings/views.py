@@ -4,9 +4,10 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db.models import Count, Q
-from django.core.mail import send_mail
-from django.conf import settings
 
+from django.conf import settings
+import requests
+import json
 from .forms import BookingForm
 from .models import Booking
 from providers.models import Provider
@@ -25,31 +26,72 @@ client = razorpay.Client(auth=(
 
 
 # =====================================================
-# 📧 SEND EMAIL
+# 📧 SEND EMAIL USING BREVO API
 # =====================================================
 
 def send_booking_email(subject, message, recipient):
 
     try:
 
-        send_mail(
+        url = "https://api.brevo.com/v3/smtp/email"
 
-            subject,
+        payload = json.dumps({
 
-            message,
+            "sender": {
 
-            settings.EMAIL_HOST_USER,
+                "name": "ServiceHub",
 
-            [recipient],
+                "email": settings.DEFAULT_FROM_EMAIL
+            },
 
-            fail_silently=False
+            "to": [
+
+                {
+                    "email": recipient
+                }
+            ],
+
+            "subject": subject,
+
+            "htmlContent": f"""
+
+                <div style="font-family: Arial;">
+
+                    <h2>{subject}</h2>
+
+                    <p>{message}</p>
+
+                </div>
+
+            """
+        })
+
+        headers = {
+
+            'accept': 'application/json',
+
+            'api-key': settings.BREVO_API_KEY,
+
+            'content-type': 'application/json'
+        }
+
+        response = requests.post(
+
+            url,
+
+            headers=headers,
+
+            data=payload
         )
+
+        print(response.text)
 
     except Exception as e:
 
         print("EMAIL ERROR:", e)
 
 
+      
 # =====================================================
 # 💳 PAYMENT PAGE
 # =====================================================

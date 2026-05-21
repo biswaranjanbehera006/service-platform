@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.db.models import Count
 
 from bookings.models import Booking
-from providers.models import Provider
+from providers.models import Provider, ProviderApplication
 
 
 # =========================================
@@ -19,7 +19,6 @@ def get_provider(user):
     except Provider.DoesNotExist:
 
         return None
-
 
 # =========================================
 # 📊 PROVIDER DASHBOARD
@@ -50,8 +49,13 @@ def provider_dashboard(request):
 
         return redirect('home')
 
-    # ❌ NOT VERIFIED
-    if not provider.is_verified:
+    # ❌ NOT APPROVED
+    application = ProviderApplication.objects.filter(
+        user=request.user,
+        status='approved'
+    ).first()
+
+    if not application:
 
         return render(
             request,
@@ -122,7 +126,6 @@ def provider_dashboard(request):
         'providers/dashboard.html',
         context
     )
-
 
 # =========================================
 # ✅ ACCEPT BOOKING
