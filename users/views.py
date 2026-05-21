@@ -7,7 +7,12 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 from django.conf import settings
-from django.core.mail import send_mail
+
+
+import requests
+import json
+from django.conf import settings
+
 
 from django.contrib.auth import get_user_model
 from urllib3 import request
@@ -109,13 +114,41 @@ def register_view(request):
                 # =========================
                 # 🔥 SEND OTP USING RESEND
                 # =========================
-                send_mail(
-                    'Your OTP Verification Code',
-                    f'Hello {user.first_name},\n\nYour OTP is: {otp_obj.otp}',
-                    settings.DEFAULT_FROM_EMAIL,
-                    [user.email],
-                    fail_silently=False,
+                url = "https://api.brevo.com/v3/smtp/email"
+
+                payload = json.dumps({
+                    "sender": {
+                        "name": "ServiceHub",
+                        "email": settings.DEFAULT_FROM_EMAIL
+                    },
+                    "to": [
+                        {
+                            "email": user.email
+                        }
+                    ],
+                    "subject": "Your OTP Verification Code",
+                    "htmlContent": f"""
+                        <h2>Email Verification</h2>
+                        <p>Hello {user.first_name},</p>
+                        <p>Your OTP is:</p>
+                        <h1>{otp_obj.otp}</h1>
+                        <p>Do not share this OTP.</p>
+                    """
+                })
+
+                headers = {
+                    'accept': 'application/json',
+                    'api-key': settings.BREVO_API_KEY,
+                    'content-type': 'application/json'
+                }
+
+                response = requests.post(
+                    url,
+                    headers=headers,
+                    data=payload
                 )
+
+                print(response.text)
 
                 messages.success(
                     request,

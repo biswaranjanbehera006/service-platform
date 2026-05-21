@@ -33,6 +33,10 @@ DEBUG = config(
 #Resend OTP
 RESEND_API_KEY = config('RESEND_API_KEY')
 
+#brevo email helper
+BREVO_API_KEY = config('BREVO_API_KEY')
+DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
+
 
 # ✅ ALLOWED HOSTS
 ALLOWED_HOSTS = [
