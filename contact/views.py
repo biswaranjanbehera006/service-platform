@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.core.mail import send_mail
 from django.conf import settings
+
+import sib_api_v3_sdk
+from sib_api_v3_sdk.rest import ApiException
 
 from .models import Contact
 
@@ -48,48 +50,63 @@ def contact_page(request):
         print("✅ MESSAGE SAVED TO DATABASE")
 
         # =========================================
-        # EMAIL CONTENT
-        # =========================================
-        admin_subject = f"📩 New Contact Message - {subject}"
-
-        admin_message = f"""
-New Contact Message Received
-
-----------------------------------------
-
-Name:
-{name}
-
-Email:
-{email}
-
-Subject:
-{subject}
-
-Message:
-{message}
-
-----------------------------------------
-
-Sent From ServiceHub Contact Page
-"""
-
-        # =========================================
-        # SEND EMAIL
+        # SEND EMAIL USING BREVO API
         # =========================================
         try:
 
-            send_mail(
+            configuration = sib_api_v3_sdk.Configuration()
 
-                admin_subject,
+            configuration.api_key['api-key'] = settings.BREVO_API_KEY
 
-                admin_message,
+            api_instance = sib_api_v3_sdk.TransactionalEmailsApi(
+                sib_api_v3_sdk.ApiClient(configuration)
+            )
 
-                settings.EMAIL_HOST_USER,
+            email_subject = f"📩 New Contact Message - {subject}"
 
-                [settings.ADMIN_EMAIL],
+            html_content = f"""
+            <h2>New Contact Message</h2>
 
-                fail_silently=False
+            <p><strong>Name:</strong> {name}</p>
+
+            <p><strong>Email:</strong> {email}</p>
+
+            <p><strong>Subject:</strong> {subject}</p>
+
+            <p><strong>Message:</strong></p>
+
+            <p>{message}</p>
+
+            <hr>
+
+            <p>Sent From ServiceHub Contact Page</p>
+            """
+
+            sender = {
+                "name": "ServiceHub",
+                "email": settings.DEFAULT_FROM_EMAIL
+            }
+
+            to = [
+                {
+                    "email": settings.ADMIN_RECEIVER_EMAIL,
+                    "name": "Admin"
+                }
+            ]
+
+            send_smtp_email = sib_api_v3_sdk.SendSmtpEmail(
+
+                to=to,
+
+                sender=sender,
+
+                subject=email_subject,
+
+                html_content=html_content
+            )
+
+            api_instance.send_transac_email(
+                send_smtp_email
             )
 
             print("✅ EMAIL SENT SUCCESSFULLY")
@@ -119,5 +136,5 @@ Sent From ServiceHub Contact Page
 
         request,
 
-         'services/contact.html'
+        'services/contact.html'
     )

@@ -324,8 +324,12 @@ RAZORPAY_KEY_SECRET = config(
 # =========================
 # 👨‍💼 ADMIN EMAIL
 # =========================
-ADMIN_EMAIL = config(
-    'ADMIN_EMAIL'
+ADMIN_RECEIVER_EMAIL = config(
+    'ADMIN_RECEIVER_EMAIL'
+)
+
+DEFAULT_FROM_EMAIL = config(
+    'DEFAULT_FROM_EMAIL'
 )
 
 
