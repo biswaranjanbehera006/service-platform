@@ -1,6 +1,10 @@
 from django.db import models
 from django.conf import settings
+
+from cloudinary.models import CloudinaryField
+
 from services.models import Service
+
 
 User = settings.AUTH_USER_MODEL
 
@@ -19,16 +23,22 @@ class Provider(models.Model):
         related_name='providers'
     )
 
-    is_available = models.BooleanField(default=True)
+    is_available = models.BooleanField(
+        default=True
+    )
 
     experience = models.PositiveIntegerField(
         help_text="Years of experience",
         default=0
     )
 
-    rating = models.FloatField(default=0.0)
+    rating = models.FloatField(
+        default=0.0
+    )
 
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(
+        auto_now_add=True
+    )
 
     # 🧠 HELPER METHODS
     def is_busy(self):
@@ -53,30 +63,57 @@ class ProviderApplication(models.Model):
         related_name='provider_application'
     )
 
-    # 📄 DOCUMENTS (MANDATORY)
-    aadhar_card = models.ImageField(upload_to='documents/aadhar/')
-    passport_photo = models.ImageField(upload_to='documents/photo/')
-    cv = models.FileField(upload_to='documents/cv/')
-    driving_license = models.ImageField(upload_to='documents/license/')
+    # =========================================
+    # 📄 DOCUMENTS (CLOUDINARY)
+    # =========================================
+    aadhar_card = CloudinaryField(
+        'aadhar_card'
+    )
 
-    # 🛠️ SERVICES (SELECTED BY USER)
+    passport_photo = CloudinaryField(
+        'passport_photo'
+    )
+
+    cv = CloudinaryField(
+        'cv',
+        resource_type='raw'
+    )
+
+    driving_license = CloudinaryField(
+        'driving_license'
+    )
+
+    # =========================================
+    # 🛠️ SERVICES
+    # =========================================
     services = models.ManyToManyField(
         Service,
         related_name='applications'
     )
 
+    # =========================================
     # 📊 STATUS
+    # =========================================
     status = models.CharField(
         max_length=20,
         choices=STATUS_CHOICES,
         default='pending'
     )
 
+    # =========================================
     # ⏱ TRACKING
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    # =========================================
+    created_at = models.DateTimeField(
+        auto_now_add=True
+    )
 
+    updated_at = models.DateTimeField(
+        auto_now=True
+    )
+
+    # =========================================
     # 🧠 HELPER METHODS
+    # =========================================
     def is_pending(self):
         return self.status == 'pending'
 
