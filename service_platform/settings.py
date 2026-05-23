@@ -5,6 +5,10 @@ Django settings for service_platform project.
 from pathlib import Path
 import os
 
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
 import dj_database_url
 from decouple import config
 
@@ -151,19 +155,20 @@ WSGI_APPLICATION = 'service_platform.wsgi.application'
 # =========================
 # 🛢 DATABASE CONNECTION
 # =========================
+
 DATABASES = {
 
     'default': dj_database_url.parse(
 
         config('DATABASE_URL'),
 
-        conn_max_age=0,
+        conn_max_age=600,
 
         ssl_require=True
     )
-
 }
 
+# ✅ SUPABASE SSL SETTINGS
 DATABASES['default']['OPTIONS'] = {
 
     'sslmode': 'require',
