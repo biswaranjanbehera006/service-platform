@@ -713,7 +713,7 @@ def forgot_password(request):
 
             return render(
                 request,
-                'users/forgot_password.html'
+                 'forgot_password.html'
             )
 
 
