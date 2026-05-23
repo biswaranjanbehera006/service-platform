@@ -9,13 +9,15 @@ from django.contrib import messages
 from django.conf import settings
 
 
+
+
 import requests
 import json
 from django.conf import settings
 
 
 from django.contrib.auth import get_user_model
-from urllib3 import request
+
 
 from .forms import RegisterForm
 
@@ -641,32 +643,79 @@ def forgot_password(request):
 
         # 🔥 SAVE SESSION
         request.session['reset_user_id'] = user.id
+     
+        # =========================================
+        # 📧 SEND RESET OTP USING BREVO
+        # =========================================
+        try:
 
-        # =========================
-        # 🔥 SHOW RESET OTP DIRECTLY
-        # =========================
-        print(
-            "RESET OTP:",
-            otp_obj.otp
-        )
+            url = "https://api.brevo.com/v3/smtp/email"
 
-        messages.success(
+            payload = json.dumps({
+                "sender": {
+                    "name": "ServiceHub",
+                    "email": settings.DEFAULT_FROM_EMAIL
+                },
+                "to": [
+                    {
+                        "email": email
+                    }
+                ],
+                "subject": "Password Reset OTP",
+                "htmlContent": f"""
+                    <h2>Password Reset</h2>
 
-            request,
+                    <p>Hello {user.first_name},</p>
 
-            f"✅ Your password reset OTP is: {otp_obj.otp}"
-        )
+                    <p>Your password reset OTP is:</p>
 
-        return redirect(
-            'verify_reset_otp'
-        )
+                    <h1>{otp_obj.otp}</h1>
 
-    return render(
+                    <p>Do not share this OTP with anyone.</p>
 
-        request,
+                    <br>
 
-        'forgot_password.html'
-    )
+                    <p>ServiceHub Team</p>
+                """
+            })
+
+            headers = {
+                'accept': 'application/json',
+                'api-key': settings.BREVO_API_KEY,
+                'content-type': 'application/json'
+            }
+
+            response = requests.post(
+                url,
+                headers=headers,
+                data=payload
+            )
+
+            print(response.text)
+
+            messages.success(
+                request,
+                "✅ Password reset OTP sent to your email."
+            )
+
+            return redirect(
+                'verify_reset_otp'
+            )
+
+        except Exception as e:
+
+            print("RESET EMAIL ERROR:", e)
+
+            messages.error(
+                request,
+                "❌ Failed to send OTP email."
+            )
+
+            return render(
+                request,
+                'users/forgot_password.html'
+            )
+
 
 
 # =========================
