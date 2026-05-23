@@ -605,12 +605,14 @@ def profile_view(request):
         'users/profile.html'
     )
 
-
 # =========================
 # ✅ FORGOT PASSWORD
 # =========================
 def forgot_password(request):
 
+    # =========================================
+    # POST REQUEST
+    # =========================================
     if request.method == 'POST':
 
         email = request.POST.get('email')
@@ -624,9 +626,7 @@ def forgot_password(request):
         if not user:
 
             messages.error(
-
                 request,
-
                 "❌ Email not registered."
             )
 
@@ -634,16 +634,20 @@ def forgot_password(request):
                 'forgot_password'
             )
 
+        # =========================================
         # 🔥 CREATE OTP
+        # =========================================
         otp_obj = EmailOTP.objects.create(
             user=user
         )
 
         otp_obj.generate_otp()
 
+        # =========================================
         # 🔥 SAVE SESSION
+        # =========================================
         request.session['reset_user_id'] = user.id
-     
+
         # =========================================
         # 📧 SEND RESET OTP USING BREVO
         # =========================================
@@ -652,26 +656,30 @@ def forgot_password(request):
             url = "https://api.brevo.com/v3/smtp/email"
 
             payload = json.dumps({
+
                 "sender": {
                     "name": "ServiceHub",
                     "email": settings.DEFAULT_FROM_EMAIL
                 },
+
                 "to": [
                     {
                         "email": email
                     }
                 ],
+
                 "subject": "Password Reset OTP",
+
                 "htmlContent": f"""
-                    <h2>Password Reset</h2>
+                    <h2>Password Reset OTP</h2>
 
                     <p>Hello {user.first_name},</p>
 
-                    <p>Your password reset OTP is:</p>
+                    <p>Your OTP is:</p>
 
                     <h1>{otp_obj.otp}</h1>
 
-                    <p>Do not share this OTP with anyone.</p>
+                    <p>Do not share this OTP.</p>
 
                     <br>
 
@@ -680,21 +688,29 @@ def forgot_password(request):
             })
 
             headers = {
+
                 'accept': 'application/json',
+
                 'api-key': settings.BREVO_API_KEY,
+
                 'content-type': 'application/json'
             }
 
             response = requests.post(
+
                 url,
+
                 headers=headers,
+
                 data=payload
             )
 
             print(response.text)
 
             messages.success(
+
                 request,
+
                 "✅ Password reset OTP sent to your email."
             )
 
@@ -707,14 +723,26 @@ def forgot_password(request):
             print("RESET EMAIL ERROR:", e)
 
             messages.error(
+
                 request,
+
                 "❌ Failed to send OTP email."
             )
 
-            return render(
-                request,
-                 'forgot_password.html'
+            return redirect(
+                'forgot_password'
             )
+
+    # =========================================
+    # ✅ GET REQUEST
+    # =========================================
+    return render(
+
+        request,
+
+        'forgot_password.html'
+    )
+
 
 
 
