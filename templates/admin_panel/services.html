@@ -10,12 +10,7 @@
 
 <style>
 
-    /* ===================================== */
-    /* BODY */
-    /* ===================================== */
-
     body{
-
         background:
         linear-gradient(
             135deg,
@@ -23,542 +18,266 @@
             #0f172a,
             #111827
         );
-
-        min-height:
-        100vh;
-
-        color:
-        white;
-
-        overflow-x:
-        hidden;
-
+        min-height:100vh;
+        color:white;
+        overflow-x:hidden;
     }
-
-    /* ===================================== */
-    /* WRAPPER */
-    /* ===================================== */
 
     .admin-wrapper{
-
-        min-height:
-        100vh;
-
+        min-height:100vh;
     }
-
-    /* ===================================== */
-    /* GLASS CARD */
-    /* ===================================== */
 
     .glass-card{
-
-        background:
-        rgba(255,255,255,0.05);
-
-        border:
-        1px solid rgba(255,255,255,0.08);
-
-        backdrop-filter:
-        blur(18px);
-
-        -webkit-backdrop-filter:
-        blur(18px);
-
-        border-radius:
-        28px;
-
-        box-shadow:
-        0 10px 30px rgba(0,0,0,0.25);
-
+        background:rgba(255,255,255,0.05);
+        border:1px solid rgba(255,255,255,0.08);
+        backdrop-filter:blur(18px);
+        -webkit-backdrop-filter:blur(18px);
+        border-radius:28px;
+        box-shadow:0 10px 30px rgba(0,0,0,0.25);
     }
 
-    /* ===================================== */
-    /* TEXT */
-    /* ===================================== */
-
     .text-muted{
-
-        color:
-        rgba(255,255,255,0.65) !important;
-
+        color:rgba(255,255,255,0.65) !important;
     }
 
     h1,h2,h3,h4,h5,h6{
-
-        color:
-        white;
-
+        color:white;
     }
 
-    /* ===================================== */
-    /* BUTTONS */
-    /* ===================================== */
-
     .custom-btn{
-
-        background:
-        rgba(255,255,255,0.06);
-
-        border:
-        1px solid rgba(255,255,255,0.08);
-
-        color:
-        white;
-
-        border-radius:
-        50px;
-
-        padding:
-        12px 24px;
-
-        text-decoration:
-        none;
-
-        transition:
-        0.3s ease;
-
-        font-weight:
-        600;
-
-        display:
-        inline-flex;
-
-        align-items:
-        center;
-
-        justify-content:
-        center;
-
+        background:rgba(255,255,255,0.06);
+        border:1px solid rgba(255,255,255,0.08);
+        color:white;
+        border-radius:50px;
+        padding:12px 24px;
+        text-decoration:none;
+        transition:0.3s ease;
+        font-weight:600;
+        display:inline-flex;
+        align-items:center;
+        justify-content:center;
     }
 
     .custom-btn:hover{
-
         background:
         linear-gradient(
             135deg,
             #7c3aed,
             #06b6d4
         );
-
-        color:
-        white;
-
-        transform:
-        translateY(-2px);
-
+        color:white;
+        transform:translateY(-2px);
     }
 
     .add-btn{
-
         background:
         linear-gradient(
             135deg,
             #7c3aed,
             #06b6d4
         );
-
         border:none;
-
     }
-
-    .add-btn:hover{
-
-        transform:
-        translateY(-2px);
-
-        color:white;
-
-    }
-
-    /* ===================================== */
-    /* STATS CARD */
-    /* ===================================== */
 
     .stat-card{
-
-        background:
-        rgba(255,255,255,0.05);
-
-        border:
-        1px solid rgba(255,255,255,0.08);
-
-        border-radius:
-        28px;
-
-        padding:
-        28px;
-
-        height:
-        100%;
-
-        transition:
-        0.3s ease;
-
-        backdrop-filter:
-        blur(14px);
-
+        background:rgba(255,255,255,0.05);
+        border:1px solid rgba(255,255,255,0.08);
+        border-radius:28px;
+        padding:28px;
+        height:100%;
+        transition:0.3s ease;
+        backdrop-filter:blur(14px);
     }
 
     .stat-card:hover{
-
-        transform:
-        translateY(-4px);
-
+        transform:translateY(-4px);
     }
 
     .icon-box{
-
-        width:
-        72px;
-
-        height:
-        72px;
-
-        border-radius:
-        22px;
-
-        display:
-        flex;
-
-        align-items:
-        center;
-
-        justify-content:
-        center;
-
-        font-size:
-        1.8rem;
-
-        color:
-        white;
-
+        width:72px;
+        height:72px;
+        border-radius:22px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        font-size:1.8rem;
+        color:white;
     }
 
     .bg-blue{
-
         background:
         linear-gradient(
             135deg,
             #3b82f6,
             #2563eb
         );
-
     }
 
     .bg-green{
-
         background:
         linear-gradient(
             135deg,
             #22c55e,
             #15803d
         );
-
     }
 
     .bg-yellow{
-
         background:
         linear-gradient(
             135deg,
             #f59e0b,
             #d97706
         );
-
     }
 
-    /* ===================================== */
-    /* TABLE CARD */
-    /* ===================================== */
+.table-card{
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:28px;
+    overflow:hidden;
+    backdrop-filter:blur(16px);
+}
 
-    .table-card{
+/* TABLE */
+.custom-table{
+    width:100%;
+    margin-bottom:0;
+    border-collapse:collapse !important;
+    background:transparent !important;
+    --bs-table-bg: transparent !important;
+    --bs-table-striped-bg: transparent !important;
+    --bs-table-hover-bg: rgba(255,255,255,0.04) !important;
+    --bs-table-color: white !important;
+    color:white !important;
+}
 
-        background:
-        rgba(255,255,255,0.05);
+/* TABLE HEAD */
+.custom-table thead{
+    background:
+    linear-gradient(
+        135deg,
+        rgba(124,58,237,0.35),
+        rgba(6,182,212,0.20)
+    ) !important;
+}
 
-        border:
-        1px solid rgba(255,255,255,0.08);
+.custom-table thead tr{
+    background:transparent !important;
+}
 
-        border-radius:
-        28px;
+.custom-table thead th{
+    background:transparent !important;
+    color:white !important;
+    border:none !important;
+    padding:22px 18px !important;
+    font-size:0.95rem;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.7px;
+    white-space:nowrap;
+}
 
-        overflow:
-        hidden;
+/* TABLE BODY */
+.custom-table tbody{
+    background:transparent !important;
+}
 
-        backdrop-filter:
-        blur(16px);
+.custom-table tbody tr{
+    background:transparent !important;
+    transition:0.3s ease;
+}
 
-    }
+.custom-table tbody tr:hover{
+    background:rgba(255,255,255,0.04) !important;
+}
 
-    /* ===================================== */
-    /* TABLE */
-    /* ===================================== */
+.custom-table tbody td{
+    background:transparent !important;
+    border-color:rgba(255,255,255,0.06) !important;
+    padding:20px 18px;
+    vertical-align:middle;
+    color:rgba(255,255,255,0.88) !important;
+}
 
-    .custom-table{
-
-        width:
-        100%;
-
-        margin-bottom:
-        0;
-
-        border-collapse:
-        collapse;
-
-        background:
-        transparent !important;
-
-    }
-
-    /* ===================================== */
-    /* TABLE HEADER */
-    /* ===================================== */
-
-    .custom-table thead{
-
-        background:
-        linear-gradient(
-            135deg,
-            rgba(124,58,237,0.35),
-            rgba(6,182,212,0.20)
-        ) !important;
-
-    }
-
-    .custom-table thead tr{
-
-        background:
-        transparent !important;
-
-    }
-
-    .custom-table thead th{
-
-        background:
-        transparent !important;
-
-        color:
-        white !important;
-
-        border:
-        none !important;
-
-        padding:
-        22px 18px !important;
-
-        font-size:
-        0.95rem;
-
-        font-weight:
-        700;
-
-        text-transform:
-        uppercase;
-
-        letter-spacing:
-        0.7px;
-
-        white-space:
-        nowrap;
-
-    }
-
-    /* ===================================== */
-    /* TABLE BODY */
-    /* ===================================== */
-
-    .custom-table tbody td{
-
-        border-color:
-        rgba(255,255,255,0.06);
-
-        padding:
-        20px 18px;
-
-        vertical-align:
-        middle;
-
-        background:
-        transparent !important;
-
-        color:
-        rgba(255,255,255,0.88);
-
-    }
-
-    .custom-table tbody tr{
-
-        transition:
-        0.3s ease;
-
-    }
-
-    .custom-table tbody tr:hover{
-
-        background:
-        rgba(255,255,255,0.04);
-
-    }
-
-    /* ===================================== */
-    /* BADGES */
-    /* ===================================== */
+/* REMOVE BOOTSTRAP WHITE */
+.table{
+    --bs-table-bg: transparent !important;
+    --bs-table-accent-bg: transparent !important;
+    --bs-table-striped-bg: transparent !important;
+    --bs-table-active-bg: transparent !important;
+    --bs-table-hover-bg: rgba(255,255,255,0.04) !important;
+    --bs-table-color: white !important;
+}
 
     .badge{
-
-        padding:
-        10px 18px;
-
-        border-radius:
-        50px;
-
-        font-weight:
-        600;
-
-        font-size:
-        0.82rem;
-
+        padding:10px 18px;
+        border-radius:50px;
+        font-weight:600;
+        font-size:0.82rem;
     }
 
-    /* ===================================== */
-    /* ACTION BUTTONS */
-    /* ===================================== */
-
     .action-btn{
-
-        border:
-        none;
-
-        border-radius:
-        50px;
-
-        padding:
-        10px 18px;
-
-        color:
-        white;
-
-        font-size:
-        0.88rem;
-
-        font-weight:
-        600;
-
-        text-decoration:
-        none;
-
-        transition:
-        0.3s ease;
-
-        display:
-        inline-flex;
-
-        align-items:
-        center;
-
-        justify-content:
-        center;
-
+        border:none;
+        border-radius:50px;
+        padding:10px 18px;
+        color:white;
+        font-size:0.88rem;
+        font-weight:600;
+        text-decoration:none;
+        transition:0.3s ease;
+        display:inline-flex;
+        align-items:center;
+        justify-content:center;
     }
 
     .action-btn:hover{
-
-        transform:
-        translateY(-2px);
-
-        color:
-        white;
-
+        transform:translateY(-2px);
+        color:white;
     }
 
     .edit-btn{
-
         background:
         linear-gradient(
             135deg,
             #3b82f6,
             #2563eb
         );
-
     }
 
     .delete-btn{
-
         background:
         linear-gradient(
             135deg,
             #ef4444,
             #b91c1c
         );
-
     }
 
-    /* ===================================== */
-    /* MODAL */
-    /* ===================================== */
-
     .modal-content{
-
-        background:
-        #0f172a;
-
-        border:
-        1px solid rgba(255,255,255,0.08);
-
-        color:
-        white;
-
+        background:#0f172a;
+        border:1px solid rgba(255,255,255,0.08);
+        color:white;
     }
 
     .modal-header{
-
-        border-bottom:
-        1px solid rgba(255,255,255,0.08);
-
-    }
-
-    .modal-footer{
-
-        border-top:
-        1px solid rgba(255,255,255,0.08);
-
+        border-bottom:1px solid rgba(255,255,255,0.08);
     }
 
     .form-control{
-
-        background:
-        rgba(255,255,255,0.05) !important;
-
-        border:
-        1px solid rgba(255,255,255,0.08) !important;
-
-        color:
-        white !important;
-
-        padding:
-        12px 16px;
-
+        background:rgba(255,255,255,0.05) !important;
+        border:1px solid rgba(255,255,255,0.08) !important;
+        color:white !important;
+        padding:12px 16px;
     }
 
     .form-control:focus{
-
-        box-shadow:
-        none !important;
-
-        border-color:
-        #06b6d4 !important;
-
+        box-shadow:none !important;
+        border-color:#06b6d4 !important;
     }
 
-    /* ===================================== */
-    /* EMPTY */
-    /* ===================================== */
-
     .empty-box{
-
-        padding:
-        70px 20px;
-
+        padding:70px 20px;
     }
 
 </style>
@@ -571,43 +290,31 @@
         <div>
 
             <h1 class="fw-bold mb-1">
-
                 Service Management
-
             </h1>
 
             <p class="text-muted mb-0">
-
                 Manage all platform services professionally
-
             </p>
 
         </div>
 
         <div class="d-flex flex-wrap gap-2">
 
-            <!-- BACK -->
             <a
                 href="/admin-panel/dashboard/"
                 class="custom-btn"
             >
-
                 <i class="bi bi-arrow-left me-2"></i>
-
                 Back
-
             </a>
 
-            <!-- ADD SERVICE -->
             <a
                 href="{% url 'add_service' %}"
                 class="custom-btn add-btn"
             >
-
                 <i class="bi bi-plus-circle-fill me-2"></i>
-
                 Add Service
-
             </a>
 
         </div>
@@ -617,7 +324,6 @@
     <!-- STATS -->
     <div class="row g-4 mb-4">
 
-        <!-- TOTAL -->
         <div class="col-xl-4 col-md-6">
 
             <div class="stat-card">
@@ -627,23 +333,17 @@
                     <div>
 
                         <small class="text-muted fw-semibold">
-
                             Total Services
-
                         </small>
 
                         <h2 class="fw-bold mt-2">
-
                             {{ services|length }}
-
                         </h2>
 
                     </div>
 
                     <div class="icon-box bg-blue">
-
                         <i class="bi bi-grid-fill"></i>
-
                     </div>
 
                 </div>
@@ -652,7 +352,6 @@
 
         </div>
 
-        <!-- ACTIVE -->
         <div class="col-xl-4 col-md-6">
 
             <div class="stat-card">
@@ -662,23 +361,17 @@
                     <div>
 
                         <small class="text-muted fw-semibold">
-
                             Active Services
-
                         </small>
 
                         <h2 class="fw-bold mt-2 text-success">
-
                             {{ services|length }}
-
                         </h2>
 
                     </div>
 
                     <div class="icon-box bg-green">
-
                         <i class="bi bi-check-circle-fill"></i>
-
                     </div>
 
                 </div>
@@ -687,7 +380,6 @@
 
         </div>
 
-        <!-- PROVIDERS -->
         <div class="col-xl-4 col-md-12">
 
             <div class="stat-card">
@@ -697,23 +389,17 @@
                     <div>
 
                         <small class="text-muted fw-semibold">
-
                             Total Providers
-
                         </small>
 
                         <h2 class="fw-bold mt-2 text-warning">
-
                             {{ total_providers }}
-
                         </h2>
 
                     </div>
 
                     <div class="icon-box bg-yellow">
-
                         <i class="bi bi-people-fill"></i>
-
                     </div>
 
                 </div>
@@ -724,41 +410,9 @@
 
     </div>
 
-    <!-- TABLE CARD -->
+    <!-- TABLE -->
     <div class="table-card">
 
-        <!-- TOP -->
-        <div class="p-4 border-bottom border-secondary">
-
-            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
-
-                <div>
-
-                    <h2 class="fw-bold mb-1 text-white">
-
-                        Services List
-
-                    </h2>
-
-                    <p class="text-muted mb-0">
-
-                        Complete service management panel
-
-                    </p>
-
-                </div>
-
-                <span class="badge bg-dark px-4 py-3">
-
-                    {{ services|length }} Services
-
-                </span>
-
-            </div>
-
-        </div>
-
-        <!-- TABLE -->
         <div class="table-responsive">
 
             <table class="table custom-table align-middle text-center">
@@ -768,15 +422,10 @@
                     <tr>
 
                         <th>#</th>
-
                         <th>Service Name</th>
-
                         <th>Description</th>
-
                         <th>Providers</th>
-
                         <th>Created</th>
-
                         <th>Actions</th>
 
                     </tr>
@@ -789,82 +438,52 @@
 
                     <tr>
 
-                        <!-- ID -->
                         <td class="fw-semibold text-white">
-
                             {{ forloop.counter }}
-
                         </td>
 
-                        <!-- NAME -->
                         <td>
-
                             <div class="fw-semibold text-white">
-
                                 {{ service.name }}
-
                             </div>
-
                         </td>
 
-                        <!-- DESCRIPTION -->
                         <td>
-
                             <small class="text-light">
-
                                 {{ service.description|truncatewords:12|default:"No description" }}
-
                             </small>
-
                         </td>
 
-                        <!-- PROVIDERS -->
                         <td>
-
                             <span class="badge bg-primary">
-
                                 {{ service.providers.count }} Providers
-
                             </span>
-
                         </td>
 
-                        <!-- CREATED -->
                         <td class="text-light">
-
                             {{ service.created_at|date:"M d, Y"|default:"-" }}
-
                         </td>
 
-                        <!-- ACTIONS -->
                         <td>
 
                             <div class="d-flex justify-content-center gap-2 flex-wrap">
 
-                                <!-- EDIT -->
                                 <button
                                     class="action-btn edit-btn"
                                     data-bs-toggle="modal"
                                     data-bs-target="#editModal{{ service.id }}"
                                 >
-
                                     <i class="bi bi-pencil-square me-1"></i>
-
                                     Edit
-
                                 </button>
 
-                                <!-- DELETE -->
                                 <a
                                     href="{% url 'delete_service' service.id %}"
                                     class="action-btn delete-btn"
                                     onclick="return confirm('Are you sure you want to delete this service?');"
                                 >
-
                                     <i class="bi bi-trash-fill me-1"></i>
-
                                     Delete
-
                                 </a>
 
                             </div>
@@ -873,167 +492,7 @@
 
                     </tr>
 
-                    <!-- EDIT MODAL -->
-                    <div
-                        class="modal fade"
-                        id="editModal{{ service.id }}"
-                        tabindex="-1"
-                    >
-
-                        <div class="modal-dialog modal-dialog-centered modal-lg">
-
-                            <div class="modal-content rounded-4">
-
-                                <!-- HEADER -->
-                                <div class="modal-header">
-
-                                    <h5 class="modal-title fw-bold">
-
-                                        Edit Service
-
-                                    </h5>
-
-                                    <button
-                                        type="button"
-                                        class="btn-close btn-close-white"
-                                        data-bs-dismiss="modal"
-                                    ></button>
-
-                                </div>
-
-                                <!-- BODY -->
-                                <div class="modal-body p-4">
-
-                                    <form
-                                        method="POST"
-                                        action="{% url 'edit_service' service.id %}"
-                                        enctype="multipart/form-data"
-                                    >
-
-                                        {% csrf_token %}
-
-                                        <!-- NAME -->
-                                        <div class="mb-4">
-
-                                            <label class="form-label fw-semibold">
-
-                                                Service Name
-
-                                            </label>
-
-                                            <input
-                                                type="text"
-                                                name="name"
-                                                class="form-control rounded-3"
-                                                value="{{ service.name }}"
-                                                required
-                                            >
-
-                                        </div>
-
-                                        <!-- DESCRIPTION -->
-                                        <div class="mb-4">
-
-                                            <label class="form-label fw-semibold">
-
-                                                Description
-
-                                            </label>
-
-                                            <textarea
-                                                name="description"
-                                                rows="4"
-                                                class="form-control rounded-3"
-                                            >{{ service.description }}</textarea>
-
-                                        </div>
-
-                                        <!-- IMAGE -->
-                                        <div class="mb-4">
-
-                                            <label class="form-label fw-semibold">
-
-                                                Service Image
-
-                                            </label>
-
-                                            <input
-                                                type="file"
-                                                name="image"
-                                                class="form-control rounded-3"
-                                            >
-
-                                        </div>
-
-                                        <!-- PREVIEW -->
-                                        {% if service.image %}
-
-                                        <div class="text-center mb-4">
-
-                                            <img
-                                                src="{{ service.image.url }}"
-                                                class="img-fluid rounded-4 shadow-sm"
-                                                style="max-height:200px;"
-                                            >
-
-                                        </div>
-
-                                        {% endif %}
-
-                                        <!-- BUTTON -->
-                                        <button
-                                            type="submit"
-                                            class="custom-btn add-btn w-100 py-3 border-0"
-                                        >
-
-                                            <i class="bi bi-check-circle-fill me-2"></i>
-
-                                            Update Service
-
-                                        </button>
-
-                                    </form>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
                     {% endfor %}
-
-                    <!-- EMPTY -->
-                    {% if not services %}
-
-                    <tr>
-
-                        <td colspan="6">
-
-                            <div class="empty-box text-center">
-
-                                <i class="bi bi-grid display-1 text-secondary"></i>
-
-                                <h4 class="mt-3 text-white">
-
-                                    No Services Found
-
-                                </h4>
-
-                                <p class="text-light mb-0">
-
-                                    Start by adding a new service
-
-                                </p>
-
-                            </div>
-
-                        </td>
-
-                    </tr>
-
-                    {% endif %}
 
                 </tbody>
 
@@ -1043,9 +502,125 @@
 
     </div>
 
-    <!-- SPACE -->
-    <div class="py-5"></div>
+</div>
+
+<!-- MODALS OUTSIDE TABLE -->
+{% for service in services %}
+
+<div
+    class="modal fade"
+    id="editModal{{ service.id }}"
+    tabindex="-1"
+    aria-hidden="true"
+>
+
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+
+        <div class="modal-content rounded-4">
+
+            <div class="modal-header">
+
+                <h5 class="modal-title fw-bold">
+                    Edit Service
+                </h5>
+
+                <button
+                    type="button"
+                    class="btn-close btn-close-white"
+                    data-bs-dismiss="modal"
+                ></button>
+
+            </div>
+
+            <div class="modal-body p-4">
+
+                <form
+                    method="POST"
+                    action="{% url 'edit_service' service.id %}"
+                    enctype="multipart/form-data"
+                >
+
+                    {% csrf_token %}
+
+                    <div class="mb-4">
+
+                        <label class="form-label fw-semibold">
+                            Service Name
+                        </label>
+
+                        <input
+                            type="text"
+                            name="name"
+                            class="form-control rounded-3"
+                            value="{{ service.name }}"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="mb-4">
+
+                        <label class="form-label fw-semibold">
+                            Description
+                        </label>
+
+                        <textarea
+                            name="description"
+                            rows="4"
+                            class="form-control rounded-3"
+                        >{{ service.description }}</textarea>
+
+                    </div>
+
+                    <div class="mb-4">
+
+                        <label class="form-label fw-semibold">
+                            Service Image
+                        </label>
+
+                        <input
+                            type="file"
+                            name="image"
+                            class="form-control rounded-3"
+                        >
+
+                    </div>
+
+                    {% if service.image %}
+
+                    <div class="text-center mb-4">
+
+                        <img
+                            src="{{ service.image.url }}"
+                            class="img-fluid rounded-4 shadow-sm"
+                            style="max-height:200px;"
+                        >
+
+                    </div>
+
+                    {% endif %}
+
+                    <button
+                        type="submit"
+                        class="custom-btn add-btn w-100 py-3 border-0"
+                    >
+
+                        <i class="bi bi-check-circle-fill me-2"></i>
+
+                        Update Service
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </div>
+
+{% endfor %}
 
 {% endblock %}
