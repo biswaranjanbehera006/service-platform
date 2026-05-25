@@ -3,154 +3,884 @@
 {% block content %}
 
 <!-- BOOTSTRAP ICONS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+>
 
-<div class="container-fluid min-vh-100 d-flex justify-content-center align-items-center bg-black">
+<!-- AOS -->
+<link
+    href="https://unpkg.com/aos@2.3.4/dist/aos.css"
+    rel="stylesheet"
+>
 
-    <div class="col-lg-4 col-md-6 col-sm-10">
+<!-- ===================================== -->
+<!-- CUSTOM CSS -->
+<!-- ===================================== -->
 
-        <div class="card border-0 shadow-lg rounded-4 overflow-hidden bg-dark text-white">
+<style>
 
-            <!-- HEADER -->
-            <div class="bg-black text-white text-center p-4 border-bottom border-secondary">
+    body{
 
-                <h1 class="fw-bold mb-2">
-                    Welcome Back
+        overflow-x:hidden;
+        background:#020617;
+
+    }
+
+    /* ===================================== */
+    /* MAIN SECTION */
+    /* ===================================== */
+
+    .main-section{
+
+        min-height:
+        calc(100vh - 90px);
+
+        position:
+        relative;
+
+        overflow:
+        hidden;
+
+        background:
+        linear-gradient(
+            135deg,
+            #020617,
+            #0f172a,
+            #111827
+        );
+
+    }
+
+    /* RGB GLOW */
+
+    .blur-circle{
+
+        position:
+        absolute;
+
+        border-radius:
+        50%;
+
+        filter:
+        blur(140px);
+
+        opacity:
+        0.22;
+
+    }
+
+    .blur-purple{
+
+        width:
+        380px;
+
+        height:
+        380px;
+
+        background:
+        #7c3aed;
+
+        top:
+        -120px;
+
+        left:
+        -120px;
+
+    }
+
+    .blur-cyan{
+
+        width:
+        380px;
+
+        height:
+        380px;
+
+        background:
+        #06b6d4;
+
+        bottom:
+        -120px;
+
+        right:
+        -120px;
+
+    }
+
+    /* ===================================== */
+    /* CONTENT WRAPPER */
+    /* ===================================== */
+
+    .main-wrapper{
+
+        min-height:
+        calc(100vh - 90px);
+
+        display:
+        flex;
+
+        align-items:
+        center;
+
+        padding:
+        50px 0;
+
+    }
+
+    /* ===================================== */
+    /* LEFT SECTION */
+    /* ===================================== */
+
+    .left-content{
+
+        color:
+        white;
+
+    }
+
+    .hero-badge{
+
+        display:
+        inline-flex;
+
+        align-items:
+        center;
+
+        gap:
+        10px;
+
+        padding:
+        12px 24px;
+
+        border-radius:
+        50px;
+
+        background:
+        rgba(255,255,255,0.06);
+
+        border:
+        1px solid rgba(255,255,255,0.08);
+
+        backdrop-filter:
+        blur(12px);
+
+        font-size:
+        14px;
+
+        font-weight:
+        700;
+
+        margin-bottom:
+        25px;
+
+    }
+
+    .main-heading{
+
+        font-size:
+        clamp(3rem,6vw,5.8rem);
+
+        font-weight:
+        800;
+
+        line-height:
+        1;
+
+        margin-bottom:
+        24px;
+
+    }
+
+    .gradient-text{
+
+        background:
+        linear-gradient(
+            135deg,
+            #38bdf8,
+            #06b6d4
+        );
+
+        -webkit-background-clip:
+        text;
+
+        -webkit-text-fill-color:
+        transparent;
+
+    }
+
+    .hero-text{
+
+        color:
+        rgba(255,255,255,0.72);
+
+        font-size:
+        1.1rem;
+
+        line-height:
+        1.9;
+
+        max-width:
+        600px;
+
+        margin-bottom:
+        35px;
+
+    }
+
+    /* ===================================== */
+    /* FEATURE BOX */
+    /* ===================================== */
+
+    .feature-box{
+
+        background:
+        rgba(255,255,255,0.05);
+
+        border:
+        1px solid rgba(255,255,255,0.08);
+
+        backdrop-filter:
+        blur(20px);
+
+        border-radius:
+        28px;
+
+        padding:
+        28px;
+
+        height:
+        100%;
+
+        transition:
+        0.4s ease;
+
+        position:
+        relative;
+
+        overflow:
+        hidden;
+
+    }
+
+    .feature-box::before{
+
+        content:'';
+
+        position:
+        absolute;
+
+        inset:0;
+
+        background:
+        linear-gradient(
+            135deg,
+            rgba(124,58,237,0.08),
+            rgba(6,182,212,0.08)
+        );
+
+        opacity:0;
+
+        transition:
+        0.4s;
+
+    }
+
+    .feature-box:hover{
+
+        transform:
+        translateY(-8px);
+
+        border:
+        1px solid rgba(6,182,212,0.25);
+
+        box-shadow:
+        0 18px 40px rgba(0,0,0,0.25);
+
+    }
+
+    .feature-box:hover::before{
+
+        opacity:1;
+
+    }
+
+    /* ===================================== */
+    /* GLASS LOGIN CARD */
+    /* ===================================== */
+
+    .glass-card{
+
+        background:
+        rgba(15,23,42,0.72);
+
+        backdrop-filter:
+        blur(24px);
+
+        border:
+        1px solid rgba(255,255,255,0.08);
+
+        box-shadow:
+        0 25px 50px rgba(0,0,0,0.35);
+
+    }
+
+    /* ===================================== */
+    /* LOGIN INPUT */
+    /* ===================================== */
+
+    .login-input{
+
+        height:
+        58px;
+
+        background:
+        rgba(255,255,255,0.06);
+
+        border:
+        1px solid rgba(255,255,255,0.08);
+
+        transition:
+        0.3s ease;
+
+    }
+
+    .login-input:focus-within{
+
+        border:
+        1px solid rgba(6,182,212,0.7);
+
+        box-shadow:
+        0 0 20px rgba(6,182,212,0.18);
+
+    }
+
+    .form-control{
+
+        color:
+        white !important;
+
+        font-size:
+        15px;
+
+    }
+
+    .form-control::placeholder{
+
+        color:
+        rgba(255,255,255,0.45);
+
+    }
+
+    /* ===================================== */
+    /* LOGIN BUTTON */
+    /* ===================================== */
+
+    .login-btn-main{
+
+        height:
+        58px;
+
+        border:
+        none;
+
+        border-radius:
+        50px;
+
+        font-size:
+        17px;
+
+        font-weight:
+        700;
+
+        color:
+        white;
+
+        transition:
+        0.4s ease;
+
+        background:
+        linear-gradient(
+            135deg,
+            #7c3aed,
+            #06b6d4,
+            #ec4899
+        );
+
+        background-size:
+        200% 200%;
+
+        animation:
+        gradientMove 6s ease infinite;
+
+        box-shadow:
+        0 12px 35px rgba(6,182,212,0.28);
+
+    }
+
+    .login-btn-main:hover{
+
+        transform:
+        translateY(-3px);
+
+        box-shadow:
+        0 18px 40px rgba(6,182,212,0.38);
+
+    }
+
+    @keyframes gradientMove{
+
+        0%{
+            background-position:0% 50%;
+        }
+
+        50%{
+            background-position:100% 50%;
+        }
+
+        100%{
+            background-position:0% 50%;
+        }
+
+    }
+
+    /* ===================================== */
+    /* MINI FEATURES */
+    /* ===================================== */
+
+    .mini-box{
+
+        background:
+        rgba(255,255,255,0.05);
+
+        border:
+        1px solid rgba(255,255,255,0.08);
+
+        backdrop-filter:
+        blur(20px);
+
+        border-radius:
+        22px;
+
+        padding:
+        20px;
+
+        transition:
+        0.3s ease;
+
+        min-width:
+        90px;
+
+    }
+
+    .mini-box:hover{
+
+        transform:
+        translateY(-5px);
+
+    }
+
+    /* ===================================== */
+    /* RESPONSIVE */
+    /* ===================================== */
+
+    @media(max-width:991px){
+
+        .left-content{
+
+            text-align:
+            center;
+
+            margin-bottom:
+            50px;
+
+        }
+
+        .hero-text{
+
+            margin:auto auto 35px;
+
+        }
+
+    }
+
+    @media(max-width:576px){
+
+        .glass-card{
+
+            padding:
+            30px 22px !important;
+
+        }
+
+        .main-heading{
+
+            font-size:
+            2.8rem;
+
+        }
+
+    }
+
+</style>
+
+<!-- ===================================== -->
+<!-- MAIN SECTION -->
+<!-- ===================================== -->
+
+<div class="container-fluid main-section">
+
+    <!-- RGB BACKGROUND -->
+    <div class="blur-circle blur-purple"></div>
+
+    <div class="blur-circle blur-cyan"></div>
+
+    <!-- CONTENT -->
+    <div class="container position-relative z-1">
+
+        <div class="row align-items-center justify-content-center main-wrapper">
+
+            <!-- LEFT -->
+            <div
+                class="col-lg-6 left-content pe-lg-5"
+                data-aos="fade-right"
+            >
+
+                <!-- BADGE -->
+                <div class="hero-badge">
+
+                    🚀 NEXT GENERATION PLATFORM
+
+                </div>
+
+                <!-- HEADING -->
+                <h1 class="main-heading">
+
+                    Modern
+
+                    <span class="gradient-text">
+
+                        Service
+
+                    </span>
+
                 </h1>
 
-                <p class="mb-0 text-light">
-                    Login to continue your services
+                <!-- TEXT -->
+                <p class="hero-text">
+
+                    Connect with trusted professionals instantly
+                    using a futuristic and secure digital platform.
+
                 </p>
+
+                <!-- FEATURES -->
+                <div class="row g-4">
+
+                    <!-- BOX -->
+                    <div class="col-6">
+
+                        <div class="feature-box">
+
+                            <i class="bi bi-stars text-warning fs-1"></i>
+
+                            <h4 class="fw-bold mt-4 mb-3">
+
+                                Smart Booking
+
+                            </h4>
+
+                            <p class="text-light opacity-75 mb-0">
+
+                                AI powered intelligent booking system.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <!-- BOX -->
+                    <div class="col-6">
+
+                        <div class="feature-box">
+
+                            <i class="bi bi-shield-check text-info fs-1"></i>
+
+                            <h4 class="fw-bold mt-4 mb-3">
+
+                                Secure Platform
+
+                            </h4>
+
+                            <p class="text-light opacity-75 mb-0">
+
+                                Fully verified and trusted platform.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
 
             </div>
 
-            <!-- BODY -->
-            <div class="card-body p-4">
+            <!-- LOGIN CARD -->
+            <div
+                class="col-xl-5 col-lg-6 col-md-9"
+                data-aos="zoom-in"
+            >
 
-                <!-- ERROR -->
-                {% if error %}
-                    <div class="alert alert-danger text-center rounded-3">
-                        {{ error }}
-                    </div>
-                {% endif %}
+                <!-- RGB BORDER -->
+                <div
+                    class="rounded-5 p-1 shadow-lg"
+                    style="
+                        background:
+                        linear-gradient(
+                            135deg,
+                            #7c3aed,
+                            #06b6d4,
+                            #ec4899
+                        );
+                    "
+                >
 
-                <!-- LOGIN FORM -->
-                <form method="POST">
+                    <!-- CARD -->
+                    <div class="glass-card rounded-5 px-5 py-4 text-white">
 
-                    {% csrf_token %}
+                        <!-- HEADER -->
+                        <div class="d-flex align-items-center mb-4">
 
-                    <input type="hidden" name="next" value="{{ next|default:'' }}">
-
-                    <!-- USERNAME -->
-                    <div class="mb-4">
-
-                        <label class="form-label fw-semibold text-light">
-                            Username
-                        </label>
-
-                        <div class="input-group">
-
-                            <span class="input-group-text bg-secondary text-white border-0">
-                                <i class="bi bi-person-fill"></i>
-                            </span>
-
-                            <input 
-                                type="text"
-                                name="username"
-                                class="form-control bg-black text-white border-secondary"
-                                placeholder="Enter username"
-                                required
+                            <div
+                                class="rounded-circle d-flex justify-content-center align-items-center me-3"
+                                style="
+                                    width:70px;
+                                    height:70px;
+                                    background:
+                                    linear-gradient(
+                                        135deg,
+                                        #7c3aed,
+                                        #06b6d4
+                                    );
+                                "
                             >
+
+                                <i class="bi bi-person-circle fs-2"></i>
+
+                            </div>
+
+                            <div>
+
+                                <h2 class="fw-bold mb-1">
+
+                                    Welcome Back
+
+                                </h2>
+
+                                <p class="text-light opacity-75 mb-0">
+
+                                    Login to continue 🚀
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <!-- ERROR -->
+                        {% if error %}
+
+                            <div class="alert alert-danger rounded-4 text-center">
+
+                                {{ error }}
+
+                            </div>
+
+                        {% endif %}
+
+                        <!-- FORM -->
+                        <form method="POST">
+
+                            {% csrf_token %}
+
+                            <input
+                                type="hidden"
+                                name="next"
+                                value="{{ next|default:'' }}"
+                            >
+
+                            <!-- USERNAME -->
+                            <div class="mb-3">
+
+                                <label class="form-label fw-semibold mb-2">
+
+                                    Username
+
+                                </label>
+
+                                <div class="d-flex rounded-5 overflow-hidden login-input">
+
+                                    <div class="px-4 d-flex align-items-center">
+
+                                        <i class="bi bi-person-fill text-info"></i>
+
+                                    </div>
+
+                                    <input
+                                        type="text"
+                                        name="username"
+                                        class="form-control border-0 bg-transparent shadow-none"
+                                        placeholder="Enter username"
+                                        required
+                                    >
+
+                                </div>
+
+                            </div>
+
+                            <!-- PASSWORD -->
+                            <div class="mb-3">
+
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+
+                                    <label class="form-label fw-semibold mb-0">
+
+                                        Password
+
+                                    </label>
+
+                                    <a
+                                        href="{% url 'forgot_password' %}"
+                                        class="text-decoration-none text-info fw-semibold small"
+                                    >
+
+                                        Forgot Password?
+
+                                    </a>
+
+                                </div>
+
+                                <div class="d-flex rounded-5 overflow-hidden login-input">
+
+                                    <div class="px-4 d-flex align-items-center">
+
+                                        <i class="bi bi-lock-fill text-info"></i>
+
+                                    </div>
+
+                                    <input
+                                        type="password"
+                                        id="password"
+                                        name="password"
+                                        class="form-control border-0 bg-transparent shadow-none"
+                                        placeholder="Enter password"
+                                        required
+                                    >
+
+                                    <div
+                                        class="px-4 d-flex align-items-center"
+                                        onclick="togglePassword()"
+                                        style="cursor:pointer;"
+                                    >
+
+                                        <i class="bi bi-eye-fill text-info"></i>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <!-- BUTTON -->
+                            <button
+                                type="submit"
+                                class="login-btn-main w-100 mt-3"
+                            >
+
+                                <i class="bi bi-box-arrow-in-right me-2"></i>
+
+                                Login
+
+                            </button>
+
+                        </form>
+
+                        <!-- FOOTER -->
+                        <div class="d-flex justify-content-between align-items-center mt-4 flex-wrap gap-3">
+
+                            <p class="text-light opacity-75 mb-0">
+
+                                Don't have an account?
+
+                            </p>
+
+                            <a
+                                href="/users/register/"
+                                class="btn btn-outline-light rounded-pill px-4 py-2 fw-semibold"
+                            >
+
+                                Create Account
+
+                            </a>
 
                         </div>
 
                     </div>
 
-                    <!-- PASSWORD -->
-                    <div class="mb-3">
+                </div>
 
-                        <label class="form-label fw-semibold text-light">
-                            Password
-                        </label>
+                <!-- MINI FEATURES -->
+                <div class="d-flex gap-3 mt-4 overflow-auto pb-2">
 
-                        <div class="input-group">
+                    <div class="mini-box text-center text-white flex-fill">
 
-                            <span class="input-group-text bg-secondary text-white border-0">
-                                <i class="bi bi-lock-fill"></i>
-                            </span>
+                        <i class="bi bi-lightning-charge-fill text-warning fs-4"></i>
 
-                            <input 
-                                type="password"
-                                id="password"
-                                name="password"
-                                class="form-control bg-black text-white border-secondary"
-                                placeholder="Enter password"
-                                required
-                            >
+                        <p class="small mb-0 mt-2">
 
-                            <span 
-                                class="input-group-text bg-secondary text-white border-0"
-                                onclick="togglePassword()"
-                                style="cursor:pointer;"
-                            >
+                            Fast
 
-                                <i class="bi bi-eye-fill"></i>
-
-                            </span>
-
-                        </div>
+                        </p>
 
                     </div>
 
-                    <!-- FORGOT PASSWORD -->
-                    <div class="text-end mb-4">
+                    <div class="mini-box text-center text-white flex-fill">
 
-                        <a 
-                            href="{% url 'forgot_password' %}"
-                            class="text-decoration-none text-light fw-semibold"
-                        >
+                        <i class="bi bi-headset text-info fs-4"></i>
 
-                            Forgot Password?
+                        <p class="small mb-0 mt-2">
 
-                        </a>
+                            Support
+
+                        </p>
 
                     </div>
 
-                    <!-- LOGIN BUTTON -->
-                    <button 
-                        type="submit"
-                        class="btn btn-light text-black w-100 py-2 fw-bold rounded-3"
-                    >
+                    <div class="mini-box text-center text-white flex-fill">
 
-                        <i class="bi bi-box-arrow-in-right"></i>
-                        Login
+                        <i class="bi bi-globe text-success fs-4"></i>
 
-                    </button>
+                        <p class="small mb-0 mt-2">
 
-                </form>
+                            Global
 
-                <!-- EXTRA BUTTONS -->
-                <div class="text-center mt-4">
+                        </p>
 
-                    <a 
-                        href="/"
-                        class="btn btn-outline-light btn-sm me-2 rounded-3"
-                    >
+                    </div>
 
-                        <i class="bi bi-house-door-fill"></i>
-                        Home
+                    <div class="mini-box text-center text-white flex-fill">
 
-                    </a>
+                        <i class="bi bi-patch-check text-danger fs-4"></i>
 
-                    <a 
-                        href="/users/register/"
-                        class="btn btn-outline-secondary btn-sm rounded-3"
-                    >
+                        <p class="small mb-0 mt-2">
 
-                        <i class="bi bi-person-plus-fill"></i>
-                        Create Account
+                            Trusted
 
-                    </a>
+                        </p>
+
+                    </div>
 
                 </div>
 
@@ -167,7 +897,8 @@
 
     function togglePassword(){
 
-        const password = document.getElementById("password");
+        const password =
+        document.getElementById("password");
 
         if(password.type === "password"){
 
@@ -182,6 +913,20 @@
         }
 
     }
+
+</script>
+
+<!-- AOS -->
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+<script>
+
+    AOS.init({
+
+        duration:1000,
+        once:true
+
+    });
 
 </script>
 

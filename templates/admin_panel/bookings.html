@@ -2,7 +2,622 @@
 
 {% block content %}
 
-<div class="container-fluid py-4 px-lg-4 px-3 bg-light min-vh-100">
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+>
+
+<style>
+
+    /* ===================================== */
+    /* PAGE */
+    /* ===================================== */
+
+    body{
+
+        background:
+        linear-gradient(
+            135deg,
+            #020617,
+            #0f172a,
+            #111827
+        );
+
+        min-height:
+        100vh;
+
+        overflow-x:
+        hidden;
+
+    }
+
+    .admin-wrapper{
+
+        min-height:
+        100vh;
+
+    }
+
+    /* ===================================== */
+    /* TEXT */
+    /* ===================================== */
+
+    .text-muted{
+
+        color:
+        rgba(255,255,255,0.65) !important;
+
+    }
+
+    h1,h2,h3,h4,h5,h6{
+
+        color:
+        white;
+
+    }
+
+    /* ===================================== */
+    /* BUTTONS */
+    /* ===================================== */
+
+    .custom-btn{
+
+        background:
+        rgba(255,255,255,0.05);
+
+        border:
+        1px solid rgba(255,255,255,0.08);
+
+        color:
+        white;
+
+        border-radius:
+        50px;
+
+        padding:
+        12px 24px;
+
+        text-decoration:
+        none;
+
+        font-weight:
+        600;
+
+        transition:
+        0.3s ease;
+
+        display:
+        inline-flex;
+
+        align-items:
+        center;
+
+        justify-content:
+        center;
+
+        backdrop-filter:
+        blur(12px);
+
+    }
+
+    .custom-btn:hover{
+
+        background:
+        linear-gradient(
+            135deg,
+            #7c3aed,
+            #06b6d4
+        );
+
+        color:
+        white;
+
+        transform:
+        translateY(-2px);
+
+    }
+
+    /* ===================================== */
+    /* FILTER CARD */
+    /* ===================================== */
+
+    .filter-card{
+
+        background:
+        rgba(255,255,255,0.05);
+
+        border:
+        1px solid rgba(255,255,255,0.08);
+
+        border-radius:
+        28px;
+
+        backdrop-filter:
+        blur(16px);
+
+    }
+
+    /* ===================================== */
+    /* SEARCH FIX */
+    /* ===================================== */
+
+    .search-group{
+
+        background:
+        rgba(255,255,255,0.05);
+
+        border:
+        1px solid rgba(255,255,255,0.08);
+
+        border-radius:
+        20px;
+
+        overflow:
+        hidden;
+
+        height:
+        72px;
+
+        backdrop-filter:
+        blur(12px);
+
+    }
+
+    .search-icon{
+
+        background:
+        transparent !important;
+
+        border:
+        none !important;
+
+        color:
+        white !important;
+
+        padding:
+        0 24px;
+
+        font-size:
+        1.3rem;
+
+    }
+
+    .search-input{
+
+        background:
+        transparent !important;
+
+        border:
+        none !important;
+
+        color:
+        white !important;
+
+        font-size:
+        1rem;
+
+        font-weight:
+        500;
+
+        box-shadow:
+        none !important;
+
+        padding:
+        18px;
+
+    }
+
+    .search-input::placeholder{
+
+        color:
+        rgba(255,255,255,0.5);
+
+    }
+
+    .search-input:-webkit-autofill,
+    .search-input:-webkit-autofill:hover,
+    .search-input:-webkit-autofill:focus{
+
+        -webkit-text-fill-color:
+        white !important;
+
+        transition:
+        background-color 9999s ease-in-out 0s;
+
+        box-shadow:
+        0 0 0px 1000px transparent inset !important;
+
+    }
+
+    /* ===================================== */
+    /* FORM */
+    /* ===================================== */
+
+    .form-select{
+
+        background:
+        rgba(255,255,255,0.05) !important;
+
+        border:
+        1px solid rgba(255,255,255,0.08) !important;
+
+        color:
+        white !important;
+
+        border-radius:
+        18px;
+
+        padding:
+        18px;
+
+        height:
+        72px;
+
+        box-shadow:
+        none !important;
+
+    }
+
+    .form-select option{
+
+        background:
+        #0f172a;
+
+        color:
+        white;
+
+    }
+
+    .form-select:focus{
+
+        border-color:
+        #06b6d4 !important;
+
+    }
+
+    /* ===================================== */
+    /* STATS */
+    /* ===================================== */
+
+    .stat-card{
+
+        background:
+        rgba(255,255,255,0.05);
+
+        border:
+        1px solid rgba(255,255,255,0.08);
+
+        border-radius:
+        28px;
+
+        padding:
+        28px;
+
+        height:
+        100%;
+
+        backdrop-filter:
+        blur(14px);
+
+        transition:
+        0.3s ease;
+
+    }
+
+    .stat-card:hover{
+
+        transform:
+        translateY(-4px);
+
+    }
+
+    .icon-box{
+
+        width:
+        72px;
+
+        height:
+        72px;
+
+        border-radius:
+        22px;
+
+        display:
+        flex;
+
+        align-items:
+        center;
+
+        justify-content:
+        center;
+
+        color:
+        white;
+
+        font-size:
+        1.8rem;
+
+    }
+
+    .bg-purple{
+
+        background:
+        linear-gradient(
+            135deg,
+            #7c3aed,
+            #6d28d9
+        );
+
+    }
+
+    .bg-green{
+
+        background:
+        linear-gradient(
+            135deg,
+            #22c55e,
+            #15803d
+        );
+
+    }
+
+    .bg-yellow{
+
+        background:
+        linear-gradient(
+            135deg,
+            #f59e0b,
+            #d97706
+        );
+
+    }
+
+    .bg-blue{
+
+        background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #1d4ed8
+        );
+
+    }
+
+    /* ===================================== */
+    /* TABLE CARD */
+    /* ===================================== */
+
+    .glass-card{
+
+        background:
+        rgba(255,255,255,0.05);
+
+        border:
+        1px solid rgba(255,255,255,0.08);
+
+        border-radius:
+        28px;
+
+        overflow:
+        hidden;
+
+        backdrop-filter:
+        blur(16px);
+
+    }
+
+    /* ===================================== */
+    /* TABLE */
+    /* ===================================== */
+
+    .custom-table{
+
+        width:
+        100%;
+
+        margin-bottom:
+        0;
+
+        border-collapse:
+        collapse;
+
+    }
+
+    .custom-table thead{
+
+        background:
+        linear-gradient(
+            135deg,
+            rgba(124,58,237,0.35),
+            rgba(6,182,212,0.20)
+        );
+
+    }
+
+    .custom-table thead th{
+
+        color:
+        white;
+
+        border:
+        none;
+
+        padding:
+        22px 18px;
+
+        font-size:
+        0.95rem;
+
+        font-weight:
+        700;
+
+        text-transform:
+        uppercase;
+
+        white-space:
+        nowrap;
+
+        background:
+        transparent !important;
+
+    }
+
+    .custom-table tbody tr{
+
+        background:
+        rgba(255,255,255,0.02);
+
+        transition:
+        0.3s ease;
+
+    }
+
+    .custom-table tbody tr:hover{
+
+        background:
+        rgba(255,255,255,0.05);
+
+    }
+
+    .custom-table tbody td{
+
+        padding:
+        22px 18px;
+
+        border-color:
+        rgba(255,255,255,0.06);
+
+        background:
+        transparent !important;
+
+        color:
+        rgba(255,255,255,0.92);
+
+        vertical-align:
+        middle;
+
+    }
+
+    /* ===================================== */
+    /* BADGES */
+    /* ===================================== */
+
+    .badge-pill{
+
+        padding:
+        10px 18px;
+
+        border-radius:
+        50px;
+
+        font-size:
+        0.82rem;
+
+        font-weight:
+        600;
+
+        color:
+        white;
+
+        display:
+        inline-block;
+
+    }
+
+    .badge-success{
+
+        background:
+        linear-gradient(
+            135deg,
+            #22c55e,
+            #15803d
+        );
+
+    }
+
+    .badge-warning{
+
+        background:
+        linear-gradient(
+            135deg,
+            #f59e0b,
+            #d97706
+        );
+
+        color:
+        black;
+
+    }
+
+    .badge-danger{
+
+        background:
+        linear-gradient(
+            135deg,
+            #ef4444,
+            #b91c1c
+        );
+
+    }
+
+    .badge-info{
+
+        background:
+        linear-gradient(
+            135deg,
+            #06b6d4,
+            #0891b2
+        );
+
+    }
+
+    .badge-dark{
+
+        background:
+        linear-gradient(
+            135deg,
+            #1e293b,
+            #0f172a
+        );
+
+    }
+
+    .badge-primary{
+
+        background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #1d4ed8
+        );
+
+    }
+
+    .badge-secondary{
+
+        background:
+        linear-gradient(
+            135deg,
+            #475569,
+            #334155
+        );
+
+    }
+
+    /* ===================================== */
+    /* EMPTY */
+    /* ===================================== */
+
+    .empty-box{
+
+        padding:
+        80px 20px;
+
+    }
+
+</style>
+
+<div class="container-fluid py-4 px-lg-4 px-3 admin-wrapper">
 
     <!-- HEADER -->
     <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
@@ -10,7 +625,7 @@
         <!-- LEFT -->
         <div>
 
-            <span class="badge bg-dark rounded-pill px-3 py-2 mb-3">
+            <span class="badge-pill badge-dark mb-3">
 
                 Admin Booking Management
 
@@ -35,7 +650,7 @@
 
             <a
                 href="{% url 'admin_dashboard' %}"
-                class="btn btn-outline-dark rounded-pill px-4 shadow-sm"
+                class="custom-btn"
             >
 
                 <i class="bi bi-arrow-left me-2"></i>
@@ -48,121 +663,118 @@
 
     </div>
 
-    <!-- FILTER CARD -->
-    <div class="card border-0 shadow-sm rounded-5 mb-4">
+    <!-- FILTER -->
+    <div class="filter-card p-4 mb-4">
 
-        <div class="card-body p-4">
+        <form method="GET">
 
-            <form method="GET">
+            <div class="row g-3 align-items-center">
 
-                <div class="row g-3 align-items-center">
+                <!-- SEARCH -->
+                <div class="col-lg-5">
 
-                    <!-- SEARCH -->
-                    <div class="col-lg-5">
+                    <div class="input-group search-group">
 
-                        <div class="input-group">
+                        <span class="input-group-text search-icon">
 
-                            <span class="input-group-text bg-white border-end-0 rounded-start-pill">
+                            <i class="bi bi-search"></i>
 
-                                <i class="bi bi-search"></i>
+                        </span>
 
-                            </span>
-
-                            <input
-                                type="text"
-                                name="q"
-                                value="{{ query }}"
-                                class="form-control border-start-0 rounded-end-pill py-3"
-                                placeholder="Search user or service..."
-                            >
-
-                        </div>
-
-                    </div>
-
-                    <!-- STATUS -->
-                    <div class="col-lg-3">
-
-                        <select
-                            name="status"
-                            class="form-select rounded-pill py-3"
+                        <input
+                            type="text"
+                            name="q"
+                            value="{{ query }}"
+                            class="form-control search-input"
+                            placeholder="Search user or service..."
+                            autocomplete="off"
                         >
-
-                            <option value="">
-
-                                All Status
-
-                            </option>
-
-                            <option value="pending">
-
-                                Pending
-
-                            </option>
-
-                            <option value="accepted">
-
-                                Accepted
-
-                            </option>
-
-                            <option value="completed">
-
-                                Completed
-
-                            </option>
-
-                            <option value="cancelled">
-
-                                Cancelled
-
-                            </option>
-
-                            <option value="rejected">
-
-                                Rejected
-
-                            </option>
-
-                        </select>
-
-                    </div>
-
-                    <!-- BUTTON -->
-                    <div class="col-lg-4">
-
-                        <div class="d-flex gap-2">
-
-                            <button
-                                class="btn btn-dark rounded-pill py-3 w-100"
-                            >
-
-                                <i class="bi bi-search me-2"></i>
-
-                                Search
-
-                            </button>
-
-                            <a
-                                href="{% url 'manage_bookings' %}"
-                                class="btn btn-outline-dark rounded-pill py-3 w-100"
-                            >
-
-                                <i class="bi bi-arrow-clockwise me-2"></i>
-
-                                Reset
-
-                            </a>
-
-                        </div>
 
                     </div>
 
                 </div>
 
-            </form>
+                <!-- STATUS -->
+                <div class="col-lg-3">
 
-        </div>
+                    <select
+                        name="status"
+                        class="form-select"
+                    >
+
+                        <option value="">
+
+                            All Status
+
+                        </option>
+
+                        <option value="pending">
+
+                            Pending
+
+                        </option>
+
+                        <option value="accepted">
+
+                            Accepted
+
+                        </option>
+
+                        <option value="completed">
+
+                            Completed
+
+                        </option>
+
+                        <option value="cancelled">
+
+                            Cancelled
+
+                        </option>
+
+                        <option value="rejected">
+
+                            Rejected
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <!-- BUTTON -->
+                <div class="col-lg-4">
+
+                    <div class="d-flex gap-2">
+
+                        <button
+                            class="custom-btn border-0 w-100"
+                        >
+
+                            <i class="bi bi-search me-2"></i>
+
+                            Search
+
+                        </button>
+
+                        <a
+                            href="{% url 'manage_bookings' %}"
+                            class="custom-btn w-100"
+                        >
+
+                            <i class="bi bi-arrow-clockwise me-2"></i>
+
+                            Reset
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </form>
 
     </div>
 
@@ -172,21 +784,31 @@
         <!-- TOTAL -->
         <div class="col-xl-3 col-md-6">
 
-            <div class="card border-0 shadow-sm rounded-5 h-100">
+            <div class="stat-card">
 
-                <div class="card-body p-4">
+                <div class="d-flex justify-content-between align-items-center">
 
-                    <small class="text-muted fw-semibold">
+                    <div>
 
-                        Total Bookings
+                        <small class="text-muted fw-semibold">
 
-                    </small>
+                            Total Bookings
 
-                    <h2 class="fw-bold mt-2">
+                        </small>
 
-                        {{ total_bookings }}
+                        <h2 class="fw-bold mt-2">
 
-                    </h2>
+                            {{ total_bookings }}
+
+                        </h2>
+
+                    </div>
+
+                    <div class="icon-box bg-purple">
+
+                        <i class="bi bi-calendar-check-fill"></i>
+
+                    </div>
 
                 </div>
 
@@ -197,21 +819,31 @@
         <!-- COMPLETED -->
         <div class="col-xl-3 col-md-6">
 
-            <div class="card border-0 shadow-sm rounded-5 h-100">
+            <div class="stat-card">
 
-                <div class="card-body p-4">
+                <div class="d-flex justify-content-between align-items-center">
 
-                    <small class="text-muted fw-semibold">
+                    <div>
 
-                        Completed Jobs
+                        <small class="text-muted fw-semibold">
 
-                    </small>
+                            Completed Jobs
 
-                    <h2 class="fw-bold mt-2 text-success">
+                        </small>
 
-                        {{ completed_bookings }}
+                        <h2 class="fw-bold mt-2 text-success">
 
-                    </h2>
+                            {{ completed_bookings }}
+
+                        </h2>
+
+                    </div>
+
+                    <div class="icon-box bg-green">
+
+                        <i class="bi bi-check-circle-fill"></i>
+
+                    </div>
 
                 </div>
 
@@ -222,21 +854,31 @@
         <!-- PENDING -->
         <div class="col-xl-3 col-md-6">
 
-            <div class="card border-0 shadow-sm rounded-5 h-100">
+            <div class="stat-card">
 
-                <div class="card-body p-4">
+                <div class="d-flex justify-content-between align-items-center">
 
-                    <small class="text-muted fw-semibold">
+                    <div>
 
-                        Pending Orders
+                        <small class="text-muted fw-semibold">
 
-                    </small>
+                            Pending Orders
 
-                    <h2 class="fw-bold mt-2 text-warning">
+                        </small>
 
-                       {{ pending_bookings }}
+                        <h2 class="fw-bold mt-2 text-warning">
 
-                    </h2>
+                            {{ pending_bookings }}
+
+                        </h2>
+
+                    </div>
+
+                    <div class="icon-box bg-yellow">
+
+                        <i class="bi bi-hourglass-split"></i>
+
+                    </div>
 
                 </div>
 
@@ -247,21 +889,31 @@
         <!-- REVENUE -->
         <div class="col-xl-3 col-md-6">
 
-            <div class="card border-0 shadow-sm rounded-5 h-100">
+            <div class="stat-card">
 
-                <div class="card-body p-4">
+                <div class="d-flex justify-content-between align-items-center">
 
-                    <small class="text-muted fw-semibold">
+                    <div>
 
-                        Revenue
+                        <small class="text-muted fw-semibold">
 
-                    </small>
+                            Revenue
 
-                    <h2 class="fw-bold mt-2 text-primary">
+                        </small>
 
-                      ₹{{ total_revenue }}
+                        <h2 class="fw-bold mt-2 text-info">
 
-                    </h2>
+                            ₹{{ total_revenue }}
+
+                        </h2>
+
+                    </div>
+
+                    <div class="icon-box bg-blue">
+
+                        <i class="bi bi-currency-rupee"></i>
+
+                    </div>
 
                 </div>
 
@@ -272,16 +924,16 @@
     </div>
 
     <!-- BOOKING TABLE -->
-    <div class="card border-0 shadow-sm rounded-5 overflow-hidden">
+    <div class="glass-card">
 
         <!-- TOP -->
-        <div class="card-header bg-white border-0 p-4">
+        <div class="p-4 border-bottom border-secondary">
 
             <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
 
                 <div>
 
-                    <h4 class="fw-bold mb-1">
+                    <h4 class="fw-bold mb-1 text-white">
 
                         Booking Records
 
@@ -295,7 +947,7 @@
 
                 </div>
 
-                <span class="badge bg-dark rounded-pill px-3 py-2">
+                <span class="badge-pill badge-dark">
 
                     {{ bookings|length }} Records
 
@@ -308,9 +960,9 @@
         <!-- TABLE -->
         <div class="table-responsive">
 
-            <table class="table align-middle mb-0">
+            <table class="table custom-table align-middle mb-0">
 
-                <thead class="table-dark">
+                <thead>
 
                     <tr>
 
@@ -341,7 +993,7 @@
                         <!-- USER -->
                         <td>
 
-                            <div class="fw-semibold">
+                            <div class="fw-semibold text-white">
 
                                 {{ booking.user.username }}
 
@@ -358,7 +1010,7 @@
                         <!-- SERVICE -->
                         <td>
 
-                            <span class="fw-semibold">
+                            <span class="fw-semibold text-white">
 
                                 {{ booking.service.name }}
 
@@ -371,7 +1023,7 @@
 
                             {% if booking.provider %}
 
-                                <span class="badge bg-success rounded-pill px-3 py-2">
+                                <span class="badge-pill badge-success">
 
                                     {{ booking.provider.user.username }}
 
@@ -379,7 +1031,7 @@
 
                             {% else %}
 
-                                <span class="badge bg-secondary rounded-pill px-3 py-2">
+                                <span class="badge-pill badge-secondary">
 
                                     Not Assigned
 
@@ -392,7 +1044,7 @@
                         <!-- AMOUNT -->
                         <td>
 
-                            <span class="fw-bold text-primary">
+                            <span class="fw-bold text-info">
 
                                 ₹{{ booking.amount }}
 
@@ -405,7 +1057,7 @@
 
                             {% if booking.status == 'pending' %}
 
-                                <span class="badge bg-warning text-dark rounded-pill px-3 py-2">
+                                <span class="badge-pill badge-warning">
 
                                     Pending
 
@@ -413,7 +1065,7 @@
 
                             {% elif booking.status == 'accepted' %}
 
-                                <span class="badge bg-info rounded-pill px-3 py-2">
+                                <span class="badge-pill badge-info">
 
                                     Accepted
 
@@ -421,7 +1073,7 @@
 
                             {% elif booking.status == 'completed' %}
 
-                                <span class="badge bg-success rounded-pill px-3 py-2">
+                                <span class="badge-pill badge-success">
 
                                     Completed
 
@@ -429,7 +1081,7 @@
 
                             {% elif booking.status == 'cancelled' %}
 
-                                <span class="badge bg-danger rounded-pill px-3 py-2">
+                                <span class="badge-pill badge-danger">
 
                                     Cancelled
 
@@ -437,7 +1089,7 @@
 
                             {% else %}
 
-                                <span class="badge bg-dark rounded-pill px-3 py-2">
+                                <span class="badge-pill badge-dark">
 
                                     Rejected
 
@@ -452,7 +1104,7 @@
 
                             {% if booking.payment_status == 'success' %}
 
-                                <span class="badge bg-success rounded-pill px-3 py-2">
+                                <span class="badge-pill badge-success">
 
                                     Paid
 
@@ -460,7 +1112,7 @@
 
                             {% elif booking.payment_status == 'failed' %}
 
-                                <span class="badge bg-danger rounded-pill px-3 py-2">
+                                <span class="badge-pill badge-danger">
 
                                     Failed
 
@@ -468,7 +1120,7 @@
 
                             {% else %}
 
-                                <span class="badge bg-warning text-dark rounded-pill px-3 py-2">
+                                <span class="badge-pill badge-warning">
 
                                     Pending
 
@@ -481,7 +1133,7 @@
                         <!-- DATE -->
                         <td>
 
-                            <small class="fw-semibold d-block">
+                            <small class="fw-semibold d-block text-white">
 
                                 {{ booking.created_at|date:"M d, Y" }}
 
@@ -504,13 +1156,13 @@
 
                     <tr>
 
-                        <td colspan="7" class="py-5">
+                        <td colspan="7">
 
-                            <div class="text-center">
+                            <div class="empty-box text-center">
 
-                                <i class="bi bi-calendar-x display-1 text-muted"></i>
+                                <i class="bi bi-calendar-x display-1 text-secondary"></i>
 
-                                <h4 class="mt-3">
+                                <h4 class="mt-3 text-white">
 
                                     No Bookings Found
 
@@ -538,7 +1190,6 @@
 
     </div>
 
-    <!-- SPACE -->
     <div class="py-5"></div>
 
 </div>

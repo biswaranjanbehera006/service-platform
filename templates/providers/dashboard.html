@@ -2,68 +2,102 @@
 
 {% block content %}
 
-<div class="container-fluid mt-4 px-3">
+<!-- BOOTSTRAP ICONS -->
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+>
 
-    <!-- HEADER -->
-    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+<section class="dashboard-section position-relative overflow-hidden">
 
-        <div>
+    <!-- GLOW EFFECT -->
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
 
-            <h2 class="fw-bold mb-1">
+    <div class="container-fluid py-5 px-3 position-relative z-1">
 
-                Provider Dashboard
+        <!-- ================================= -->
+        <!-- HEADER -->
+        <!-- ================================= -->
 
-            </h2>
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-5">
 
-            <p class="text-muted mb-0">
+            <div>
 
-                Manage your assigned bookings efficiently
+                <div class="hero-badge mb-3">
 
-            </p>
+                    🚀 PROVIDER DASHBOARD
 
-        </div>
+                </div>
 
-        <span class="badge bg-dark fs-6 px-3 py-2">
+                <h1 class="hero-title fw-bold mb-2">
 
-            Total Bookings:
-            {{ bookings|length }}
+                    Manage Your
 
-        </span>
+                    <span class="gradient-text">
 
-    </div>
+                        Bookings
 
-    <!-- ALERTS -->
-    {% if messages %}
+                    </span>
 
-        {% for message in messages %}
+                </h1>
 
-            <div class="alert alert-{{ message.tags }} alert-dismissible fade show">
+                <p class="hero-subtitle mb-0">
 
-                {{ message }}
+                    Manage your assigned bookings efficiently
 
-                <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="alert"
-                ></button>
+                </p>
 
             </div>
 
-        {% endfor %}
+            <!-- TOTAL -->
+            <div class="booking-count">
 
-    {% endif %}
+                <i class="bi bi-calendar-check-fill me-2"></i>
 
-    <!-- TABLE CARD -->
-    <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+                Total Bookings:
+                {{ bookings|length }}
 
-        <div class="card-body p-0">
+            </div>
+
+        </div>
+
+        <!-- ================================= -->
+        <!-- ALERT -->
+        <!-- ================================= -->
+
+        {% if messages %}
+
+            {% for message in messages %}
+
+                <div class="custom-alert mb-4">
+
+                    {{ message }}
+
+                    <button
+                        type="button"
+                        class="btn-close btn-close-white float-end"
+                        data-bs-dismiss="alert"
+                    ></button>
+
+                </div>
+
+            {% endfor %}
+
+        {% endif %}
+
+        <!-- ================================= -->
+        <!-- TABLE CARD -->
+        <!-- ================================= -->
+
+        <div class="dashboard-card">
 
             <div class="table-responsive">
 
-                <table class="table table-hover align-middle text-center mb-0">
+                <table class="table dashboard-table align-middle text-center mb-0">
 
                     <!-- TABLE HEADER -->
-                    <thead class="table-dark">
+                    <thead>
 
                         <tr>
 
@@ -97,13 +131,15 @@
                         <tr>
 
                             <!-- CUSTOMER -->
-                            <td class="fw-semibold">
+                            <td>
 
-                                {{ booking.user.username }}
+                                <div class="fw-bold text-white">
 
-                                <br>
+                                    {{ booking.user.username }}
 
-                                <small class="text-muted">
+                                </div>
+
+                                <small class="text-light-custom">
 
                                     {{ booking.user.email }}
 
@@ -114,7 +150,7 @@
                             <!-- SERVICE -->
                             <td>
 
-                                <span class="badge bg-info text-dark px-3 py-2">
+                                <span class="service-badge">
 
                                     {{ booking.service.name }}
 
@@ -123,7 +159,7 @@
                             </td>
 
                             <!-- PHONE -->
-                            <td>
+                            <td class="text-white">
 
                                 {{ booking.phone }}
 
@@ -133,7 +169,7 @@
                             <td>
 
                                 <div
-                                    class="text-start small"
+                                    class="text-start text-light-custom small"
                                     style="min-width:220px;"
                                 >
 
@@ -146,13 +182,13 @@
                             <!-- DATE -->
                             <td>
 
-                                <div>
+                                <div class="text-white fw-semibold">
 
                                     {{ booking.date }}
 
                                 </div>
 
-                                <small class="text-muted">
+                                <small class="text-light-custom">
 
                                     {{ booking.time }}
 
@@ -165,7 +201,7 @@
 
                                 {% if booking.status == 'pending' %}
 
-                                    <span class="badge bg-warning text-dark px-3 py-2">
+                                    <span class="status-badge pending">
 
                                         ⏳ Pending
 
@@ -173,7 +209,7 @@
 
                                 {% elif booking.status == 'accepted' %}
 
-                                    <span class="badge bg-success px-3 py-2">
+                                    <span class="status-badge accepted">
 
                                         ✅ Accepted
 
@@ -181,7 +217,7 @@
 
                                 {% elif booking.status == 'rejected' %}
 
-                                    <span class="badge bg-danger px-3 py-2">
+                                    <span class="status-badge rejected">
 
                                         ❌ Rejected
 
@@ -189,7 +225,7 @@
 
                                 {% elif booking.status == 'completed' %}
 
-                                    <span class="badge bg-secondary px-3 py-2">
+                                    <span class="status-badge completed">
 
                                         ✔ Completed
 
@@ -204,7 +240,7 @@
 
                                 {% if booking.rating %}
 
-                                    <span class="badge bg-warning text-dark px-3 py-2">
+                                    <span class="rating-badge">
 
                                         ⭐ {{ booking.rating }}/5
 
@@ -212,7 +248,7 @@
 
                                 {% else %}
 
-                                    <span class="text-muted">
+                                    <span class="text-light-custom">
 
                                         Not Rated
 
@@ -226,7 +262,7 @@
                             <td>
 
                                 <div
-                                    class="small text-start"
+                                    class="small text-start text-light-custom"
                                     style="min-width:220px;"
                                 >
 
@@ -236,11 +272,7 @@
 
                                     {% else %}
 
-                                        <span class="text-muted">
-
-                                            No Review
-
-                                        </span>
+                                        No Review
 
                                     {% endif %}
 
@@ -258,7 +290,7 @@
                                         <!-- ACCEPT -->
                                         <a
                                             href="{% url 'update_booking_status' booking.id 'accepted' %}"
-                                            class="btn btn-success btn-sm"
+                                            class="action-btn accept-btn"
                                         >
 
                                             <i class="bi bi-check-circle-fill"></i>
@@ -270,7 +302,7 @@
                                         <!-- REJECT -->
                                         <a
                                             href="{% url 'update_booking_status' booking.id 'rejected' %}"
-                                            class="btn btn-danger btn-sm"
+                                            class="action-btn reject-btn"
                                         >
 
                                             <i class="bi bi-x-circle-fill"></i>
@@ -286,7 +318,7 @@
                                     <!-- COMPLETE -->
                                     <a
                                         href="{% url 'update_booking_status' booking.id 'completed' %}"
-                                        class="btn btn-primary btn-sm"
+                                        class="action-btn complete-btn"
                                     >
 
                                         <i class="bi bi-check2-all"></i>
@@ -297,7 +329,7 @@
 
                                 {% else %}
 
-                                    <span class="text-muted">
+                                    <span class="text-light-custom">
 
                                         No Action
 
@@ -318,17 +350,27 @@
 
                             <td colspan="9" class="py-5">
 
-                                <h5 class="text-muted">
+                                <div class="empty-state">
 
-                                    No bookings assigned yet
+                                    <div class="empty-icon mb-4">
 
-                                </h5>
+                                        <i class="bi bi-calendar-x"></i>
 
-                                <p class="text-muted mb-0">
+                                    </div>
 
-                                    You will see customer bookings here.
+                                    <h4 class="text-white fw-bold">
 
-                                </p>
+                                        No Bookings Assigned Yet
+
+                                    </h4>
+
+                                    <p class="text-light-custom mb-0">
+
+                                        You will see customer bookings here.
+
+                                    </p>
+
+                                </div>
 
                             </td>
 
@@ -346,6 +388,498 @@
 
     </div>
 
-</div>
+</section>
+
+<!-- ================================= -->
+<!-- CSS -->
+<!-- ================================= -->
+
+<style>
+
+    body{
+
+        background:
+        radial-gradient(circle at top left,#312e81 0%,transparent 30%),
+        radial-gradient(circle at bottom right,#0891b2 0%,transparent 30%),
+        linear-gradient(
+            135deg,
+            #020617,
+            #06142f,
+            #020617
+        );
+
+        overflow-x:hidden;
+
+    }
+
+    .dashboard-section{
+
+        min-height:100vh;
+
+        position:relative;
+
+    }
+
+    /* ================================= */
+    /* GLOW */
+    /* ================================= */
+
+    .glow{
+
+        position:absolute;
+
+        border-radius:50%;
+
+        filter:blur(120px);
+
+        opacity:0.18;
+
+    }
+
+    .glow-1{
+
+        width:350px;
+        height:350px;
+        background:#7c3aed;
+        top:-100px;
+        left:-100px;
+
+    }
+
+    .glow-2{
+
+        width:350px;
+        height:350px;
+        background:#06b6d4;
+        bottom:-100px;
+        right:-100px;
+
+    }
+
+    /* ================================= */
+    /* HEADER */
+    /* ================================= */
+
+    .hero-badge{
+
+        display:inline-block;
+
+        padding:12px 26px;
+
+        border-radius:50px;
+
+        background:rgba(255,255,255,0.08);
+
+        border:1px solid rgba(255,255,255,0.08);
+
+        backdrop-filter:blur(12px);
+
+        color:white;
+
+        font-size:14px;
+
+        font-weight:600;
+
+    }
+
+    .hero-title{
+
+        font-size:clamp(2.8rem,6vw,5rem);
+
+        line-height:1.1;
+
+        color:white;
+
+    }
+
+    .gradient-text{
+
+        background:
+        linear-gradient(
+            135deg,
+            #06b6d4,
+            #38bdf8,
+            #7dd3fc
+        );
+
+        -webkit-background-clip:text;
+
+        -webkit-text-fill-color:transparent;
+
+    }
+
+    .hero-subtitle{
+
+        color:#cbd5e1;
+
+        font-size:1.1rem;
+
+    }
+
+    .booking-count{
+
+        padding:14px 28px;
+
+        border-radius:50px;
+
+        background:rgba(255,255,255,0.08);
+
+        border:1px solid rgba(255,255,255,0.08);
+
+        backdrop-filter:blur(12px);
+
+        color:white;
+
+        font-weight:700;
+
+    }
+
+    /* ================================= */
+    /* ALERT */
+    /* ================================= */
+
+    .custom-alert{
+
+        background:rgba(239,68,68,0.15);
+
+        border:1px solid rgba(239,68,68,0.18);
+
+        color:white;
+
+        padding:18px 22px;
+
+        border-radius:18px;
+
+    }
+
+    /* ================================= */
+    /* CARD */
+    /* ================================= */
+
+    .dashboard-card{
+
+        background:
+        rgba(15,23,42,0.88);
+
+        border:
+        1px solid rgba(148,163,184,0.12);
+
+        border-radius:
+        30px;
+
+        overflow:
+        hidden;
+
+        backdrop-filter:
+        blur(18px);
+
+        box-shadow:
+        0 10px 40px rgba(0,0,0,0.35);
+
+    }
+
+    /* ================================= */
+    /* REMOVE ALL WHITE COLORS */
+    /* ================================= */
+
+    .dashboard-table,
+    .dashboard-table thead,
+    .dashboard-table tbody,
+    .dashboard-table tr,
+    .dashboard-table td,
+    .dashboard-table th{
+
+        background:
+        transparent !important;
+
+        color:
+        white !important;
+
+    }
+
+    .dashboard-table{
+
+        margin:0;
+
+    }
+
+    /* ================================= */
+    /* HEADER COLOR */
+    /* ================================= */
+
+    .dashboard-table thead tr{
+
+        background:
+        linear-gradient(
+            135deg,
+            rgba(91,33,182,0.9),
+            rgba(30,64,175,0.9),
+            rgba(8,145,178,0.9)
+        ) !important;
+
+    }
+
+    .dashboard-table thead th{
+
+        font-weight:700;
+
+        font-size:16px;
+
+        letter-spacing:0.5px;
+
+        border:none;
+
+        padding:26px 24px;
+
+        text-align:center;
+
+        white-space:nowrap;
+
+    }
+
+    /* ================================= */
+    /* BODY ROWS */
+    /* ================================= */
+
+    .dashboard-table tbody tr{
+
+        background:
+        rgba(15,23,42,0.80) !important;
+
+        transition:0.3s ease;
+
+        border-bottom:
+        1px solid rgba(255,255,255,0.06);
+
+    }
+
+    .dashboard-table tbody tr:hover{
+
+        background:
+        rgba(30,41,59,0.96) !important;
+
+    }
+
+    .dashboard-table td{
+
+        padding:26px 20px;
+
+        vertical-align:middle;
+
+        border:none !important;
+
+    }
+
+    .text-light-custom{
+
+        color:#cbd5e1 !important;
+
+    }
+
+    /* ================================= */
+    /* BADGES */
+    /* ================================= */
+
+    .service-badge{
+
+        background:
+        linear-gradient(
+            135deg,
+            #06b6d4,
+            #38bdf8
+        );
+
+        color:black !important;
+
+        padding:10px 18px;
+
+        border-radius:50px;
+
+        font-weight:700;
+
+        display:inline-block;
+
+    }
+
+    .status-badge{
+
+        padding:10px 18px;
+
+        border-radius:50px;
+
+        font-size:13px;
+
+        font-weight:700;
+
+        display:inline-block;
+
+    }
+
+    .pending{
+
+        background:rgba(250,204,21,0.15);
+
+        color:#facc15 !important;
+
+    }
+
+    .accepted{
+
+        background:rgba(34,197,94,0.15);
+
+        color:#22c55e !important;
+
+    }
+
+    .completed{
+
+        background:rgba(59,130,246,0.15);
+
+        color:#3b82f6 !important;
+
+    }
+
+    .rejected{
+
+        background:rgba(239,68,68,0.15);
+
+        color:#ef4444 !important;
+
+    }
+
+    .rating-badge{
+
+        background:
+        linear-gradient(
+            135deg,
+            #facc15,
+            #f59e0b
+        );
+
+        color:black !important;
+
+        padding:10px 18px;
+
+        border-radius:50px;
+
+        font-weight:700;
+
+        display:inline-block;
+
+    }
+
+    /* ================================= */
+    /* BUTTONS */
+    /* ================================= */
+
+    .action-btn{
+
+        padding:10px 20px;
+
+        border-radius:14px;
+
+        font-weight:700;
+
+        text-decoration:none;
+
+        transition:0.3s;
+
+        display:block;
+
+    }
+
+    .accept-btn{
+
+        background:
+        linear-gradient(
+            135deg,
+            #22c55e,
+            #16a34a
+        );
+
+        color:white;
+
+    }
+
+    .reject-btn{
+
+        background:
+        linear-gradient(
+            135deg,
+            #ef4444,
+            #dc2626
+        );
+
+        color:white;
+
+    }
+
+    .complete-btn{
+
+        background:
+        linear-gradient(
+            135deg,
+            #3b82f6,
+            #2563eb
+        );
+
+        color:white;
+
+    }
+
+    .action-btn:hover{
+
+        transform:translateY(-2px);
+
+        color:white;
+
+    }
+
+    /* ================================= */
+    /* EMPTY */
+    /* ================================= */
+
+    .empty-state{
+
+        padding:80px 20px;
+
+    }
+
+    .empty-icon{
+
+        width:100px;
+        height:100px;
+        margin:auto;
+        border-radius:50%;
+        background:rgba(51,65,85,0.45);
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        font-size:2.7rem;
+        color:#94a3b8;
+
+    }
+
+    /* ================================= */
+    /* MOBILE */
+    /* ================================= */
+
+    @media(max-width:991px){
+
+        .dashboard-table{
+
+            min-width:1400px;
+
+        }
+
+        .hero-title{
+
+            font-size:3rem;
+
+        }
+
+    }
+
+</style>
 
 {% endblock %}

@@ -106,6 +106,12 @@ urlpatterns = [
     ),
 
     path(
+    'edit-service/<int:id>/',
+    views.edit_service,
+    name='edit_service'
+),
+
+    path(
         'services/delete/<int:id>/',
         views.delete_service,
         name='delete_service'

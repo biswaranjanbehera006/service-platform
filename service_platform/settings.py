@@ -105,6 +105,8 @@ MIDDLEWARE = [
 
     'django.contrib.auth.middleware.AuthenticationMiddleware',
 
+    'users.middleware.AutoLogoutMiddleware',
+
     'django.contrib.messages.middleware.MessageMiddleware',
 
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -373,3 +375,12 @@ FILE_UPLOAD_MAX_MEMORY_SIZE = 5242880
 
 
 
+# =========================
+# 🔐 AUTO LOGOUT SESSION
+# =========================
+
+SESSION_COOKIE_AGE = 300
+
+SESSION_SAVE_EVERY_REQUEST = True
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True

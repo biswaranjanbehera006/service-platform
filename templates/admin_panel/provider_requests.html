@@ -2,15 +2,643 @@
 
 {% block content %}
 
-<div class="container-fluid py-4 px-lg-4 px-3 bg-light min-vh-100">
+<!-- BOOTSTRAP ICONS -->
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+>
+
+<style>
+
+    /* ===================================== */
+    /* BODY */
+    /* ===================================== */
+
+    body{
+
+        background:
+        linear-gradient(
+            135deg,
+            #020617,
+            #0f172a,
+            #111827
+        );
+
+        min-height:
+        100vh;
+
+        color:
+        white;
+
+        overflow-x:
+        hidden;
+
+    }
+
+    /* ===================================== */
+    /* WRAPPER */
+    /* ===================================== */
+
+    .admin-wrapper{
+
+        min-height:
+        100vh;
+
+    }
+
+    /* ===================================== */
+    /* GLASS CARD */
+    /* ===================================== */
+
+    .glass-card{
+
+        background:
+        rgba(255,255,255,0.05);
+
+        border:
+        1px solid rgba(255,255,255,0.08);
+
+        backdrop-filter:
+        blur(18px);
+
+        -webkit-backdrop-filter:
+        blur(18px);
+
+        border-radius:
+        28px;
+
+        box-shadow:
+        0 10px 30px rgba(0,0,0,0.25);
+
+    }
+
+    /* ===================================== */
+    /* TEXT */
+    /* ===================================== */
+
+    .text-muted{
+
+        color:
+        rgba(255,255,255,0.65) !important;
+
+    }
+
+    h1,h2,h3,h4,h5,h6{
+
+        color:
+        white;
+
+    }
+
+    /* ===================================== */
+    /* BUTTONS */
+    /* ===================================== */
+
+    .custom-btn{
+
+        background:
+        rgba(255,255,255,0.06);
+
+        border:
+        1px solid rgba(255,255,255,0.08);
+
+        color:
+        white;
+
+        border-radius:
+        50px;
+
+        padding:
+        12px 24px;
+
+        text-decoration:
+        none;
+
+        transition:
+        0.3s ease;
+
+        font-weight:
+        600;
+
+        display:
+        inline-flex;
+
+        align-items:
+        center;
+
+        justify-content:
+        center;
+
+    }
+
+    .custom-btn:hover{
+
+        background:
+        linear-gradient(
+            135deg,
+            #7c3aed,
+            #06b6d4
+        );
+
+        color:
+        white;
+
+        transform:
+        translateY(-2px);
+
+    }
+
+    /* ===================================== */
+    /* FILTER CARD */
+    /* ===================================== */
+
+    .filter-card{
+
+        background:
+        rgba(255,255,255,0.05);
+
+        border:
+        1px solid rgba(255,255,255,0.08);
+
+        border-radius:
+        28px;
+
+        backdrop-filter:
+        blur(16px);
+
+    }
+
+    /* ===================================== */
+    /* FORM */
+    /* ===================================== */
+
+    .form-control,
+    .form-select{
+
+        background:
+        rgba(255,255,255,0.05) !important;
+
+        border:
+        1px solid rgba(255,255,255,0.08) !important;
+
+        color:
+        white !important;
+
+        border-radius:
+        18px;
+
+        padding:
+        14px 18px;
+
+        box-shadow:
+        none !important;
+
+    }
+
+    .form-control::placeholder{
+
+        color:
+        rgba(255,255,255,0.5);
+
+    }
+
+    .form-control:focus,
+    .form-select:focus{
+
+        border-color:
+        #06b6d4 !important;
+
+    }
+
+    .input-group-text{
+
+        background:
+        rgba(255,255,255,0.05);
+
+        border:
+        1px solid rgba(255,255,255,0.08);
+
+        color:
+        white;
+
+        border-radius:
+        18px 0 0 18px;
+
+    }
+
+    /* ===================================== */
+    /* STATS CARD */
+    /* ===================================== */
+
+    .stat-card{
+
+        background:
+        rgba(255,255,255,0.05);
+
+        border:
+        1px solid rgba(255,255,255,0.08);
+
+        border-radius:
+        28px;
+
+        padding:
+        28px;
+
+        height:
+        100%;
+
+        transition:
+        0.3s ease;
+
+        backdrop-filter:
+        blur(14px);
+
+    }
+
+    .stat-card:hover{
+
+        transform:
+        translateY(-4px);
+
+    }
+
+    .icon-box{
+
+        width:
+        72px;
+
+        height:
+        72px;
+
+        border-radius:
+        22px;
+
+        display:
+        flex;
+
+        align-items:
+        center;
+
+        justify-content:
+        center;
+
+        font-size:
+        1.8rem;
+
+        color:
+        white;
+
+    }
+
+    .bg-blue{
+
+        background:
+        linear-gradient(
+            135deg,
+            #3b82f6,
+            #2563eb
+        );
+
+    }
+
+    .bg-yellow{
+
+        background:
+        linear-gradient(
+            135deg,
+            #f59e0b,
+            #d97706
+        );
+
+    }
+
+    .bg-green{
+
+        background:
+        linear-gradient(
+            135deg,
+            #22c55e,
+            #15803d
+        );
+
+    }
+
+    /* ===================================== */
+    /* TABLE CARD */
+    /* ===================================== */
+
+    .table-card{
+
+        background:
+        rgba(255,255,255,0.05);
+
+        border:
+        1px solid rgba(255,255,255,0.08);
+
+        border-radius:
+        28px;
+
+        overflow:
+        hidden;
+
+        backdrop-filter:
+        blur(16px);
+
+    }
+
+    /* ===================================== */
+    /* TABLE */
+    /* ===================================== */
+
+    .custom-table{
+
+        width:
+        100%;
+
+        margin-bottom:
+        0;
+
+        border-collapse:
+        collapse;
+
+    }
+
+    .custom-table thead{
+
+        background:
+        linear-gradient(
+            135deg,
+            rgba(124,58,237,0.35),
+            rgba(6,182,212,0.20)
+        );
+
+    }
+
+    .custom-table thead th{
+
+        color:
+        white;
+
+        border:
+        none;
+
+        padding:
+        22px 18px;
+
+        font-size:
+        0.95rem;
+
+        font-weight:
+        700;
+
+        text-transform:
+        uppercase;
+
+        white-space:
+        nowrap;
+
+    }
+
+    .custom-table tbody td{
+
+        border-color:
+        rgba(255,255,255,0.06);
+
+        padding:
+        20px 18px;
+
+        vertical-align:
+        middle;
+
+        background:
+        transparent;
+
+        color:
+        rgba(255,255,255,0.88);
+
+    }
+
+    .custom-table tbody tr{
+
+        transition:
+        0.3s ease;
+
+    }
+
+    .custom-table tbody tr:hover{
+
+        background:
+        rgba(255,255,255,0.03);
+
+    }
+
+    /* ===================================== */
+    /* BADGES */
+    /* ===================================== */
+
+    .badge{
+
+        padding:
+        10px 18px;
+
+        border-radius:
+        50px;
+
+        font-size:
+        0.82rem;
+
+        font-weight:
+        600;
+
+    }
+
+    /* ===================================== */
+    /* DOCUMENT BUTTON */
+    /* ===================================== */
+
+    .doc-btn{
+
+        border:none;
+
+        border-radius:
+        50px;
+
+        padding:
+        10px 18px;
+
+        font-size:
+        0.82rem;
+
+        text-decoration:none;
+
+        font-weight:
+        600;
+
+        transition:
+        0.3s ease;
+
+        display:
+        inline-flex;
+
+        align-items:
+        center;
+
+        justify-content:
+        center;
+
+    }
+
+    .doc-btn:hover{
+
+        transform:
+        translateY(-2px);
+
+        color:white;
+
+    }
+
+    .doc-aadhar{
+
+        background:
+        linear-gradient(
+            135deg,
+            #7c3aed,
+            #6d28d9
+        );
+
+        color:white;
+
+    }
+
+    .doc-cv{
+
+        background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #1d4ed8
+        );
+
+        color:white;
+
+    }
+
+    .doc-photo{
+
+        background:
+        linear-gradient(
+            135deg,
+            #22c55e,
+            #15803d
+        );
+
+        color:white;
+
+    }
+
+    .doc-license{
+
+        background:
+        linear-gradient(
+            135deg,
+            #f59e0b,
+            #d97706
+        );
+
+        color:white;
+
+    }
+
+    /* ===================================== */
+    /* ACTION BUTTON */
+    /* ===================================== */
+
+    .action-btn{
+
+        border:none;
+
+        border-radius:
+        50px;
+
+        padding:
+        10px 18px;
+
+        font-size:
+        0.85rem;
+
+        font-weight:
+        600;
+
+        text-decoration:none;
+
+        transition:
+        0.3s ease;
+
+        color:white;
+
+        display:
+        inline-flex;
+
+        align-items:
+        center;
+
+        justify-content:
+        center;
+
+    }
+
+    .action-btn:hover{
+
+        transform:
+        translateY(-2px);
+
+        color:white;
+
+    }
+
+    .approve-btn{
+
+        background:
+        linear-gradient(
+            135deg,
+            #22c55e,
+            #15803d
+        );
+
+    }
+
+    .reject-btn{
+
+        background:
+        linear-gradient(
+            135deg,
+            #ef4444,
+            #b91c1c
+        );
+
+    }
+
+    /* ===================================== */
+    /* EMPTY */
+    /* ===================================== */
+
+    .empty-box{
+
+        padding:
+        80px 20px;
+
+    }
+
+</style>
+
+<div class="container-fluid py-4 px-lg-4 px-3 admin-wrapper">
 
     <!-- HEADER -->
     <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
 
-        <!-- LEFT -->
         <div>
 
-            <span class="badge bg-dark rounded-pill px-3 py-2 mb-3">
+            <span class="badge bg-dark px-4 py-3 mb-3">
 
                 Admin Panel
 
@@ -30,118 +658,107 @@
 
         </div>
 
-        <!-- RIGHT -->
-        <div class="d-flex gap-2 flex-wrap">
+        <!-- BACK -->
+        <a
+            href="/admin-panel/dashboard/"
+            class="custom-btn"
+        >
 
-            <!-- BACK BUTTON -->
-            <a
-                href="/admin-panel/dashboard/"
-                class="btn btn-outline-dark rounded-pill px-4"
-            >
+            <i class="bi bi-arrow-left me-2"></i>
 
-                <i class="bi bi-arrow-left me-2"></i>
+            Back
 
-                Back
-
-            </a>
-
-        </div>
+        </a>
 
     </div>
 
-    <!-- FILTER SECTION -->
-    <div class="card border-0 shadow-sm rounded-4 mb-4">
+    <!-- FILTER -->
+    <div class="filter-card p-4 mb-4">
 
-        <div class="card-body p-4">
+        <form method="GET">
 
-            <form method="GET">
+            <div class="row g-3 align-items-center">
 
-                <div class="row g-3 align-items-center">
+                <!-- SEARCH -->
+                <div class="col-lg-4">
 
-                    <!-- SEARCH -->
-                    <div class="col-lg-4">
+                    <div class="input-group">
 
-                        <div class="input-group">
+                        <span class="input-group-text">
 
-                            <span class="input-group-text bg-white border-end-0">
+                            <i class="bi bi-search"></i>
 
-                                <i class="bi bi-search"></i>
+                        </span>
 
-                            </span>
-
-                            <input
-                                type="text"
-                                name="q"
-                                value="{{ search_query }}"
-                                class="form-control border-start-0"
-                                placeholder="Search by username..."
-                            >
-
-                        </div>
-
-                    </div>
-
-                    <!-- STATUS -->
-                    <div class="col-lg-3">
-
-                        <select
-                            name="status"
-                            class="form-select"
+                        <input
+                            type="text"
+                            name="q"
+                            value="{{ search_query }}"
+                            class="form-control"
+                            placeholder="Search by username..."
                         >
-
-                            <option value="">
-                                All Status
-                            </option>
-
-                            <option value="pending" {% if status == 'pending' %}selected{% endif %}>
-                                Pending
-                            </option>
-
-                            <option value="approved" {% if status == 'approved' %}selected{% endif %}>
-                                Approved
-                            </option>
-
-                            <option value="rejected" {% if status == 'rejected' %}selected{% endif %}>
-                                Rejected
-                            </option>
-
-                        </select>
-
-                    </div>
-
-                    <!-- BUTTONS -->
-                    <div class="col-lg-5">
-
-                        <div class="d-flex gap-2">
-
-                            <button class="btn btn-dark w-100 rounded-pill">
-
-                                <i class="bi bi-search me-2"></i>
-
-                                Search
-
-                            </button>
-
-                            <a
-                                href="{% url 'provider_requests' %}"
-                                class="btn btn-outline-secondary w-100 rounded-pill"
-                            >
-
-                                <i class="bi bi-arrow-clockwise me-2"></i>
-
-                                Reset
-
-                            </a>
-
-                        </div>
 
                     </div>
 
                 </div>
 
-            </form>
+                <!-- STATUS -->
+                <div class="col-lg-3">
 
-        </div>
+                    <select
+                        name="status"
+                        class="form-select"
+                    >
+
+                        <option value="">All Status</option>
+
+                        <option value="pending" {% if status == 'pending' %}selected{% endif %}>
+                            Pending
+                        </option>
+
+                        <option value="approved" {% if status == 'approved' %}selected{% endif %}>
+                            Approved
+                        </option>
+
+                        <option value="rejected" {% if status == 'rejected' %}selected{% endif %}>
+                            Rejected
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <!-- BUTTON -->
+                <div class="col-lg-5">
+
+                    <div class="d-flex gap-2">
+
+                        <button class="custom-btn w-100 border-0">
+
+                            <i class="bi bi-search me-2"></i>
+
+                            Search
+
+                        </button>
+
+                        <a
+                            href="{% url 'provider_requests' %}"
+                            class="custom-btn w-100"
+                        >
+
+                            <i class="bi bi-arrow-clockwise me-2"></i>
+
+                            Reset
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </form>
 
     </div>
 
@@ -151,33 +768,29 @@
         <!-- TOTAL -->
         <div class="col-xl-4 col-md-6">
 
-            <div class="card border-0 shadow-sm rounded-4 h-100">
+            <div class="stat-card">
 
-                <div class="card-body p-4">
+                <div class="d-flex justify-content-between align-items-center">
 
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div>
 
-                        <div>
+                        <small class="text-muted fw-semibold">
 
-                            <small class="text-muted fw-semibold">
+                            Total Applications
 
-                                Total Applications
+                        </small>
 
-                            </small>
+                        <h2 class="fw-bold mt-2">
 
-                            <h2 class="fw-bold mt-2">
+                            {{ applications|length }}
 
-                                {{ applications|length }}
+                        </h2>
 
-                            </h2>
+                    </div>
 
-                        </div>
+                    <div class="icon-box bg-blue">
 
-                        <div class="bg-primary bg-opacity-10 p-3 rounded-circle">
-
-                            <i class="bi bi-file-earmark-text-fill text-primary fs-2"></i>
-
-                        </div>
+                        <i class="bi bi-file-earmark-text-fill"></i>
 
                     </div>
 
@@ -190,33 +803,29 @@
         <!-- PENDING -->
         <div class="col-xl-4 col-md-6">
 
-            <div class="card border-0 shadow-sm rounded-4 h-100">
+            <div class="stat-card">
 
-                <div class="card-body p-4">
+                <div class="d-flex justify-content-between align-items-center">
 
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div>
 
-                        <div>
+                        <small class="text-muted fw-semibold">
 
-                            <small class="text-muted fw-semibold">
+                            Pending Requests
 
-                                Pending Requests
+                        </small>
 
-                            </small>
+                        <h2 class="fw-bold mt-2 text-warning">
 
-                            <h2 class="fw-bold mt-2 text-warning">
+                            {{ pending_count }}
 
-                                {{ pending_count }}
+                        </h2>
 
-                            </h2>
+                    </div>
 
-                        </div>
+                    <div class="icon-box bg-yellow">
 
-                        <div class="bg-warning bg-opacity-10 p-3 rounded-circle">
-
-                            <i class="bi bi-hourglass-split text-warning fs-2"></i>
-
-                        </div>
+                        <i class="bi bi-hourglass-split"></i>
 
                     </div>
 
@@ -229,33 +838,29 @@
         <!-- APPROVED -->
         <div class="col-xl-4 col-md-12">
 
-            <div class="card border-0 shadow-sm rounded-4 h-100">
+            <div class="stat-card">
 
-                <div class="card-body p-4">
+                <div class="d-flex justify-content-between align-items-center">
 
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div>
 
-                        <div>
+                        <small class="text-muted fw-semibold">
 
-                            <small class="text-muted fw-semibold">
+                            Approved Providers
 
-                                Approved Providers
+                        </small>
 
-                            </small>
+                        <h2 class="fw-bold mt-2 text-success">
 
-                            <h2 class="fw-bold mt-2 text-success">
+                            {{ approved_count }}
 
-                                {{ approved_count }}
+                        </h2>
 
-                            </h2>
+                    </div>
 
-                        </div>
+                    <div class="icon-box bg-green">
 
-                        <div class="bg-success bg-opacity-10 p-3 rounded-circle">
-
-                            <i class="bi bi-person-check-fill text-success fs-2"></i>
-
-                        </div>
+                        <i class="bi bi-person-check-fill"></i>
 
                     </div>
 
@@ -267,11 +872,11 @@
 
     </div>
 
-    <!-- APPLICATION TABLE -->
-    <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+    <!-- TABLE -->
+    <div class="table-card">
 
-        <!-- HEADER -->
-        <div class="card-header bg-white border-0 p-4">
+        <!-- TOP -->
+        <div class="p-4 border-bottom border-secondary">
 
             <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
 
@@ -291,7 +896,7 @@
 
                 </div>
 
-                <span class="badge bg-dark rounded-pill px-3 py-2">
+                <span class="badge bg-dark px-4 py-3">
 
                     {{ applications|length }} Requests
 
@@ -304,9 +909,9 @@
         <!-- TABLE -->
         <div class="table-responsive">
 
-            <table class="table align-middle text-center mb-0">
+            <table class="table custom-table align-middle text-center mb-0">
 
-                <thead class="table-dark">
+                <thead>
 
                     <tr>
 
@@ -333,13 +938,13 @@
                         <!-- USER -->
                         <td>
 
-                            <div class="fw-semibold">
+                            <div class="fw-semibold text-white">
 
                                 {{ app.user.username }}
 
                             </div>
 
-                            <small class="text-muted">
+                            <small class="text-light">
 
                                 {{ app.user.email }}
 
@@ -352,7 +957,7 @@
 
                             {% if app.status == 'pending' %}
 
-                                <span class="badge bg-warning text-dark rounded-pill px-3 py-2">
+                                <span class="badge bg-warning text-dark">
 
                                     Pending
 
@@ -360,7 +965,7 @@
 
                             {% elif app.status == 'approved' %}
 
-                                <span class="badge bg-success rounded-pill px-3 py-2">
+                                <span class="badge bg-success">
 
                                     Approved
 
@@ -368,7 +973,7 @@
 
                             {% else %}
 
-                                <span class="badge bg-danger rounded-pill px-3 py-2">
+                                <span class="badge bg-danger">
 
                                     Rejected
 
@@ -388,7 +993,7 @@
                                 <a
                                     href="{{ app.aadhar_card.url }}"
                                     target="_blank"
-                                    class="btn btn-outline-dark btn-sm rounded-pill"
+                                    class="doc-btn doc-aadhar"
                                 >
 
                                     <i class="bi bi-file-earmark-text me-1"></i>
@@ -404,7 +1009,7 @@
                                 <a
                                     href="{{ app.cv.url }}"
                                     target="_blank"
-                                    class="btn btn-outline-primary btn-sm rounded-pill"
+                                    class="doc-btn doc-cv"
                                 >
 
                                     <i class="bi bi-file-earmark-person me-1"></i>
@@ -420,7 +1025,7 @@
                                 <a
                                     href="{{ app.passport_photo.url }}"
                                     target="_blank"
-                                    class="btn btn-outline-success btn-sm rounded-pill"
+                                    class="doc-btn doc-photo"
                                 >
 
                                     <i class="bi bi-image-fill me-1"></i>
@@ -436,7 +1041,7 @@
                                 <a
                                     href="{{ app.driving_license.url }}"
                                     target="_blank"
-                                    class="btn btn-outline-warning btn-sm rounded-pill"
+                                    class="doc-btn doc-license"
                                 >
 
                                     <i class="bi bi-card-text me-1"></i>
@@ -458,7 +1063,7 @@
 
                                 {% for service in app.services.all %}
 
-                                <span class="badge bg-info text-dark rounded-pill px-3 py-2">
+                                <span class="badge bg-info text-dark">
 
                                     {{ service.name }}
 
@@ -466,7 +1071,7 @@
 
                                 {% empty %}
 
-                                <span class="text-muted">
+                                <span class="text-light">
 
                                     No Services
 
@@ -478,7 +1083,7 @@
 
                         </td>
 
-                        <!-- ACTIONS -->
+                        <!-- ACTION -->
                         <td>
 
                             {% if app.status == 'pending' %}
@@ -488,7 +1093,7 @@
                                 <!-- APPROVE -->
                                 <a
                                     href="{% url 'approve_provider' app.id %}"
-                                    class="btn btn-success btn-sm rounded-pill"
+                                    class="action-btn approve-btn"
                                 >
 
                                     <i class="bi bi-check-circle-fill me-1"></i>
@@ -500,7 +1105,7 @@
                                 <!-- REJECT -->
                                 <a
                                     href="{% url 'reject_provider' app.id %}"
-                                    class="btn btn-danger btn-sm rounded-pill"
+                                    class="action-btn reject-btn"
                                 >
 
                                     <i class="bi bi-x-circle-fill me-1"></i>
@@ -513,7 +1118,7 @@
 
                             {% else %}
 
-                            <span class="badge bg-secondary rounded-pill px-3 py-2">
+                            <span class="badge bg-secondary">
 
                                 No Action
 
@@ -532,19 +1137,19 @@
 
                     <tr>
 
-                        <td colspan="5" class="py-5">
+                        <td colspan="5">
 
-                            <div class="text-center">
+                            <div class="empty-box text-center">
 
-                                <i class="bi bi-file-earmark-text display-1 text-muted"></i>
+                                <i class="bi bi-file-earmark-text display-1 text-secondary"></i>
 
-                                <h4 class="mt-3">
+                                <h4 class="mt-3 text-white">
 
                                     No Applications Found
 
                                 </h4>
 
-                                <p class="text-muted mb-0">
+                                <p class="text-light mb-0">
 
                                     Try adjusting your search filters
 
@@ -566,7 +1171,6 @@
 
     </div>
 
-    <!-- SPACE BEFORE FOOTER -->
     <div class="py-5"></div>
 
 </div>

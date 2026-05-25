@@ -2,30 +2,42 @@
 
 {% block content %}
 
-<!-- HERO -->
-<section class="py-5 bg-light border-bottom">
+<!-- HERO SECTION -->
+<section class="provider-hero position-relative overflow-hidden">
 
-    <div class="container">
+    <!-- GLOW -->
+    <div class="hero-glow glow-1"></div>
+    <div class="hero-glow glow-2"></div>
 
-        <div class="row align-items-center g-5">
+    <div class="container position-relative z-1">
+
+        <div class="row align-items-center min-vh-100 g-5">
 
             <!-- LEFT -->
-            <div class="col-lg-6">
+            <div class="col-lg-6 text-white">
 
-                <span class="badge bg-dark rounded-pill px-4 py-3 mb-4">
+                <!-- BADGE -->
+                <div class="hero-badge mb-4">
 
-                    Join Our Professional Network
+                    🚀 JOIN OUR PROFESSIONAL NETWORK
 
-                </span>
+                </div>
 
-                <h1 class="display-4 fw-bold mb-4">
+                <!-- TITLE -->
+                <h1 class="hero-title fw-bold mb-4">
 
-                    Become a Verified
-                    Service Provider
+                    Become A Verified
+
+                    <span class="gradient-text">
+
+                        Service Provider
+
+                    </span>
 
                 </h1>
 
-                <p class="fs-5 text-muted mb-4">
+                <!-- DESC -->
+                <p class="hero-description mb-5">
 
                     Start your professional journey with our trusted
                     home service platform and receive customer bookings
@@ -33,30 +45,156 @@
 
                 </p>
 
-                <!-- BUTTON -->
-                <a
-                    href="/users/register/"
-                    class="btn btn-dark btn-lg rounded-pill px-5 py-3"
-                >
+                <!-- BUTTONS -->
+                <div class="d-flex flex-wrap gap-3">
 
-                    <i class="bi bi-person-plus-fill me-2"></i>
+                    <a
+                        href="/users/register/"
+                        class="hero-btn-primary"
+                    >
 
-                    Register as Provider
+                        <i class="bi bi-person-plus-fill me-2"></i>
 
-                </a>
+                        Register As Provider
+
+                    </a>
+
+                    <a
+                        href="#steps"
+                        class="hero-btn-outline"
+                    >
+
+                        <i class="bi bi-arrow-down-circle me-2"></i>
+
+                        Learn More
+
+                    </a>
+
+                </div>
+
+                <!-- STATS -->
+                <div class="row g-4 mt-5">
+
+                    <div class="col-6">
+
+                        <div class="mini-stat-card">
+
+                            <h2 class="fw-bold text-info mb-1">
+
+                                500+
+
+                            </h2>
+
+                            <p class="mb-0 text-light opacity-75">
+
+                                Active Providers
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-6">
+
+                        <div class="mini-stat-card">
+
+                            <h2 class="fw-bold text-success mb-1">
+
+                                10K+
+
+                            </h2>
+
+                            <p class="mb-0 text-light opacity-75">
+
+                                Monthly Orders
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
 
             </div>
 
             <!-- RIGHT -->
             <div class="col-lg-6">
 
-                <div class="card border-0 shadow-lg rounded-5 overflow-hidden">
+                <div class="hero-image-wrapper">
 
                     <img
                         src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop"
-                        class="img-fluid"
-                        style="height: 500px; object-fit: cover;"
+                        class="hero-image"
                     >
+
+                    <!-- FLOAT CARD -->
+                    <div class="floating-card">
+
+                        <div class="d-flex align-items-center mb-3">
+
+                            <div class="floating-icon me-3">
+
+                                <i class="bi bi-patch-check-fill text-success fs-3"></i>
+
+                            </div>
+
+                            <div>
+
+                                <h6 class="fw-bold mb-1">
+
+                                    Verified Professionals
+
+                                </h6>
+
+                                <small class="text-muted">
+
+                                    Trusted Service Experts
+
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+
+                            <div>
+
+                                <h4 class="fw-bold text-info mb-0">
+
+                                    48H
+
+                                </h4>
+
+                                <small class="text-muted">
+
+                                    Approval Time
+
+                                </small>
+
+                            </div>
+
+                            <div>
+
+                                <h4 class="fw-bold text-warning mb-0">
+
+                                    24/7
+
+                                </h4>
+
+                                <small class="text-muted">
+
+                                    Support
+
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                    </div>
 
                 </div>
 
@@ -69,26 +207,26 @@
 </section>
 
 <!-- HOW IT WORKS -->
-<section class="py-5">
+<section class="steps-section py-5" id="steps">
 
     <div class="container">
 
         <!-- HEADER -->
         <div class="text-center mb-5">
 
-            <span class="badge bg-dark rounded-pill px-3 py-2 mb-3">
+            <div class="hero-badge mb-4">
 
-                Step By Step Process
+                ⚡ STEP BY STEP PROCESS
 
-            </span>
+            </div>
 
-            <h2 class="fw-bold display-5">
+            <h2 class="section-title fw-bold text-white">
 
                 How To Become Provider
 
             </h2>
 
-            <p class="text-muted fs-5">
+            <p class="section-desc mx-auto">
 
                 Follow these simple steps carefully
 
@@ -99,159 +237,113 @@
         <!-- STEPS -->
         <div class="row g-4">
 
-            <!-- STEP 1 -->
+            <!-- STEP -->
             <div class="col-lg-3 col-md-6">
 
-                <div class="card border-0 shadow-sm rounded-5 h-100 text-center">
+                <div class="step-card text-center h-100">
 
-                    <div class="card-body p-5">
+                    <div class="step-number">
 
-                        <div
-                            class="bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-4"
-                            style="width: 80px; height: 80px;"
-                        >
-
-                            <h2 class="fw-bold mb-0">
-
-                                1
-
-                            </h2>
-
-                        </div>
-
-                        <h4 class="fw-bold mb-3">
-
-                            Register Account
-
-                        </h4>
-
-                        <p class="text-muted mb-0">
-
-                            Create an account and select
-                            <strong>Provider Role</strong>
-                            during registration.
-
-                        </p>
+                        1
 
                     </div>
+
+                    <h4 class="fw-bold text-white mb-3">
+
+                        Register Account
+
+                    </h4>
+
+                    <p class="text-light opacity-75 mb-0">
+
+                        Create an account and select
+                        Provider Role during registration.
+
+                    </p>
 
                 </div>
 
             </div>
 
-            <!-- STEP 2 -->
+            <!-- STEP -->
             <div class="col-lg-3 col-md-6">
 
-                <div class="card border-0 shadow-sm rounded-5 h-100 text-center">
+                <div class="step-card text-center h-100">
 
-                    <div class="card-body p-5">
+                    <div class="step-number">
 
-                        <div
-                            class="bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-4"
-                            style="width: 80px; height: 80px;"
-                        >
-
-                            <h2 class="fw-bold mb-0">
-
-                                2
-
-                            </h2>
-
-                        </div>
-
-                        <h4 class="fw-bold mb-3">
-
-                            Upload Documents
-
-                        </h4>
-
-                        <p class="text-muted mb-0">
-
-                            Submit valid professional documents,
-                            ID proof and work experience details.
-
-                        </p>
+                        2
 
                     </div>
+
+                    <h4 class="fw-bold text-white mb-3">
+
+                        Upload Documents
+
+                    </h4>
+
+                    <p class="text-light opacity-75 mb-0">
+
+                        Submit valid professional documents
+                        and ID proof details.
+
+                    </p>
 
                 </div>
 
             </div>
 
-            <!-- STEP 3 -->
+            <!-- STEP -->
             <div class="col-lg-3 col-md-6">
 
-                <div class="card border-0 shadow-sm rounded-5 h-100 text-center">
+                <div class="step-card text-center h-100">
 
-                    <div class="card-body p-5">
+                    <div class="step-number">
 
-                        <div
-                            class="bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-4"
-                            style="width: 80px; height: 80px;"
-                        >
-
-                            <h2 class="fw-bold mb-0">
-
-                                3
-
-                            </h2>
-
-                        </div>
-
-                        <h4 class="fw-bold mb-3">
-
-                            Verification Process
-
-                        </h4>
-
-                        <p class="text-muted mb-0">
-
-                            Our team reviews your application
-                            within
-                            <strong>48 business hours</strong>.
-
-                        </p>
+                        3
 
                     </div>
+
+                    <h4 class="fw-bold text-white mb-3">
+
+                        Verification
+
+                    </h4>
+
+                    <p class="text-light opacity-75 mb-0">
+
+                        Our team reviews your application
+                        within 48 business hours.
+
+                    </p>
 
                 </div>
 
             </div>
 
-            <!-- STEP 4 -->
+            <!-- STEP -->
             <div class="col-lg-3 col-md-6">
 
-                <div class="card border-0 shadow-sm rounded-5 h-100 text-center">
+                <div class="step-card text-center h-100">
 
-                    <div class="card-body p-5">
+                    <div class="step-number">
 
-                        <div
-                            class="bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-4"
-                            style="width: 80px; height: 80px;"
-                        >
-
-                            <h2 class="fw-bold mb-0">
-
-                                4
-
-                            </h2>
-
-                        </div>
-
-                        <h4 class="fw-bold mb-3">
-
-                            Start Taking Orders
-
-                        </h4>
-
-                        <p class="text-muted mb-0">
-
-                            Once approved, login and
-                            start receiving service bookings.
-
-                        </p>
+                        4
 
                     </div>
+
+                    <h4 class="fw-bold text-white mb-3">
+
+                        Start Orders
+
+                    </h4>
+
+                    <p class="text-light opacity-75 mb-0">
+
+                        Once approved, start receiving
+                        customer bookings instantly.
+
+                    </p>
 
                 </div>
 
@@ -264,22 +356,28 @@
 </section>
 
 <!-- REQUIRED DOCUMENTS -->
-<section class="py-5 bg-light">
+<section class="documents-section py-5">
 
     <div class="container">
 
         <!-- HEADER -->
         <div class="text-center mb-5">
 
-            <h2 class="fw-bold display-5">
+            <div class="hero-badge mb-4">
 
-                Required Documents
+                📄 REQUIRED DOCUMENTS
+
+            </div>
+
+            <h2 class="section-title fw-bold text-white">
+
+                Verification Documents
 
             </h2>
 
-            <p class="text-muted fs-5">
+            <p class="section-desc mx-auto">
 
-                Valid documents are mandatory for verification
+                Valid documents are mandatory for provider verification
 
             </p>
 
@@ -291,26 +389,25 @@
             <!-- CARD -->
             <div class="col-lg-3 col-md-6">
 
-                <div class="card border-0 shadow-sm rounded-5 h-100">
+                <div class="document-card text-center h-100">
 
-                    <div class="card-body p-5 text-center">
+                    <div class="document-icon">
 
-                        <i class="bi bi-person-vcard-fill display-3 mb-4"></i>
-
-                        <h4 class="fw-bold">
-
-                            Government ID
-
-                        </h4>
-
-                        <p class="text-muted mb-0">
-
-                            Aadhaar Card / PAN Card /
-                            Voter ID
-
-                        </p>
+                        <i class="bi bi-person-vcard-fill"></i>
 
                     </div>
+
+                    <h4 class="fw-bold text-white mt-4">
+
+                        Government ID
+
+                    </h4>
+
+                    <p class="text-light opacity-75 mb-0">
+
+                        Aadhaar Card / PAN Card / Voter ID
+
+                    </p>
 
                 </div>
 
@@ -319,26 +416,25 @@
             <!-- CARD -->
             <div class="col-lg-3 col-md-6">
 
-                <div class="card border-0 shadow-sm rounded-5 h-100">
+                <div class="document-card text-center h-100">
 
-                    <div class="card-body p-5 text-center">
+                    <div class="document-icon">
 
-                        <i class="bi bi-file-earmark-person-fill display-3 mb-4"></i>
-
-                        <h4 class="fw-bold">
-
-                            Resume / CV
-
-                        </h4>
-
-                        <p class="text-muted mb-0">
-
-                            Professional experience
-                            and work history
-
-                        </p>
+                        <i class="bi bi-file-earmark-person-fill"></i>
 
                     </div>
+
+                    <h4 class="fw-bold text-white mt-4">
+
+                        Resume / CV
+
+                    </h4>
+
+                    <p class="text-light opacity-75 mb-0">
+
+                        Professional experience and work history
+
+                    </p>
 
                 </div>
 
@@ -347,26 +443,25 @@
             <!-- CARD -->
             <div class="col-lg-3 col-md-6">
 
-                <div class="card border-0 shadow-sm rounded-5 h-100">
+                <div class="document-card text-center h-100">
 
-                    <div class="card-body p-5 text-center">
+                    <div class="document-icon">
 
-                        <i class="bi bi-camera-fill display-3 mb-4"></i>
-
-                        <h4 class="fw-bold">
-
-                            Passport Photo
-
-                        </h4>
-
-                        <p class="text-muted mb-0">
-
-                            Recent professional
-                            passport size photo
-
-                        </p>
+                        <i class="bi bi-camera-fill"></i>
 
                     </div>
+
+                    <h4 class="fw-bold text-white mt-4">
+
+                        Passport Photo
+
+                    </h4>
+
+                    <p class="text-light opacity-75 mb-0">
+
+                        Recent professional passport photo
+
+                    </p>
 
                 </div>
 
@@ -375,124 +470,25 @@
             <!-- CARD -->
             <div class="col-lg-3 col-md-6">
 
-                <div class="card border-0 shadow-sm rounded-5 h-100">
+                <div class="document-card text-center h-100">
 
-                    <div class="card-body p-5 text-center">
+                    <div class="document-icon">
 
-                        <i class="bi bi-award-fill display-3 mb-4"></i>
-
-                        <h4 class="fw-bold">
-
-                            Experience Proof
-
-                        </h4>
-
-                        <p class="text-muted mb-0">
-
-                            Work certificates or
-                            service experience proof
-
-                        </p>
+                        <i class="bi bi-award-fill"></i>
 
                     </div>
 
-                </div>
+                    <h4 class="fw-bold text-white mt-4">
 
-            </div>
+                        Experience Proof
 
-        </div>
+                    </h4>
 
-    </div>
+                    <p class="text-light opacity-75 mb-0">
 
-</section>
+                        Work certificates and experience proof
 
-<!-- IMPORTANT NOTICE -->
-<section class="py-5">
-
-    <div class="container">
-
-        <div class="card border-0 shadow-sm rounded-5 overflow-hidden">
-
-            <div class="row g-0">
-
-                <!-- LEFT -->
-                <div class="col-lg-8">
-
-                    <div class="card-body p-5">
-
-                        <span class="badge bg-dark rounded-pill px-3 py-2 mb-4">
-
-                            Important Information
-
-                        </span>
-
-                        <h2 class="fw-bold mb-4">
-
-                            Verification & Approval Policy
-
-                        </h2>
-
-                        <ul class="list-group list-group-flush">
-
-                            <li class="list-group-item border-0 px-0 py-3">
-
-                                <i class="bi bi-check-circle-fill text-success me-2"></i>
-
-                                All uploaded documents must be genuine and valid.
-
-                            </li>
-
-                            <li class="list-group-item border-0 px-0 py-3">
-
-                                <i class="bi bi-check-circle-fill text-success me-2"></i>
-
-                                Fake or invalid documents will lead to rejection.
-
-                            </li>
-
-                            <li class="list-group-item border-0 px-0 py-3">
-
-                                <i class="bi bi-check-circle-fill text-success me-2"></i>
-
-                                Verification process takes up to 48 business working hours.
-
-                            </li>
-
-                            <li class="list-group-item border-0 px-0 py-3">
-
-                                <i class="bi bi-check-circle-fill text-success me-2"></i>
-
-                                Approved providers can login and start receiving orders.
-
-                            </li>
-
-                        </ul>
-
-                    </div>
-
-                </div>
-
-                <!-- RIGHT -->
-                <div class="col-lg-4 bg-dark text-white d-flex align-items-center">
-
-                    <div class="p-5 text-center w-100">
-
-                        <i class="bi bi-shield-check display-1 mb-4"></i>
-
-                        <h3 class="fw-bold">
-
-                            Secure Verification
-
-                        </h3>
-
-                        <p class="text-light mt-3 mb-0">
-
-                            We maintain quality and trust
-                            by carefully verifying all providers.
-
-                        </p>
-
-                    </div>
+                    </p>
 
                 </div>
 
@@ -505,43 +501,419 @@
 </section>
 
 <!-- CTA -->
-<section class="pb-5">
+<section class="cta-section py-5">
 
     <div class="container">
 
-        <div class="card border-0 bg-dark text-white rounded-5 shadow-lg">
+        <div class="cta-card text-center">
 
-            <div class="card-body p-5 text-center">
+            <h2 class="fw-bold text-white mb-4">
 
-                <h2 class="fw-bold mb-4">
+                Ready To Start Your Journey?
 
-                    Ready To Start Your Journey?
+            </h2>
 
-                </h2>
+            <p class="text-light opacity-75 fs-5 mb-5">
 
-                <p class="fs-5 text-light mb-4">
+                Join our trusted network of professional providers today.
 
-                    Join our trusted network of professional providers today.
+            </p>
 
-                </p>
+            <a
+                href="/users/register/"
+                class="hero-btn-primary"
+            >
 
-                <a
-                    href="/users/register/"
-                    class="btn btn-light btn-lg rounded-pill px-5"
-                >
+                <i class="bi bi-person-plus-fill me-2"></i>
 
-                    <i class="bi bi-person-plus-fill me-2"></i>
+                Register As Provider
 
-                    Register As Provider
-
-                </a>
-
-            </div>
+            </a>
 
         </div>
 
     </div>
 
 </section>
+
+<!-- ================================= -->
+<!-- MODERN CSS -->
+<!-- ================================= -->
+
+<style>
+
+    body{
+
+        background:
+        radial-gradient(circle at top left,#312e81 0%,transparent 30%),
+        radial-gradient(circle at bottom right,#0891b2 0%,transparent 30%),
+        linear-gradient(135deg,#020617,#06142f,#020617);
+
+        overflow-x:hidden;
+
+    }
+
+    .provider-hero{
+
+        padding:120px 0 80px;
+
+        position:relative;
+
+    }
+
+    .hero-glow{
+
+        position:absolute;
+
+        border-radius:50%;
+
+        filter:blur(120px);
+
+        opacity:0.2;
+
+    }
+
+    .glow-1{
+
+        width:350px;
+
+        height:350px;
+
+        background:#7c3aed;
+
+        top:-100px;
+
+        left:-100px;
+
+    }
+
+    .glow-2{
+
+        width:350px;
+
+        height:350px;
+
+        background:#06b6d4;
+
+        bottom:-100px;
+
+        right:-100px;
+
+    }
+
+    .hero-badge{
+
+        display:inline-block;
+
+        padding:14px 30px;
+
+        border-radius:50px;
+
+        background:rgba(255,255,255,0.08);
+
+        border:1px solid rgba(255,255,255,0.08);
+
+        backdrop-filter:blur(15px);
+
+        color:white;
+
+        font-weight:600;
+
+        font-size:14px;
+
+    }
+
+    .hero-title{
+
+        font-size:clamp(3rem,7vw,6rem);
+
+        line-height:1.1;
+
+        color:white;
+
+    }
+
+    .gradient-text{
+
+        background:linear-gradient(
+            135deg,
+            #06b6d4,
+            #38bdf8,
+            #7dd3fc
+        );
+
+        -webkit-background-clip:text;
+
+        -webkit-text-fill-color:transparent;
+
+    }
+
+    .hero-description{
+
+        color:#cbd5e1;
+
+        font-size:1.2rem;
+
+        line-height:2;
+
+    }
+
+    .hero-btn-primary{
+
+        padding:16px 34px;
+
+        border-radius:50px;
+
+        background:linear-gradient(
+            135deg,
+            #7c3aed,
+            #06b6d4,
+            #ec4899
+        );
+
+        color:white;
+
+        text-decoration:none;
+
+        font-weight:700;
+
+        transition:0.3s;
+
+    }
+
+    .hero-btn-outline{
+
+        padding:16px 34px;
+
+        border-radius:50px;
+
+        border:1px solid rgba(255,255,255,0.15);
+
+        background:rgba(255,255,255,0.05);
+
+        color:white;
+
+        text-decoration:none;
+
+        font-weight:700;
+
+        backdrop-filter:blur(10px);
+
+    }
+
+    .hero-image{
+
+        width:100%;
+
+        height:600px;
+
+        object-fit:cover;
+
+        border-radius:35px;
+
+    }
+
+    .hero-image-wrapper{
+
+        position:relative;
+
+    }
+
+    .floating-card{
+
+        position:absolute;
+
+        bottom:-30px;
+
+        left:-30px;
+
+        background:white;
+
+        border-radius:28px;
+
+        padding:25px;
+
+        width:280px;
+
+        box-shadow:0 25px 50px rgba(0,0,0,0.25);
+
+    }
+
+    .floating-icon{
+
+        width:60px;
+
+        height:60px;
+
+        border-radius:50%;
+
+        background:#f1f5f9;
+
+        display:flex;
+
+        align-items:center;
+
+        justify-content:center;
+
+    }
+
+    .mini-stat-card,
+    .step-card,
+    .document-card,
+    .cta-card{
+
+        background:rgba(255,255,255,0.05);
+
+        border:1px solid rgba(255,255,255,0.08);
+
+        border-radius:30px;
+
+        backdrop-filter:blur(15px);
+
+    }
+
+    .mini-stat-card{
+
+        padding:28px;
+
+    }
+
+    .step-card,
+    .document-card{
+
+        padding:45px 30px;
+
+        transition:0.3s;
+
+    }
+
+    .step-card:hover,
+    .document-card:hover{
+
+        transform:translateY(-10px);
+
+        border-color:#06b6d4;
+
+    }
+
+    .step-number{
+
+        width:90px;
+
+        height:90px;
+
+        border-radius:50%;
+
+        background:linear-gradient(
+            135deg,
+            #7c3aed,
+            #06b6d4
+        );
+
+        display:flex;
+
+        align-items:center;
+
+        justify-content:center;
+
+        color:white;
+
+        font-size:2rem;
+
+        font-weight:700;
+
+        margin:auto auto 30px;
+
+    }
+
+    .document-icon{
+
+        width:100px;
+
+        height:100px;
+
+        border-radius:50%;
+
+        background:rgba(255,255,255,0.08);
+
+        display:flex;
+
+        align-items:center;
+
+        justify-content:center;
+
+        margin:auto;
+
+        font-size:2.5rem;
+
+        color:#06b6d4;
+
+    }
+
+    .section-title{
+
+        font-size:3rem;
+
+    }
+
+    .section-desc{
+
+        max-width:650px;
+
+        color:#cbd5e1;
+
+        font-size:1.1rem;
+
+    }
+
+    .cta-card{
+
+        padding:80px 40px;
+
+    }
+
+    @media(max-width:991px){
+
+        .provider-hero{
+
+            padding:100px 0 70px;
+
+        }
+
+        .hero-title{
+
+            font-size:3rem;
+
+        }
+
+        .hero-image{
+
+            height:450px;
+
+        }
+
+        .floating-card{
+
+            position:relative;
+
+            left:0;
+
+            bottom:0;
+
+            width:100%;
+
+            margin-top:20px;
+
+        }
+
+        .section-title{
+
+            font-size:2.3rem;
+
+        }
+
+    }
+
+</style>
 
 {% endblock %}

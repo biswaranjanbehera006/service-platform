@@ -3,106 +3,213 @@
 {% block content %}
 
 <!-- BOOTSTRAP ICONS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+>
 
-<div class="container-fluid bg-light min-vh-100 d-flex justify-content-center align-items-center">
+<!-- HERO SECTION -->
+<section class="verify-section position-relative overflow-hidden">
 
-    <div class="col-lg-4 col-md-6 col-sm-10">
+    <!-- GLOW -->
+    <div class="hero-glow glow-1"></div>
+    <div class="hero-glow glow-2"></div>
 
-        <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+    <div class="container position-relative z-1">
 
-            <!-- HEADER -->
-            <div class="bg-primary text-white text-center p-4">
+        <div class="row align-items-center min-vh-100 g-5">
 
-                <h1 class="fw-bold">
-                    Verify Email 🔐
+            <!-- LEFT CONTENT -->
+            <div class="col-lg-6 text-white">
+
+                <!-- BADGE -->
+                <div class="hero-badge mb-4">
+
+                    🔐 SECURE OTP VERIFICATION
+
+                </div>
+
+                <!-- TITLE -->
+                <h1 class="hero-title fw-bold mb-4">
+
+                    Verify Your
+
+                    <span class="gradient-text">
+
+                        Email Address
+
+                    </span>
+
                 </h1>
 
-                <p class="mb-0">
-                    Enter OTP sent to your email
+                <!-- DESCRIPTION -->
+                <p class="hero-description mb-5">
+
+                    Enter the OTP sent to your registered email
+                    address to securely verify your account
+                    and continue safely.
+
                 </p>
 
-            </div>
+                <!-- FEATURES -->
+                <div class="row g-4">
 
-            <!-- BODY -->
-            <div class="card-body p-4">
+                    <!-- BOX -->
+                    <div class="col-md-6">
 
-                <!-- MESSAGE -->
-                {% if messages %}
+                        <div class="feature-card h-100">
 
-                    {% for message in messages %}
+                            <i class="bi bi-envelope-check-fill text-info display-5"></i>
 
-                        <div class="alert alert-danger text-center">
+                            <h4 class="fw-bold text-white mt-4">
 
-                            {{ message }}
+                                Email Verification
 
-                        </div>
+                            </h4>
 
-                    {% endfor %}
+                            <p class="text-light opacity-75 mb-0">
 
-                {% endif %}
+                                Secure email confirmation with encrypted verification.
 
-                <!-- FORM -->
-                <form method="POST">
-
-                    {% csrf_token %}
-
-                    <!-- OTP FIELD -->
-                    <div class="mb-4">
-
-                        <label class="form-label fw-semibold">
-
-                            Enter OTP
-
-                        </label>
-
-                        <div class="input-group">
-
-                            <span class="input-group-text">
-
-                                <i class="bi bi-shield-lock-fill"></i>
-
-                            </span>
-
-                            <input
-                                type="text"
-                                name="otp"
-                                class="form-control"
-                                placeholder="Enter 6 digit OTP"
-                                required
-                            >
+                            </p>
 
                         </div>
 
                     </div>
 
-                    <!-- VERIFY BUTTON -->
-                    <button
-                        type="submit"
-                        class="btn btn-primary w-100 fw-semibold py-2"
-                    >
+                    <!-- BOX -->
+                    <div class="col-md-6">
 
-                        <i class="bi bi-check-circle-fill"></i>
+                        <div class="feature-card h-100">
 
-                        Verify OTP
+                            <i class="bi bi-shield-lock-fill text-warning display-5"></i>
 
-                    </button>
+                            <h4 class="fw-bold text-white mt-4">
 
-                </form>
+                                Secure Authentication
 
-                <!-- BACK BUTTON -->
-                <div class="text-center mt-4">
+                            </h4>
 
-                    <a
-                        href="/users/login/"
-                        class="btn btn-outline-dark btn-sm"
-                    >
+                            <p class="text-light opacity-75 mb-0">
 
-                        <i class="bi bi-arrow-left"></i>
+                                Protect your account using secure OTP authentication.
 
-                        Back to Login
+                            </p>
 
-                    </a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- RIGHT FORM -->
+            <div class="col-lg-5 mx-auto">
+
+                <div class="verify-card">
+
+                    <!-- HEADER -->
+                    <div class="verify-header text-center">
+
+                        <div class="icon-circle mb-3">
+
+                            <i class="bi bi-shield-lock-fill"></i>
+
+                        </div>
+
+                        <h2 class="fw-bold text-white mb-2">
+
+                            Verify Email
+
+                        </h2>
+
+                        <p class="text-light opacity-75 mb-0">
+
+                            Enter OTP sent to your email
+
+                        </p>
+
+                    </div>
+
+                    <!-- BODY -->
+                    <div class="verify-body">
+
+                        <!-- MESSAGE -->
+                        {% if messages %}
+
+                            {% for message in messages %}
+
+                                <div class="custom-alert mb-4">
+
+                                    {{ message }}
+
+                                </div>
+
+                            {% endfor %}
+
+                        {% endif %}
+
+                        <!-- FORM -->
+                        <form method="POST">
+
+                            {% csrf_token %}
+
+                            <!-- OTP -->
+                            <div class="mb-4">
+
+                                <label class="form-label">
+
+                                    Enter OTP
+
+                                </label>
+
+                                <div class="input-box">
+
+                                    <i class="bi bi-key-fill"></i>
+
+                                    <input
+                                        type="text"
+                                        name="otp"
+                                        placeholder="Enter 6 digit OTP"
+                                        required
+                                    >
+
+                                </div>
+
+                            </div>
+
+                            <!-- BUTTON -->
+                            <button
+                                type="submit"
+                                class="submit-btn w-100"
+                            >
+
+                                <i class="bi bi-check-circle-fill me-2"></i>
+
+                                Verify OTP
+
+                            </button>
+
+                        </form>
+
+                        <!-- BACK -->
+                        <div class="text-center mt-4">
+
+                            <a
+                                href="/users/login/"
+                                class="back-btn"
+                            >
+
+                                <i class="bi bi-arrow-left me-2"></i>
+
+                                Back To Login
+
+                            </a>
+
+                        </div>
+
+                    </div>
 
                 </div>
 
@@ -112,6 +219,390 @@
 
     </div>
 
-</div>
+</section>
+
+<!-- ================================= -->
+<!-- MODERN CSS -->
+<!-- ================================= -->
+
+<style>
+
+    body{
+
+        background:
+        radial-gradient(circle at top left,#312e81 0%,transparent 30%),
+        radial-gradient(circle at bottom right,#0891b2 0%,transparent 30%),
+        linear-gradient(135deg,#020617,#06142f,#020617);
+
+        overflow-x:hidden;
+
+    }
+
+    .verify-section{
+
+        position:relative;
+
+        padding:100px 0;
+
+    }
+
+    .hero-glow{
+
+        position:absolute;
+
+        border-radius:50%;
+
+        filter:blur(120px);
+
+        opacity:0.2;
+
+    }
+
+    .glow-1{
+
+        width:350px;
+
+        height:350px;
+
+        background:#7c3aed;
+
+        top:-100px;
+
+        left:-100px;
+
+    }
+
+    .glow-2{
+
+        width:350px;
+
+        height:350px;
+
+        background:#06b6d4;
+
+        bottom:-100px;
+
+        right:-100px;
+
+    }
+
+    .hero-badge{
+
+        display:inline-block;
+
+        padding:14px 28px;
+
+        border-radius:50px;
+
+        background:rgba(255,255,255,0.08);
+
+        border:1px solid rgba(255,255,255,0.08);
+
+        backdrop-filter:blur(15px);
+
+        font-weight:600;
+
+        font-size:14px;
+
+    }
+
+    .hero-title{
+
+        font-size:clamp(3rem,7vw,6rem);
+
+        line-height:1.1;
+
+        color:white;
+
+    }
+
+    .gradient-text{
+
+        background:linear-gradient(
+            135deg,
+            #06b6d4,
+            #38bdf8,
+            #7dd3fc
+        );
+
+        -webkit-background-clip:text;
+
+        -webkit-text-fill-color:transparent;
+
+    }
+
+    .hero-description{
+
+        color:#cbd5e1;
+
+        font-size:1.15rem;
+
+        line-height:2;
+
+    }
+
+    .feature-card{
+
+        background:rgba(255,255,255,0.05);
+
+        border:1px solid rgba(255,255,255,0.08);
+
+        border-radius:28px;
+
+        padding:35px;
+
+        backdrop-filter:blur(15px);
+
+        transition:0.3s;
+
+    }
+
+    .feature-card:hover{
+
+        transform:translateY(-8px);
+
+        border-color:#06b6d4;
+
+    }
+
+    .verify-card{
+
+        background:rgba(255,255,255,0.05);
+
+        border:1px solid rgba(255,255,255,0.08);
+
+        border-radius:35px;
+
+        backdrop-filter:blur(18px);
+
+        overflow:hidden;
+
+    }
+
+    .verify-header{
+
+        padding:40px;
+
+        border-bottom:1px solid rgba(255,255,255,0.08);
+
+    }
+
+    .verify-body{
+
+        padding:40px;
+
+    }
+
+    .icon-circle{
+
+        width:90px;
+
+        height:90px;
+
+        border-radius:50%;
+
+        background:linear-gradient(
+            135deg,
+            #7c3aed,
+            #06b6d4
+        );
+
+        display:flex;
+
+        align-items:center;
+
+        justify-content:center;
+
+        margin:auto;
+
+        color:white;
+
+        font-size:2rem;
+
+    }
+
+    .form-label{
+
+        color:white;
+
+        font-weight:600;
+
+        margin-bottom:12px;
+
+    }
+
+    .input-box{
+
+        height:60px;
+
+        display:flex;
+
+        align-items:center;
+
+        background:rgba(255,255,255,0.06);
+
+        border:1px solid rgba(255,255,255,0.08);
+
+        border-radius:18px;
+
+        overflow:hidden;
+
+        transition:0.3s;
+
+    }
+
+    .input-box:focus-within{
+
+        border-color:#06b6d4;
+
+        box-shadow:0 0 15px rgba(6,182,212,0.2);
+
+    }
+
+    .input-box i{
+
+        width:60px;
+
+        text-align:center;
+
+        color:#06b6d4;
+
+        font-size:1.2rem;
+
+    }
+
+    .input-box input{
+
+        width:100%;
+
+        height:100%;
+
+        border:none;
+
+        outline:none;
+
+        background:transparent;
+
+        color:white;
+
+        padding-right:20px;
+
+        letter-spacing:3px;
+
+        font-size:1.1rem;
+
+    }
+
+    .input-box input::placeholder{
+
+        color:#cbd5e1;
+
+        letter-spacing:1px;
+
+    }
+
+    .submit-btn{
+
+        height:60px;
+
+        border:none;
+
+        border-radius:50px;
+
+        color:white;
+
+        font-weight:700;
+
+        background:linear-gradient(
+            135deg,
+            #7c3aed,
+            #06b6d4,
+            #ec4899
+        );
+
+        transition:0.3s;
+
+    }
+
+    .submit-btn:hover{
+
+        transform:translateY(-2px);
+
+    }
+
+    .back-btn{
+
+        display:inline-flex;
+
+        align-items:center;
+
+        justify-content:center;
+
+        padding:14px 28px;
+
+        border-radius:50px;
+
+        border:1px solid rgba(255,255,255,0.15);
+
+        background:rgba(255,255,255,0.05);
+
+        color:white;
+
+        text-decoration:none;
+
+        font-weight:600;
+
+        transition:0.3s;
+
+    }
+
+    .back-btn:hover{
+
+        background:white;
+
+        color:black;
+
+    }
+
+    .custom-alert{
+
+        padding:16px 20px;
+
+        border-radius:18px;
+
+        background:rgba(239,68,68,0.15);
+
+        border:1px solid rgba(239,68,68,0.25);
+
+        color:white;
+
+        text-align:center;
+
+    }
+
+    @media(max-width:991px){
+
+        .verify-section{
+
+            padding:80px 0;
+
+        }
+
+        .hero-title{
+
+            font-size:3rem;
+
+        }
+
+        .verify-header,
+        .verify-body{
+
+            padding:30px;
+
+        }
+
+    }
+
+</style>
 
 {% endblock %}

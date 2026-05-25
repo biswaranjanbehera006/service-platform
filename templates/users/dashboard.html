@@ -2,134 +2,1080 @@
 
 {% block content %}
 
-<div class="container mt-5">
+<!-- BOOTSTRAP ICONS -->
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+>
 
-    <!-- HEADER -->
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <div>
-            <h2 class="fw-bold mb-0">My Bookings</h2>
-            <small class="text-muted">Track your service requests</small>
+<section class="booking-section position-relative overflow-hidden">
+
+    <!-- BACKGROUND GLOW -->
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+
+    <div class="container position-relative z-1 py-5">
+
+        <!-- HEADER -->
+        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-5">
+
+            <div>
+
+                <div class="hero-badge mb-3">
+
+                    📅 MY BOOKINGS
+
+                </div>
+
+                <h1 class="hero-title fw-bold text-white mb-2">
+
+                    My
+
+                    <span class="gradient-text">
+
+                        Bookings
+
+                    </span>
+
+                </h1>
+
+                <p class="hero-subtitle mb-0">
+
+                    Track your service requests easily
+
+                </p>
+
+            </div>
+
+            <!-- TOTAL -->
+            <div class="booking-count mt-4 mt-lg-0">
+
+                <i class="bi bi-calendar-check-fill me-2"></i>
+
+                Total: {{ bookings|length }}
+
+            </div>
+
         </div>
-        <span class="badge bg-dark p-2">Total: {{ bookings|length }}</span>
-    </div>
 
-    <!-- CARD -->
-    <div class="card shadow-lg border-0">
-
-        <div class="card-body p-0">
+        <!-- BOOKING CARD -->
+        <div class="booking-card">
 
             <div class="table-responsive">
-                <table class="table align-middle text-center mb-0">
 
-                    <thead class="table-dark">
+                <table class="table booking-table align-middle mb-0 text-white">
+
+                    <!-- TABLE HEAD -->
+                    <thead>
+
                         <tr>
+
                             <th>Service</th>
+
                             <th>Provider</th>
+
                             <th>Date & Time</th>
+
                             <th>Status</th>
+
                             <th>Action / Review</th>
+
                         </tr>
+
                     </thead>
 
+                    <!-- TABLE BODY -->
                     <tbody>
 
                         {% for booking in bookings %}
+
                         <tr>
 
                             <!-- SERVICE -->
-                            <td class="fw-semibold">
-                                {{ booking.service.name }}
+                            <td>
+
+                                <div class="service-box">
+
+                                    <div class="service-icon">
+
+                                        <i class="bi bi-tools"></i>
+
+                                    </div>
+
+                                    <div>
+
+                                        <div class="service-name">
+
+                                            {{ booking.service.name }}
+
+                                        </div>
+
+                                        <small class="service-id">
+
+                                            Booking #{{ booking.id }}
+
+                                        </small>
+
+                                    </div>
+
+                                </div>
+
                             </td>
 
                             <!-- PROVIDER -->
                             <td>
+
                                 {% if booking.provider %}
-                                    {{ booking.provider.user.username }}
+
+                                    <div class="provider-box">
+
+                                        <div class="provider-avatar">
+
+                                            <i class="bi bi-person-fill"></i>
+
+                                        </div>
+
+                                        <span>
+
+                                            {{ booking.provider.user.username }}
+
+                                        </span>
+
+                                    </div>
+
                                 {% else %}
-                                    <span class="text-muted">Not Assigned</span>
+
+                                    <span class="empty-text">
+
+                                        Not Assigned
+
+                                    </span>
+
                                 {% endif %}
+
                             </td>
 
                             <!-- DATE -->
                             <td>
-                                <div>{{ booking.date }}</div>
-                                <small class="text-muted">{{ booking.time }}</small>
+
+                                <div class="date-box">
+
+                                    <div class="date-value">
+
+                                        {{ booking.date }}
+
+                                    </div>
+
+                                    <small class="time-value">
+
+                                        {{ booking.time }}
+
+                                    </small>
+
+                                </div>
+
                             </td>
 
                             <!-- STATUS -->
                             <td>
+
                                 {% if booking.status == 'pending' %}
-                                    <span class="badge bg-warning text-dark px-3 py-2">⏳ Pending</span>
+
+                                    <span class="status-badge pending">
+
+                                        ⏳ Pending
+
+                                    </span>
+
                                 {% elif booking.status == 'accepted' %}
-                                    <span class="badge bg-success px-3 py-2">✅ Accepted</span>
+
+                                    <span class="status-badge accepted">
+
+                                        ✅ Accepted
+
+                                    </span>
+
                                 {% elif booking.status == 'completed' %}
-                                    <span class="badge bg-secondary px-3 py-2">✔ Completed</span>
+
+                                    <span class="status-badge completed">
+
+                                        ✔ Completed
+
+                                    </span>
+
                                 {% elif booking.status == 'rejected' %}
-                                    <span class="badge bg-danger px-3 py-2">❌ Rejected</span>
+
+                                    <span class="status-badge rejected">
+
+                                        ❌ Rejected
+
+                                    </span>
+
                                 {% else %}
-                                    <span class="badge bg-dark px-3 py-2">🚫 Cancelled</span>
+
+                                    <span class="status-badge cancelled">
+
+                                        🚫 Cancelled
+
+                                    </span>
+
                                 {% endif %}
+
                             </td>
 
-                            <!-- ACTION + REVIEW -->
+                            <!-- ACTION -->
                             <td>
 
-                                <!-- ⭐ SHOW RATE BUTTON -->
                                 {% if booking.status == 'completed' and not booking.rating %}
-                                    <a href="{% url 'rate_booking' booking.id %}" 
-                                       class="btn btn-warning btn-sm px-3">
-                                       ⭐ Rate
+
+                                    <a
+                                        href="{% url 'rate_booking' booking.id %}"
+                                        class="action-btn rate-btn"
+                                    >
+
+                                        ⭐ Rate
+
                                     </a>
 
-                                <!-- ⭐ SHOW RATING + COMMENT -->
                                 {% elif booking.rating %}
-                                    <div>
-                                        <span class="text-success fw-semibold">
+
+                                    <div class="review-box">
+
+                                        <div class="rating-text">
+
                                             ⭐ {{ booking.rating }}/5
-                                        </span>
+
+                                        </div>
+
                                         {% if booking.review %}
-                                            <br>
-                                            <small class="text-muted">
+
+                                            <small class="review-text">
+
                                                 "{{ booking.review }}"
+
                                             </small>
+
                                         {% endif %}
+
                                     </div>
 
-                                <!-- ❌ CANCEL OPTION -->
                                 {% elif booking.status == 'pending' or booking.status == 'accepted' %}
-                                    <a href="{% url 'cancel_booking' booking.id %}" 
-                                       class="btn btn-danger btn-sm px-3">
-                                       Cancel
+
+                                    <a
+                                        href="{% url 'cancel_booking' booking.id %}"
+                                        class="action-btn cancel-btn"
+                                    >
+
+                                        Cancel
+
                                     </a>
 
                                 {% else %}
-                                    <span class="text-muted">No Action</span>
+
+                                    <span class="empty-text">
+
+                                        No Action
+
+                                    </span>
+
                                 {% endif %}
 
                             </td>
 
                         </tr>
+
                         {% endfor %}
 
-                        <!-- EMPTY STATE -->
+                        <!-- EMPTY -->
                         {% if not bookings %}
+
                         <tr>
-                            <td colspan="5" class="py-5 text-muted">
-                                <h5>No bookings yet</h5>
-                                <p class="mb-0">Start by booking a service</p>
+
+                            <td colspan="5" class="text-center py-5">
+
+                                <div class="empty-state">
+
+                                    <div class="empty-icon mb-4">
+
+                                        <i class="bi bi-calendar-x"></i>
+
+                                    </div>
+
+                                    <h3 class="fw-bold text-white mb-3">
+
+                                        No Bookings Yet
+
+                                    </h3>
+
+                                    <p class="text-light opacity-75 mb-0">
+
+                                        Start by booking a service
+
+                                    </p>
+
+                                </div>
+
                             </td>
+
                         </tr>
+
                         {% endif %}
 
                     </tbody>
 
                 </table>
+
             </div>
 
         </div>
 
     </div>
 
-</div>
+</section>
+
+<!-- ================================= -->
+<!-- CSS -->
+<!-- ================================= -->
+
+<style>
+
+    body{
+
+        background:
+        radial-gradient(circle at top left,#312e81 0%,transparent 30%),
+        radial-gradient(circle at bottom right,#0891b2 0%,transparent 30%),
+        linear-gradient(
+            135deg,
+            #020617,
+            #06142f,
+            #020617
+        );
+
+        overflow-x:
+        hidden;
+
+    }
+
+    .booking-section{
+
+        min-height:
+        100vh;
+
+        position:
+        relative;
+
+    }
+
+    /* ================================= */
+    /* GLOW */
+    /* ================================= */
+
+    .glow{
+
+        position:
+        absolute;
+
+        border-radius:
+        50%;
+
+        filter:
+        blur(120px);
+
+        opacity:
+        0.18;
+
+    }
+
+    .glow-1{
+
+        width:
+        350px;
+
+        height:
+        350px;
+
+        background:
+        #7c3aed;
+
+        top:
+        -100px;
+
+        left:
+        -100px;
+
+    }
+
+    .glow-2{
+
+        width:
+        350px;
+
+        height:
+        350px;
+
+        background:
+        #06b6d4;
+
+        bottom:
+        -100px;
+
+        right:
+        -100px;
+
+    }
+
+    /* ================================= */
+    /* HEADER */
+    /* ================================= */
+
+    .hero-badge{
+
+        display:
+        inline-block;
+
+        padding:
+        12px 26px;
+
+        border-radius:
+        50px;
+
+        background:
+        rgba(255,255,255,0.08);
+
+        border:
+        1px solid rgba(255,255,255,0.08);
+
+        backdrop-filter:
+        blur(12px);
+
+        color:
+        white;
+
+        font-size:
+        14px;
+
+        font-weight:
+        600;
+
+    }
+
+    .hero-title{
+
+        font-size:
+        clamp(2.8rem,6vw,5rem);
+
+        line-height:
+        1.1;
+
+    }
+
+    .gradient-text{
+
+        background:
+        linear-gradient(
+            135deg,
+            #06b6d4,
+            #38bdf8,
+            #7dd3fc
+        );
+
+        -webkit-background-clip:
+        text;
+
+        -webkit-text-fill-color:
+        transparent;
+
+    }
+
+    .hero-subtitle{
+
+        color:
+        #cbd5e1;
+
+        font-size:
+        1.1rem;
+
+    }
+
+    .booking-count{
+
+        padding:
+        14px 28px;
+
+        border-radius:
+        50px;
+
+        background:
+        rgba(255,255,255,0.08);
+
+        border:
+        1px solid rgba(255,255,255,0.08);
+
+        backdrop-filter:
+        blur(12px);
+
+        color:
+        white;
+
+        font-weight:
+        700;
+
+    }
+
+    /* ================================= */
+    /* CARD */
+    /* ================================= */
+
+    .booking-card{
+
+        background:
+        rgba(15,23,42,0.72);
+
+        border:
+        1px solid rgba(255,255,255,0.08);
+
+        border-radius:
+        30px;
+
+        backdrop-filter:
+        blur(20px);
+
+        overflow:
+        hidden;
+
+        box-shadow:
+        0 10px 40px rgba(0,0,0,0.35);
+
+    }
+
+    /* ================================= */
+    /* TABLE */
+    /* ================================= */
+
+    .booking-table{
+
+        color:
+        white;
+
+        margin:
+        0;
+
+        background:
+        transparent !important;
+
+    }
+
+    /* REMOVE WHITE COLOR */
+    .booking-table thead,
+    .booking-table tbody,
+    .booking-table tr,
+    .booking-table td,
+    .booking-table th{
+
+        background:
+        transparent !important;
+
+    }
+
+    .booking-table thead{
+
+        background:
+        linear-gradient(
+            135deg,
+            rgba(124,58,237,0.18),
+            rgba(6,182,212,0.15)
+        ) !important;
+
+    }
+
+    .booking-table thead th{
+
+        color:
+        white !important;
+
+        font-weight:
+        700;
+
+        font-size:
+        16px;
+
+        border:
+        none;
+
+        padding:
+        24px;
+
+        text-align:
+        center;
+
+        white-space:
+        nowrap;
+
+    }
+
+    .booking-table tbody tr{
+
+        background:
+        rgba(15,23,42,0.75) !important;
+
+        transition:
+        0.3s ease;
+
+        border-bottom:
+        1px solid rgba(255,255,255,0.06);
+
+    }
+
+    .booking-table tbody tr:hover{
+
+        background:
+        rgba(30,41,59,0.95) !important;
+
+    }
+
+    .booking-table td{
+
+        border:
+        none !important;
+
+        padding:
+        30px 20px;
+
+        text-align:
+        center;
+
+        vertical-align:
+        middle;
+
+        color:
+        white !important;
+
+    }
+
+    /* ================================= */
+    /* SERVICE */
+    /* ================================= */
+
+    .service-box{
+
+        display:
+        flex;
+
+        align-items:
+        center;
+
+        gap:
+        14px;
+
+    }
+
+    .service-icon{
+
+        width:
+        58px;
+
+        height:
+        58px;
+
+        border-radius:
+        18px;
+
+        display:
+        flex;
+
+        align-items:
+        center;
+
+        justify-content:
+        center;
+
+        background:
+        linear-gradient(
+            135deg,
+            #7c3aed,
+            #06b6d4
+        );
+
+        color:
+        white;
+
+        font-size:
+        1.3rem;
+
+        flex-shrink:
+        0;
+
+    }
+
+    .service-name{
+
+        font-weight:
+        700;
+
+        color:
+        white;
+
+        font-size:
+        1.15rem;
+
+    }
+
+    .service-id{
+
+        color:
+        rgba(255,255,255,0.55);
+
+        font-size:
+        14px;
+
+    }
+
+    /* ================================= */
+    /* PROVIDER */
+    /* ================================= */
+
+    .provider-box{
+
+        display:
+        flex;
+
+        align-items:
+        center;
+
+        justify-content:
+        center;
+
+        gap:
+        12px;
+
+        color:
+        white;
+
+        font-weight:
+        600;
+
+    }
+
+    .provider-avatar{
+
+        width:
+        48px;
+
+        height:
+        48px;
+
+        border-radius:
+        50%;
+
+        background:
+        linear-gradient(
+            135deg,
+            #06b6d4,
+            #2563eb
+        );
+
+        display:
+        flex;
+
+        align-items:
+        center;
+
+        justify-content:
+        center;
+
+        color:
+        white;
+
+        font-size:
+        1.1rem;
+
+    }
+
+    /* ================================= */
+    /* DATE */
+    /* ================================= */
+
+    .date-box{
+
+        display:
+        flex;
+
+        flex-direction:
+        column;
+
+        gap:
+        5px;
+
+    }
+
+    .date-value{
+
+        font-weight:
+        700;
+
+        color:
+        white;
+
+        font-size:
+        1.1rem;
+
+    }
+
+    .time-value{
+
+        color:
+        rgba(255,255,255,0.60);
+
+        font-size:
+        14px;
+
+    }
+
+    /* ================================= */
+    /* STATUS */
+    /* ================================= */
+
+    .status-badge{
+
+        padding:
+        12px 22px;
+
+        border-radius:
+        50px;
+
+        font-size:
+        14px;
+
+        font-weight:
+        700;
+
+        display:
+        inline-block;
+
+    }
+
+    .pending{
+
+        background:
+        rgba(250,204,21,0.15);
+
+        color:
+        #facc15;
+
+    }
+
+    .accepted{
+
+        background:
+        rgba(34,197,94,0.15);
+
+        color:
+        #22c55e;
+
+    }
+
+    .completed{
+
+        background:
+        rgba(59,130,246,0.15);
+
+        color:
+        #3b82f6;
+
+    }
+
+    .rejected{
+
+        background:
+        rgba(239,68,68,0.15);
+
+        color:
+        #ef4444;
+
+    }
+
+    .cancelled{
+
+        background:
+        rgba(148,163,184,0.15);
+
+        color:
+        #94a3b8;
+
+    }
+
+    /* ================================= */
+    /* BUTTON */
+    /* ================================= */
+
+    .action-btn{
+
+        padding:
+        12px 28px;
+
+        border-radius:
+        50px;
+
+        text-decoration:
+        none;
+
+        font-weight:
+        700;
+
+        transition:
+        0.3s;
+
+        display:
+        inline-block;
+
+    }
+
+    .rate-btn{
+
+        background:
+        linear-gradient(
+            135deg,
+            #facc15,
+            #f59e0b
+        );
+
+        color:
+        black;
+
+    }
+
+    .cancel-btn{
+
+        background:
+        linear-gradient(
+            135deg,
+            #ef4444,
+            #dc2626
+        );
+
+        color:
+        white;
+
+    }
+
+    .action-btn:hover{
+
+        transform:
+        translateY(-2px);
+
+        color:
+        white;
+
+    }
+
+    /* ================================= */
+    /* REVIEW */
+    /* ================================= */
+
+    .review-box{
+
+        display:
+        flex;
+
+        flex-direction:
+        column;
+
+        gap:
+        6px;
+
+    }
+
+    .rating-text{
+
+        color:
+        #22c55e;
+
+        font-weight:
+        700;
+
+    }
+
+    .review-text{
+
+        color:
+        rgba(255,255,255,0.65);
+
+    }
+
+    .empty-text{
+
+        color:
+        rgba(255,255,255,0.60);
+
+    }
+
+    /* ================================= */
+    /* EMPTY */
+    /* ================================= */
+
+    .empty-state{
+
+        padding:
+        60px 20px;
+
+    }
+
+    .empty-icon{
+
+        width:
+        100px;
+
+        height:
+        100px;
+
+        margin:
+        auto;
+
+        border-radius:
+        50%;
+
+        background:
+        rgba(255,255,255,0.08);
+
+        display:
+        flex;
+
+        align-items:
+        center;
+
+        justify-content:
+        center;
+
+        font-size:
+        2.8rem;
+
+        color:
+        #cbd5e1;
+
+    }
+
+    /* ================================= */
+    /* MOBILE */
+    /* ================================= */
+
+    @media(max-width:991px){
+
+        .booking-table{
+
+            min-width:
+            950px;
+
+        }
+
+        .hero-title{
+
+            font-size:
+            3rem;
+
+        }
+
+    }
+
+</style>
 
 {% endblock %}

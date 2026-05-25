@@ -2,60 +2,375 @@
 
 {% block content %}
 
-<div class="container-fluid py-4 px-lg-4 px-3 bg-light min-vh-100">
+<style>
+
+    body{
+
+        background:
+        linear-gradient(
+            135deg,
+            #020617,
+            #0f172a,
+            #111827
+        );
+
+        min-height:
+        100vh;
+
+        color:
+        white;
+
+    }
+
+    /* ===================================== */
+    /* DASHBOARD WRAPPER */
+    /* ===================================== */
+
+    .dashboard-wrapper{
+
+        min-height:
+        100vh;
+
+    }
+
+    /* ===================================== */
+    /* GLASS CARD */
+    /* ===================================== */
+
+    .glass-card{
+
+        background:
+        rgba(255,255,255,0.05);
+
+        border:
+        1px solid rgba(255,255,255,0.08);
+
+        backdrop-filter:
+        blur(16px);
+
+        border-radius:
+        28px;
+
+        box-shadow:
+        0 8px 30px rgba(0,0,0,0.25);
+
+        transition:
+        0.3s ease;
+
+    }
+
+    .glass-card:hover{
+
+        transform:
+        translateY(-4px);
+
+        box-shadow:
+        0 15px 35px rgba(0,0,0,0.35);
+
+    }
+
+    /* ===================================== */
+    /* TEXT */
+    /* ===================================== */
+
+    .text-muted{
+
+        color:
+        rgba(255,255,255,0.65) !important;
+
+    }
+
+    h1,h2,h3,h4,h5,h6{
+
+        color:
+        white;
+
+    }
+
+    /* ===================================== */
+    /* BADGES */
+    /* ===================================== */
+
+    .custom-badge{
+
+        background:
+        linear-gradient(
+            135deg,
+            #7c3aed,
+            #06b6d4
+        );
+
+        border:none;
+
+        color:white;
+
+        padding:
+        10px 18px;
+
+        border-radius:
+        50px;
+
+        font-weight:
+        600;
+
+    }
+
+    /* ===================================== */
+    /* BUTTONS */
+    /* ===================================== */
+
+    .custom-btn{
+
+        background:
+        rgba(255,255,255,0.05);
+
+        border:
+        1px solid rgba(255,255,255,0.08);
+
+        color:
+        white;
+
+        border-radius:
+        50px;
+
+        padding:
+        12px 24px;
+
+        transition:
+        0.3s ease;
+
+        text-decoration:
+        none;
+
+    }
+
+    .custom-btn:hover{
+
+        background:
+        linear-gradient(
+            135deg,
+            #7c3aed,
+            #06b6d4
+        );
+
+        color:
+        white;
+
+        transform:
+        translateY(-2px);
+
+    }
+
+    /* ===================================== */
+    /* STAT ICON BOX */
+    /* ===================================== */
+
+    .icon-box{
+
+        width:
+        70px;
+
+        height:
+        70px;
+
+        border-radius:
+        22px;
+
+        display:
+        flex;
+
+        align-items:
+        center;
+
+        justify-content:
+        center;
+
+        font-size:
+        1.8rem;
+
+    }
+
+    .bg-purple{
+
+        background:
+        rgba(168,85,247,0.15);
+
+        color:#c084fc;
+
+    }
+
+    .bg-cyan{
+
+        background:
+        rgba(6,182,212,0.15);
+
+        color:#22d3ee;
+
+    }
+
+    .bg-green{
+
+        background:
+        rgba(34,197,94,0.15);
+
+        color:#4ade80;
+
+    }
+
+    .bg-red{
+
+        background:
+        rgba(239,68,68,0.15);
+
+        color:#f87171;
+
+    }
+
+    /* ===================================== */
+    /* CHART BOX */
+    /* ===================================== */
+
+    .chart-box{
+
+        background:
+        rgba(255,255,255,0.04);
+
+        border-radius:
+        24px;
+
+        padding:
+        20px;
+
+    }
+
+    /* ===================================== */
+    /* QUICK ACTION */
+    /* ===================================== */
+
+    .quick-action{
+
+        background:
+        rgba(255,255,255,0.04);
+
+        border:
+        1px solid rgba(255,255,255,0.08);
+
+        border-radius:
+        26px;
+
+        color:
+        white;
+
+        transition:
+        0.3s ease;
+
+        text-decoration:
+        none;
+
+    }
+
+    .quick-action:hover{
+
+        background:
+        linear-gradient(
+            135deg,
+            rgba(124,58,237,0.2),
+            rgba(6,182,212,0.2)
+        );
+
+        transform:
+        translateY(-4px);
+
+        color:
+        white;
+
+    }
+
+    /* ===================================== */
+    /* ACTIVITY BOX */
+    /* ===================================== */
+
+    .activity-icon{
+
+        width:
+        55px;
+
+        height:
+        55px;
+
+        border-radius:
+        18px;
+
+        display:
+        flex;
+
+        align-items:
+        center;
+
+        justify-content:
+        center;
+
+        font-size:
+        1.2rem;
+
+    }
+
+</style>
+
+<div class="container-fluid dashboard-wrapper py-4 px-lg-4 px-3">
 
     <!-- HEADER -->
-    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+    <div class="glass-card p-4 mb-4">
 
-        <!-- LEFT -->
-        <div>
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
 
-            <span class="badge bg-dark rounded-pill px-3 py-2 mb-3">
+            <div>
 
-                Admin Control Center
+                <span class="custom-badge">
 
-            </span>
+                    Admin Control Center
 
-            <h1 class="fw-bold display-6 mb-1">
+                </span>
 
-                Admin Dashboard 🚀
+                <h1 class="fw-bold mt-3 mb-1">
 
-            </h1>
+                    Admin Dashboard 🚀
 
-            <p class="text-muted mb-0">
+                </h1>
 
-                Welcome back! Monitor and manage your entire platform professionally.
+                <p class="text-muted mb-0">
 
-            </p>
+                    Welcome back! Monitor and manage your entire platform professionally.
 
-        </div>
+                </p>
 
-        <!-- RIGHT -->
-        <div class="d-flex gap-2 flex-wrap">
+            </div>
 
-            <!-- REFRESH -->
-            <a
-                href="/admin-panel/dashboard/"
-                class="btn btn-dark rounded-pill px-4 shadow-sm"
-            >
+            <div class="d-flex gap-3 flex-wrap">
 
-                <i class="bi bi-arrow-clockwise me-2"></i>
+                <a
+                    href="/admin-panel/dashboard/"
+                    class="custom-btn"
+                >
 
-                Refresh
+                    <i class="bi bi-arrow-clockwise me-2"></i>
 
-            </a>
+                    Refresh
 
-            <!-- HOME -->
-            <a
-                href="/"
-                class="btn btn-outline-dark rounded-pill px-4 shadow-sm"
-            >
+                </a>
 
-                <i class="bi bi-house-door-fill me-2"></i>
+                <a
+                    href="/"
+                    class="custom-btn"
+                >
 
-                Home
+                    <i class="bi bi-house-door-fill me-2"></i>
 
-            </a>
+                    Home
+
+                </a>
+
+            </div>
 
         </div>
 
@@ -67,39 +382,35 @@
         <!-- USERS -->
         <div class="col-xl-3 col-lg-6 col-md-6">
 
-            <div class="card border-0 shadow-sm rounded-5 h-100">
+            <div class="glass-card h-100 p-4">
 
-                <div class="card-body p-4">
+                <div class="d-flex justify-content-between align-items-start">
 
-                    <div class="d-flex justify-content-between align-items-start">
+                    <div>
 
-                        <div>
+                        <small class="text-muted fw-semibold">
 
-                            <small class="text-muted fw-semibold">
+                            Total Users
 
-                                Total Users
+                        </small>
 
-                            </small>
+                        <h2 class="fw-bold mt-2 mb-1">
 
-                            <h2 class="fw-bold mt-2 mb-1">
+                            {{ total_users }}
 
-                                {{ total_users }}
+                        </h2>
 
-                            </h2>
+                        <span class="badge bg-primary rounded-pill px-3 py-2">
 
-                            <span class="badge bg-primary rounded-pill px-3 py-2">
+                            Active Accounts
 
-                                Active Accounts
+                        </span>
 
-                            </span>
+                    </div>
 
-                        </div>
+                    <div class="icon-box bg-purple">
 
-                        <div class="bg-primary bg-opacity-10 rounded-circle p-3">
-
-                            <i class="bi bi-people-fill fs-2 text-primary"></i>
-
-                        </div>
+                        <i class="bi bi-people-fill"></i>
 
                     </div>
 
@@ -112,39 +423,35 @@
         <!-- BOOKINGS -->
         <div class="col-xl-3 col-lg-6 col-md-6">
 
-            <div class="card border-0 shadow-sm rounded-5 h-100">
+            <div class="glass-card h-100 p-4">
 
-                <div class="card-body p-4">
+                <div class="d-flex justify-content-between align-items-start">
 
-                    <div class="d-flex justify-content-between align-items-start">
+                    <div>
 
-                        <div>
+                        <small class="text-muted fw-semibold">
 
-                            <small class="text-muted fw-semibold">
+                            Total Bookings
 
-                                Total Bookings
+                        </small>
 
-                            </small>
+                        <h2 class="fw-bold mt-2 mb-1">
 
-                            <h2 class="fw-bold mt-2 mb-1">
+                            {{ total_bookings }}
 
-                                {{ total_bookings }}
+                        </h2>
 
-                            </h2>
+                        <span class="badge bg-success rounded-pill px-3 py-2">
 
-                            <span class="badge bg-success rounded-pill px-3 py-2">
+                            Service Orders
 
-                                Service Orders
+                        </span>
 
-                            </span>
+                    </div>
 
-                        </div>
+                    <div class="icon-box bg-cyan">
 
-                        <div class="bg-success bg-opacity-10 rounded-circle p-3">
-
-                            <i class="bi bi-calendar-check-fill fs-2 text-success"></i>
-
-                        </div>
+                        <i class="bi bi-calendar-check-fill"></i>
 
                     </div>
 
@@ -157,39 +464,35 @@
         <!-- PROVIDERS -->
         <div class="col-xl-3 col-lg-6 col-md-6">
 
-            <div class="card border-0 shadow-sm rounded-5 h-100">
+            <div class="glass-card h-100 p-4">
 
-                <div class="card-body p-4">
+                <div class="d-flex justify-content-between align-items-start">
 
-                    <div class="d-flex justify-content-between align-items-start">
+                    <div>
 
-                        <div>
+                        <small class="text-muted fw-semibold">
 
-                            <small class="text-muted fw-semibold">
+                            Providers
 
-                                Providers
+                        </small>
 
-                            </small>
+                        <h2 class="fw-bold mt-2 mb-1">
 
-                            <h2 class="fw-bold mt-2 mb-1">
+                            {{ total_providers }}
 
-                                {{ total_providers }}
+                        </h2>
 
-                            </h2>
+                        <span class="badge bg-warning text-dark rounded-pill px-3 py-2">
 
-                            <span class="badge bg-warning text-dark rounded-pill px-3 py-2">
+                            Verified Experts
 
-                                Verified Experts
+                        </span>
 
-                            </span>
+                    </div>
 
-                        </div>
+                    <div class="icon-box bg-green">
 
-                        <div class="bg-warning bg-opacity-10 rounded-circle p-3">
-
-                            <i class="bi bi-tools fs-2 text-warning"></i>
-
-                        </div>
+                        <i class="bi bi-tools"></i>
 
                     </div>
 
@@ -202,39 +505,35 @@
         <!-- REQUESTS -->
         <div class="col-xl-3 col-lg-6 col-md-6">
 
-            <div class="card border-0 shadow-sm rounded-5 h-100">
+            <div class="glass-card h-100 p-4">
 
-                <div class="card-body p-4">
+                <div class="d-flex justify-content-between align-items-start">
 
-                    <div class="d-flex justify-content-between align-items-start">
+                    <div>
 
-                        <div>
+                        <small class="text-muted fw-semibold">
 
-                            <small class="text-muted fw-semibold">
+                            Pending Requests
 
-                                Pending Requests
+                        </small>
 
-                            </small>
+                        <h2 class="fw-bold mt-2 mb-1">
 
-                            <h2 class="fw-bold mt-2 mb-1">
+                            {{ pending_providers }}
 
-                                {{ pending_providers }}
+                        </h2>
 
-                            </h2>
+                        <span class="badge bg-danger rounded-pill px-3 py-2">
 
-                            <span class="badge bg-danger rounded-pill px-3 py-2">
+                            Needs Approval
 
-                                Needs Approval
+                        </span>
 
-                            </span>
+                    </div>
 
-                        </div>
+                    <div class="icon-box bg-red">
 
-                        <div class="bg-danger bg-opacity-10 rounded-circle p-3">
-
-                            <i class="bi bi-hourglass-split fs-2 text-danger"></i>
-
-                        </div>
+                        <i class="bi bi-hourglass-split"></i>
 
                     </div>
 
@@ -252,119 +551,97 @@
         <!-- CHART -->
         <div class="col-xl-8">
 
-            <div class="card border-0 shadow-sm rounded-5 h-100">
+            <div class="glass-card h-100 p-4">
 
-                <div class="card-body p-4">
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-4">
 
-                    <!-- TOP -->
-                    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-4">
+                    <div>
 
-                        <div>
+                        <h4 class="fw-bold mb-1">
 
-                            <h4 class="fw-bold mb-1">
+                            Platform Analytics
 
-                                Platform Analytics
+                        </h4>
 
-                            </h4>
+                        <small class="text-muted">
+
+                            Weekly booking and platform overview
+
+                        </small>
+
+                    </div>
+
+                    <span class="custom-badge">
+
+                        Live Analytics
+
+                    </span>
+
+                </div>
+
+                <div class="chart-box">
+
+                    <canvas id="bookingChart" height="120"></canvas>
+
+                </div>
+
+                <div class="row g-4 mt-2">
+
+                    <div class="col-md-4">
+
+                        <div class="glass-card p-4">
 
                             <small class="text-muted">
 
-                                Weekly booking and platform overview
+                                Total Revenue
 
                             </small>
 
+                            <h3 class="fw-bold mt-2">
+
+                                ₹{{ total_revenue }}
+
+                            </h3>
+
                         </div>
-
-                        <span class="badge bg-dark rounded-pill px-3 py-2">
-
-                            Live Analytics
-
-                        </span>
 
                     </div>
 
-                    <!-- CHART -->
-                    <div class="bg-light rounded-5 p-4">
+                    <div class="col-md-4">
 
-                        <canvas id="bookingChart" height="120"></canvas>
+                        <div class="glass-card p-4">
+
+                            <small class="text-muted">
+
+                                Completed Jobs
+
+                            </small>
+
+                            <h3 class="fw-bold mt-2">
+
+                                {{ completed_jobs }}
+
+                            </h3>
+
+                        </div>
 
                     </div>
 
-                    <!-- EXTRA -->
-                    <div class="row g-4 mt-2">
+                    <div class="col-md-4">
 
-                        <!-- REVENUE -->
-                        <div class="col-md-4">
+                        <div class="glass-card p-4">
 
-                            <div class="card bg-primary text-white border-0 rounded-5">
+                            <small class="text-muted">
 
-                                <div class="card-body p-4">
+                                Active Providers
 
-                                    <small>
+                            </small>
 
-                                        Total Revenue
+                            <h3 class="fw-bold mt-2">
 
-                                    </small>
+                                {{ active_providers }}
 
-                                    <h3 class="fw-bold mt-2">
-
-                                        ₹{{ total_revenue }}
-
-                                    </h3>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <!-- COMPLETED -->
-                        <div class="col-md-4">
-
-                            <div class="card bg-success text-white border-0 rounded-5">
-
-                                <div class="card-body p-4">
-
-                                    <small>
-
-                                        Completed Jobs
-
-                                    </small>
-
-                                    <h3 class="fw-bold mt-2">
-
-                                        {{ completed_jobs }}
-
-                                    </h3>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <!-- ACTIVE -->
-                        <div class="col-md-4">
-
-                            <div class="card bg-dark text-white border-0 rounded-5">
-
-                                <div class="card-body p-4">
-
-                                    <small>
-
-                                        Active Providers
-
-                                    </small>
-
-                                    <h3 class="fw-bold mt-2">
-
-                                        {{ active_providers }}
-
-                                    </h3>
-
-                                </div>
-
-                            </div>
+                            </h3>
 
                         </div>
 
@@ -379,139 +656,134 @@
         <!-- ACTIVITY -->
         <div class="col-xl-4">
 
-            <div class="card border-0 shadow-sm rounded-5 h-100">
+            <div class="glass-card h-100 p-4">
 
-                <div class="card-body p-4">
+                <div class="d-flex justify-content-between align-items-center mb-4">
 
-                    <!-- TOP -->
-                    <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div>
 
-                        <div>
+                        <h4 class="fw-bold mb-1">
 
-                            <h4 class="fw-bold mb-1">
+                            Recent Activity
 
-                                Recent Activity
+                        </h4>
 
-                            </h4>
+                        <small class="text-muted">
 
-                            <small class="text-muted">
+                            Latest platform activities
 
-                                Latest platform activities
-
-                            </small>
-
-                        </div>
-
-                        <span class="badge bg-success rounded-pill">
-
-                            Live
-
-                        </span>
+                        </small>
 
                     </div>
 
-                    <!-- ACTIVITY ITEMS -->
-                    <div class="d-flex align-items-start gap-3 mb-4">
+                    <span class="badge bg-success rounded-pill">
 
-                        <div class="bg-primary bg-opacity-10 rounded-circle p-3">
+                        Live
 
-                            <i class="bi bi-person-plus-fill text-primary"></i>
+                    </span>
 
-                        </div>
+                </div>
 
-                        <div>
+                <!-- ITEM -->
+                <div class="d-flex align-items-start gap-3 mb-4">
 
-                            <h6 class="fw-semibold mb-1">
+                    <div class="activity-icon bg-purple">
 
-                                New User Registered
-
-                            </h6>
-
-                            <small class="text-muted">
-
-                                Customer joined the platform
-
-                            </small>
-
-                        </div>
+                        <i class="bi bi-person-plus-fill"></i>
 
                     </div>
 
-                    <div class="d-flex align-items-start gap-3 mb-4">
+                    <div>
 
-                        <div class="bg-success bg-opacity-10 rounded-circle p-3">
+                        <h6 class="fw-semibold mb-1">
 
-                            <i class="bi bi-calendar-check-fill text-success"></i>
+                            New User Registered
 
-                        </div>
+                        </h6>
 
-                        <div>
+                        <small class="text-muted">
 
-                            <h6 class="fw-semibold mb-1">
+                            Customer joined the platform
 
-                                Booking Completed
-
-                            </h6>
-
-                            <small class="text-muted">
-
-                                Service completed successfully
-
-                            </small>
-
-                        </div>
+                        </small>
 
                     </div>
 
-                    <div class="d-flex align-items-start gap-3 mb-4">
+                </div>
 
-                        <div class="bg-warning bg-opacity-10 rounded-circle p-3">
+                <div class="d-flex align-items-start gap-3 mb-4">
 
-                            <i class="bi bi-tools text-warning"></i>
+                    <div class="activity-icon bg-green">
 
-                        </div>
-
-                        <div>
-
-                            <h6 class="fw-semibold mb-1">
-
-                                Provider Joined
-
-                            </h6>
-
-                            <small class="text-muted">
-
-                                New provider application submitted
-
-                            </small>
-
-                        </div>
+                        <i class="bi bi-calendar-check-fill"></i>
 
                     </div>
 
-                    <div class="d-flex align-items-start gap-3">
+                    <div>
 
-                        <div class="bg-danger bg-opacity-10 rounded-circle p-3">
+                        <h6 class="fw-semibold mb-1">
 
-                            <i class="bi bi-envelope-fill text-danger"></i>
+                            Booking Completed
 
-                        </div>
+                        </h6>
 
-                        <div>
+                        <small class="text-muted">
 
-                            <h6 class="fw-semibold mb-1">
+                            Service completed successfully
 
-                                New Contact Message
+                        </small>
 
-                            </h6>
+                    </div>
 
-                            <small class="text-muted">
+                </div>
 
-                                User contacted support team
+                <div class="d-flex align-items-start gap-3 mb-4">
 
-                            </small>
+                    <div class="activity-icon bg-cyan">
 
-                        </div>
+                        <i class="bi bi-tools"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h6 class="fw-semibold mb-1">
+
+                            Provider Joined
+
+                        </h6>
+
+                        <small class="text-muted">
+
+                            New provider application submitted
+
+                        </small>
+
+                    </div>
+
+                </div>
+
+                <div class="d-flex align-items-start gap-3">
+
+                    <div class="activity-icon bg-red">
+
+                        <i class="bi bi-envelope-fill"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h6 class="fw-semibold mb-1">
+
+                            New Contact Message
+
+                        </h6>
+
+                        <small class="text-muted">
+
+                            User contacted support team
+
+                        </small>
 
                     </div>
 
@@ -524,149 +796,137 @@
     </div>
 
     <!-- QUICK ACTIONS -->
-    <div class="card border-0 shadow-sm rounded-5">
+    <div class="glass-card p-4">
 
-        <div class="card-body p-4">
+        <div class="mb-4">
 
-            <!-- TOP -->
-            <div class="mb-4">
+            <h4 class="fw-bold mb-1">
 
-                <h4 class="fw-bold mb-1">
+                Quick Actions
 
-                    Quick Actions
+            </h4>
 
-                </h4>
+            <small class="text-muted">
 
-                <small class="text-muted">
+                Manage your platform quickly and professionally
 
-                    Manage your platform quickly and professionally
+            </small>
 
-                </small>
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-xl-2 col-lg-4 col-md-6">
+
+                <a
+                    href="/admin-panel/users/"
+                    class="quick-action d-block text-center py-4 h-100"
+                >
+
+                    <i class="bi bi-people-fill display-6 d-block mb-3"></i>
+
+                    <span class="fw-semibold">
+
+                        Manage Users
+
+                    </span>
+
+                </a>
 
             </div>
 
-            <!-- ACTIONS -->
-            <div class="row g-4">
+            <div class="col-xl-2 col-lg-4 col-md-6">
 
-                <!-- USERS -->
-                <div class="col-xl-2 col-lg-4 col-md-6">
+                <a
+                    href="/admin-panel/providers/"
+                    class="quick-action d-block text-center py-4 h-100"
+                >
 
-                    <a
-                        href="/admin-panel/users/"
-                        class="btn btn-light border shadow-sm w-100 py-4 rounded-5 h-100"
-                    >
+                    <i class="bi bi-tools display-6 d-block mb-3"></i>
 
-                        <i class="bi bi-people-fill display-6 d-block mb-3"></i>
+                    <span class="fw-semibold">
 
-                        <span class="fw-semibold">
+                        Providers
 
-                            Manage Users
+                    </span>
 
-                        </span>
+                </a>
 
-                    </a>
+            </div>
 
-                </div>
+            <div class="col-xl-2 col-lg-4 col-md-6">
 
-                <!-- PROVIDERS -->
-                <div class="col-xl-2 col-lg-4 col-md-6">
+                <a
+                    href="/admin-panel/services/"
+                    class="quick-action d-block text-center py-4 h-100"
+                >
 
-                    <a
-                        href="/admin-panel/providers/"
-                        class="btn btn-light border shadow-sm w-100 py-4 rounded-5 h-100"
-                    >
+                    <i class="bi bi-grid-fill display-6 d-block mb-3"></i>
 
-                        <i class="bi bi-tools display-6 d-block mb-3 text-primary"></i>
+                    <span class="fw-semibold">
 
-                        <span class="fw-semibold">
+                        Services
 
-                            Providers
+                    </span>
 
-                        </span>
+                </a>
 
-                    </a>
+            </div>
 
-                </div>
+            <div class="col-xl-2 col-lg-4 col-md-6">
 
-                <!-- SERVICES -->
-                <div class="col-xl-2 col-lg-4 col-md-6">
+                <a
+                    href="/admin-panel/provider-requests/"
+                    class="quick-action d-block text-center py-4 h-100"
+                >
 
-                    <a
-                        href="/admin-panel/services/"
-                        class="btn btn-light border shadow-sm w-100 py-4 rounded-5 h-100"
-                    >
+                    <i class="bi bi-person-check-fill display-6 d-block mb-3"></i>
 
-                        <i class="bi bi-grid-fill display-6 d-block mb-3 text-success"></i>
+                    <span class="fw-semibold">
 
-                        <span class="fw-semibold">
+                        Requests
 
-                            Services
+                    </span>
 
-                        </span>
+                </a>
 
-                    </a>
+            </div>
 
-                </div>
+            <div class="col-xl-2 col-lg-4 col-md-6">
 
-                <!-- REQUESTS -->
-                <div class="col-xl-2 col-lg-4 col-md-6">
+                <a
+                    href="/admin-panel/contacts/"
+                    class="quick-action d-block text-center py-4 h-100"
+                >
 
-                    <a
-                        href="/admin-panel/provider-requests/"
-                        class="btn btn-light border shadow-sm w-100 py-4 rounded-5 h-100"
-                    >
+                    <i class="bi bi-envelope-paper-fill display-6 d-block mb-3"></i>
 
-                        <i class="bi bi-person-check-fill display-6 d-block mb-3 text-warning"></i>
+                    <span class="fw-semibold">
 
-                        <span class="fw-semibold">
+                        User Contacts
 
-                            Requests
+                    </span>
 
-                        </span>
+                </a>
 
-                    </a>
+            </div>
 
-                </div>
+            <div class="col-xl-2 col-lg-4 col-md-6">
 
-                <!-- CONTACTS -->
-                <div class="col-xl-2 col-lg-4 col-md-6">
+                <a
+                    href="{% url 'manage_bookings' %}"
+                    class="quick-action d-block text-center py-4 h-100"
+                >
 
-                    <a
-                        href="/admin-panel/contacts/"
-                        class="btn btn-light border shadow-sm w-100 py-4 rounded-5 h-100"
-                    >
+                    <i class="bi bi-calendar2-check-fill display-6 d-block mb-3"></i>
 
-                        <i class="bi bi-envelope-paper-fill display-6 d-block mb-3 text-danger"></i>
+                    <span class="fw-semibold">
 
-                        <span class="fw-semibold">
+                        Bookings
 
-                            User Contacts
+                    </span>
 
-                        </span>
-
-                    </a>
-
-                </div>
-
-                <!-- BOOKINGS -->
-                <div class="col-xl-2 col-lg-4 col-md-6">
-
-                    <a
-                        href="{% url 'manage_bookings' %}"
-                        class="btn btn-light border shadow-sm w-100 py-4 rounded-5 h-100"
-                    >
-
-                        <i class="bi bi-calendar2-check-fill display-6 d-block mb-3 text-dark"></i>
-
-                        <span class="fw-semibold">
-
-                            Bookings
-
-                        </span>
-
-                    </a>
-
-                </div>
+                </a>
 
             </div>
 
@@ -674,7 +934,6 @@
 
     </div>
 
-    <!-- SPACE -->
     <div class="py-4"></div>
 
 </div>
@@ -708,23 +967,64 @@ new Chart(ctx, {
 
             data: [4, 7, 5, 12, 8, 15, 10],
 
-            borderWidth: 3,
+            borderColor:'#06b6d4',
 
-            tension: 0.4,
+            backgroundColor:'rgba(6,182,212,0.12)',
 
-            fill: true
+            borderWidth:3,
+
+            tension:0.4,
+
+            fill:true,
+
+            pointBackgroundColor:'#7c3aed',
+
+            pointRadius:5
+
         }]
     },
 
     options: {
 
-        responsive: true,
+        responsive:true,
 
         plugins: {
 
             legend: {
 
-                display: true
+                labels: {
+
+                    color:'white'
+                }
+            }
+        },
+
+        scales: {
+
+            x: {
+
+                ticks: {
+
+                    color:'rgba(255,255,255,0.7)'
+                },
+
+                grid: {
+
+                    color:'rgba(255,255,255,0.05)'
+                }
+            },
+
+            y: {
+
+                ticks: {
+
+                    color:'rgba(255,255,255,0.7)'
+                },
+
+                grid: {
+
+                    color:'rgba(255,255,255,0.05)'
+                }
             }
         }
     }

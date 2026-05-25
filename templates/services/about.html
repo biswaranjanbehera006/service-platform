@@ -2,29 +2,42 @@
 
 {% block content %}
 
-<!-- HERO -->
-<section class="py-5 bg-body-tertiary">
+<!-- HERO SECTION -->
+<section class="about-hero position-relative overflow-hidden">
 
-    <div class="container">
+    <!-- GLOW -->
+    <div class="hero-glow glow-1"></div>
+    <div class="hero-glow glow-2"></div>
 
-        <div class="row align-items-center g-5">
+    <div class="container position-relative z-1">
+
+        <div class="row align-items-center min-vh-100 g-5">
 
             <!-- LEFT -->
-            <div class="col-lg-6">
+            <div class="col-lg-6 text-white">
 
-                <span class="badge bg-dark rounded-pill px-4 py-3 fs-6 mb-4">
+                <!-- BADGE -->
+                <div class="hero-badge mb-4">
 
-                    About ServiceHub
+                    🚀 ABOUT SERVICEHUB
 
-                </span>
+                </div>
 
-                <h1 class="display-3 fw-bold mb-4">
+                <!-- TITLE -->
+                <h1 class="hero-title fw-bold mb-4">
 
-                    Trusted Home Service Platform
+                    Trusted Home
+
+                    <span class="gradient-text">
+
+                        Service Platform
+
+                    </span>
 
                 </h1>
 
-                <p class="fs-5 text-secondary mb-4">
+                <!-- DESC -->
+                <p class="hero-description mb-4">
 
                     ServiceHub connects customers with
                     verified professionals for home services
@@ -33,25 +46,118 @@
 
                 </p>
 
-                <p class="text-muted">
+                <p class="hero-subtext mb-5">
 
                     Our mission is to make home services
                     easy, secure and accessible for everyone.
 
                 </p>
 
+                <!-- BUTTONS -->
+                <div class="d-flex flex-wrap gap-3">
+
+                    <a
+                        href="/services/"
+                        class="hero-btn-primary"
+                    >
+
+                        <i class="bi bi-grid-fill me-2"></i>
+
+                        Explore Services
+
+                    </a>
+
+                    <a
+                        href="/contact/"
+                        class="hero-btn-outline"
+                    >
+
+                        <i class="bi bi-envelope-fill me-2"></i>
+
+                        Contact Us
+
+                    </a>
+
+                </div>
+
             </div>
 
             <!-- RIGHT -->
             <div class="col-lg-6">
 
-                <div class="card border-0 shadow-lg rounded-5 overflow-hidden">
+                <div class="hero-image-wrapper">
 
                     <img
                         src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop"
-                        class="img-fluid"
-                        style="height: 500px; object-fit: cover;"
+                        class="hero-image"
                     >
+
+                    <!-- FLOAT CARD -->
+                    <div class="floating-card">
+
+                        <div class="d-flex align-items-center mb-3">
+
+                            <div class="floating-icon me-3">
+
+                                <i class="bi bi-patch-check-fill text-success fs-3"></i>
+
+                            </div>
+
+                            <div>
+
+                                <h6 class="fw-bold mb-1">
+
+                                    Verified Experts
+
+                                </h6>
+
+                                <small class="text-muted">
+
+                                    Trusted professionals
+
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+
+                            <div>
+
+                                <h4 class="fw-bold text-info mb-0">
+
+                                    10K+
+
+                                </h4>
+
+                                <small class="text-muted">
+
+                                    Customers
+
+                                </small>
+
+                            </div>
+
+                            <div>
+
+                                <h4 class="fw-bold text-warning mb-0">
+
+                                    24/7
+
+                                </h4>
+
+                                <small class="text-muted">
+
+                                    Support
+
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                    </div>
 
                 </div>
 
@@ -64,115 +170,99 @@
 </section>
 
 <!-- STATS -->
-<section class="py-5">
+<section class="stats-section py-5">
 
     <div class="container">
 
         <div class="row g-4">
 
-            <!-- CUSTOMERS -->
+            <!-- CARD -->
             <div class="col-lg-3 col-md-6">
 
-                <div class="card border-0 shadow-sm rounded-5 text-center h-100">
+                <div class="stats-card text-center h-100">
 
-                    <div class="card-body p-5">
+                    <i class="bi bi-people-fill display-4 text-info"></i>
 
-                        <i class="bi bi-people-fill display-3 text-primary"></i>
+                    <h2 class="fw-bold mt-4 text-white">
 
-                        <h2 class="fw-bold mt-4">
+                        {{ total_customers }}+
 
-                            {{ total_customers }}+
+                    </h2>
 
-                        </h2>
+                    <p class="text-light opacity-75 mb-0">
 
-                        <p class="text-muted mb-0">
+                        Happy Customers
 
-                            Happy Customers
-
-                        </p>
-
-                    </div>
+                    </p>
 
                 </div>
 
             </div>
 
-            <!-- PROVIDERS -->
+            <!-- CARD -->
             <div class="col-lg-3 col-md-6">
 
-                <div class="card border-0 shadow-sm rounded-5 text-center h-100">
+                <div class="stats-card text-center h-100">
 
-                    <div class="card-body p-5">
+                    <i class="bi bi-person-workspace display-4 text-success"></i>
 
-                        <i class="bi bi-person-workspace display-3 text-success"></i>
+                    <h2 class="fw-bold mt-4 text-white">
 
-                        <h2 class="fw-bold mt-4">
+                        {{ total_providers }}+
 
-                            {{ total_providers }}+
+                    </h2>
 
-                        </h2>
+                    <p class="text-light opacity-75 mb-0">
 
-                        <p class="text-muted mb-0">
+                        Verified Providers
 
-                            Verified Providers
-
-                        </p>
-
-                    </div>
+                    </p>
 
                 </div>
 
             </div>
 
-            <!-- BOOKINGS -->
+            <!-- CARD -->
             <div class="col-lg-3 col-md-6">
 
-                <div class="card border-0 shadow-sm rounded-5 text-center h-100">
+                <div class="stats-card text-center h-100">
 
-                    <div class="card-body p-5">
+                    <i class="bi bi-calendar-check-fill display-4 text-warning"></i>
 
-                        <i class="bi bi-calendar-check-fill display-3 text-warning"></i>
+                    <h2 class="fw-bold mt-4 text-white">
 
-                        <h2 class="fw-bold mt-4">
+                        {{ total_bookings }}+
 
-                            {{ total_bookings }}+
+                    </h2>
 
-                        </h2>
+                    <p class="text-light opacity-75 mb-0">
 
-                        <p class="text-muted mb-0">
+                        Completed Bookings
 
-                            Completed Bookings
-
-                        </p>
-
-                    </div>
+                    </p>
 
                 </div>
 
             </div>
 
-            <!-- SERVICES -->
+            <!-- CARD -->
             <div class="col-lg-3 col-md-6">
 
-                <div class="card border-0 shadow-sm rounded-5 text-center h-100">
+                <div class="stats-card text-center h-100">
 
-                    <div class="card-body p-5">
+                    <i class="bi bi-tools display-4 text-danger"></i>
 
-                        <i class="bi bi-tools display-3 text-danger"></i>
+                    <h2 class="fw-bold mt-4 text-white">
 
-                        <h2 class="fw-bold mt-4">
+                        {{ total_services }}+
 
-                            {{ total_services }}+
+                    </h2>
 
-                        </h2>
+                    <p class="text-light opacity-75 mb-0">
 
-                        <p class="text-muted mb-0">
+                        Services
 
-                            Services
-
-                        </p>
-
-                    </div>
+                    </p>
 
                 </div>
 
@@ -184,23 +274,30 @@
 
 </section>
 
-<!-- WHY CHOOSE US -->
-<section class="py-5 bg-body-tertiary">
+<!-- WHY CHOOSE -->
+<section class="why-section py-5">
 
     <div class="container">
 
         <!-- HEADER -->
         <div class="text-center mb-5">
 
-            <h2 class="fw-bold display-5">
+            <div class="hero-badge mb-4">
 
-                Why Choose Us
+                ⭐ WHY CHOOSE US
+
+            </div>
+
+            <h2 class="section-title fw-bold text-white">
+
+                Reliable & Secure Platform
 
             </h2>
 
-            <p class="text-muted fs-5">
+            <p class="section-desc mx-auto">
 
-                We provide reliable and secure home services
+                We provide professional and trusted
+                home services with complete security.
 
             </p>
 
@@ -212,30 +309,26 @@
             <!-- CARD -->
             <div class="col-lg-4">
 
-                <div class="card border-0 shadow-sm rounded-5 h-100">
+                <div class="feature-card text-center h-100">
 
-                    <div class="card-body p-5 text-center">
+                    <div class="feature-icon bg-primary-subtle">
 
-                        <div class="mb-4">
-
-                            <i class="bi bi-shield-check display-2 text-primary"></i>
-
-                        </div>
-
-                        <h4 class="fw-bold mb-3">
-
-                            Verified Professionals
-
-                        </h4>
-
-                        <p class="text-muted">
-
-                            All providers are verified and
-                            background checked for safety.
-
-                        </p>
+                        <i class="bi bi-shield-check text-primary"></i>
 
                     </div>
+
+                    <h4 class="fw-bold text-white mt-4">
+
+                        Verified Professionals
+
+                    </h4>
+
+                    <p class="text-light opacity-75 mb-0">
+
+                        All providers are verified and
+                        background checked for safety.
+
+                    </p>
 
                 </div>
 
@@ -244,30 +337,26 @@
             <!-- CARD -->
             <div class="col-lg-4">
 
-                <div class="card border-0 shadow-sm rounded-5 h-100">
+                <div class="feature-card text-center h-100">
 
-                    <div class="card-body p-5 text-center">
+                    <div class="feature-icon bg-warning-subtle">
 
-                        <div class="mb-4">
-
-                            <i class="bi bi-lightning-charge-fill display-2 text-warning"></i>
-
-                        </div>
-
-                        <h4 class="fw-bold mb-3">
-
-                            Fast Booking
-
-                        </h4>
-
-                        <p class="text-muted">
-
-                            Book professional services instantly
-                            with a smooth experience.
-
-                        </p>
+                        <i class="bi bi-lightning-charge-fill text-warning"></i>
 
                     </div>
+
+                    <h4 class="fw-bold text-white mt-4">
+
+                        Fast Booking
+
+                    </h4>
+
+                    <p class="text-light opacity-75 mb-0">
+
+                        Book professional services instantly
+                        with a smooth experience.
+
+                    </p>
 
                 </div>
 
@@ -276,30 +365,26 @@
             <!-- CARD -->
             <div class="col-lg-4">
 
-                <div class="card border-0 shadow-sm rounded-5 h-100">
+                <div class="feature-card text-center h-100">
 
-                    <div class="card-body p-5 text-center">
+                    <div class="feature-icon bg-danger-subtle">
 
-                        <div class="mb-4">
-
-                            <i class="bi bi-star-fill display-2 text-danger"></i>
-
-                        </div>
-
-                        <h4 class="fw-bold mb-3">
-
-                            Top Rated Service
-
-                        </h4>
-
-                        <p class="text-muted">
-
-                            Trusted by thousands of customers
-                            with excellent ratings.
-
-                        </p>
+                        <i class="bi bi-star-fill text-danger"></i>
 
                     </div>
+
+                    <h4 class="fw-bold text-white mt-4">
+
+                        Top Rated Service
+
+                    </h4>
+
+                    <p class="text-light opacity-75 mb-0">
+
+                        Trusted by thousands of customers
+                        with excellent ratings.
+
+                    </p>
 
                 </div>
 
@@ -312,20 +397,26 @@
 </section>
 
 <!-- TEAM -->
-<section class="py-5">
+<section class="team-section py-5">
 
     <div class="container">
 
         <!-- HEADER -->
         <div class="text-center mb-5">
 
-            <h2 class="fw-bold display-5">
+            <div class="hero-badge mb-4">
 
-                Meet Our Team
+                👨‍💻 OUR TEAM
+
+            </div>
+
+            <h2 class="section-title fw-bold text-white">
+
+                Meet Our Experts
 
             </h2>
 
-            <p class="text-muted fs-5">
+            <p class="section-desc mx-auto">
 
                 Passionate people behind ServiceHub
 
@@ -333,35 +424,34 @@
 
         </div>
 
-        <!-- TEAM GRID -->
+        <!-- TEAM -->
         <div class="row g-4 justify-content-center">
 
             <!-- MEMBER -->
-            <div class="col-lg-3 col-md-6">
+            <div class="col-lg-4 col-md-6">
 
-                <div class="card border-0 shadow-sm rounded-5 overflow-hidden text-center h-100">
+                <div class="team-card text-center h-100">
 
                     <img
                         src="https://randomuser.me/api/portraits/men/32.jpg"
-                        class="card-img-top"
-                        style="height: 280px; object-fit: cover;"
+                        class="team-image"
                     >
 
-                    <div class="card-body p-4">
+                    <div class="team-body">
 
-                        <h5 class="fw-bold">
+                        <h4 class="fw-bold text-white">
 
                             John Smith
 
-                        </h5>
+                        </h4>
 
-                        <p class="text-muted mb-3">
+                        <p class="text-info mb-3">
 
                             Founder & CEO
 
                         </p>
 
-                        <div class="d-flex justify-content-center gap-3">
+                        <div class="social-icons">
 
                             <i class="bi bi-facebook"></i>
                             <i class="bi bi-instagram"></i>
@@ -376,31 +466,30 @@
             </div>
 
             <!-- MEMBER -->
-            <div class="col-lg-3 col-md-6">
+            <div class="col-lg-4 col-md-6">
 
-                <div class="card border-0 shadow-sm rounded-5 overflow-hidden text-center h-100">
+                <div class="team-card text-center h-100">
 
                     <img
                         src="https://randomuser.me/api/portraits/women/44.jpg"
-                        class="card-img-top"
-                        style="height: 280px; object-fit: cover;"
+                        class="team-image"
                     >
 
-                    <div class="card-body p-4">
+                    <div class="team-body">
 
-                        <h5 class="fw-bold">
+                        <h4 class="fw-bold text-white">
 
                             Sarah Wilson
 
-                        </h5>
+                        </h4>
 
-                        <p class="text-muted mb-3">
+                        <p class="text-info mb-3">
 
                             Operations Manager
 
                         </p>
 
-                        <div class="d-flex justify-content-center gap-3">
+                        <div class="social-icons">
 
                             <i class="bi bi-facebook"></i>
                             <i class="bi bi-instagram"></i>
@@ -415,31 +504,30 @@
             </div>
 
             <!-- MEMBER -->
-            <div class="col-lg-3 col-md-6">
+            <div class="col-lg-4 col-md-6">
 
-                <div class="card border-0 shadow-sm rounded-5 overflow-hidden text-center h-100">
+                <div class="team-card text-center h-100">
 
                     <img
                         src="https://randomuser.me/api/portraits/men/55.jpg"
-                        class="card-img-top"
-                        style="height: 280px; object-fit: cover;"
+                        class="team-image"
                     >
 
-                    <div class="card-body p-4">
+                    <div class="team-body">
 
-                        <h5 class="fw-bold">
+                        <h4 class="fw-bold text-white">
 
                             David Miller
 
-                        </h5>
+                        </h4>
 
-                        <p class="text-muted mb-3">
+                        <p class="text-info mb-3">
 
                             Technical Lead
 
                         </p>
 
-                        <div class="d-flex justify-content-center gap-3">
+                        <div class="social-icons">
 
                             <i class="bi bi-facebook"></i>
                             <i class="bi bi-instagram"></i>
@@ -458,5 +546,412 @@
     </div>
 
 </section>
+
+<!-- ============================= -->
+<!-- MODERN CSS -->
+<!-- ============================= -->
+
+<style>
+
+    body{
+
+        background:
+        radial-gradient(circle at top left,#312e81 0%,transparent 30%),
+        radial-gradient(circle at bottom right,#0891b2 0%,transparent 30%),
+        linear-gradient(135deg,#020617,#06142f,#020617);
+
+        overflow-x:hidden;
+
+    }
+
+    .about-hero{
+
+        padding:120px 0 80px;
+
+        position:relative;
+
+    }
+
+    .hero-glow{
+
+        position:absolute;
+
+        border-radius:50%;
+
+        filter:blur(120px);
+
+        opacity:0.2;
+
+    }
+
+    .glow-1{
+
+        width:350px;
+
+        height:350px;
+
+        background:#7c3aed;
+
+        top:-100px;
+
+        left:-100px;
+
+    }
+
+    .glow-2{
+
+        width:350px;
+
+        height:350px;
+
+        background:#06b6d4;
+
+        bottom:-100px;
+
+        right:-100px;
+
+    }
+
+    .hero-badge{
+
+        display:inline-block;
+
+        padding:14px 30px;
+
+        border-radius:50px;
+
+        background:rgba(255,255,255,0.08);
+
+        border:1px solid rgba(255,255,255,0.08);
+
+        backdrop-filter:blur(15px);
+
+        color:white;
+
+        font-weight:600;
+
+        font-size:14px;
+
+    }
+
+    .hero-title{
+
+        font-size:clamp(3rem,7vw,6rem);
+
+        line-height:1.1;
+
+        color:white;
+
+    }
+
+    .gradient-text{
+
+        background:linear-gradient(
+            135deg,
+            #06b6d4,
+            #38bdf8,
+            #7dd3fc
+        );
+
+        -webkit-background-clip:text;
+
+        -webkit-text-fill-color:transparent;
+
+    }
+
+    .hero-description{
+
+        color:#cbd5e1;
+
+        font-size:1.2rem;
+
+        line-height:2;
+
+    }
+
+    .hero-subtext{
+
+        color:#94a3b8;
+
+        font-size:1rem;
+
+        line-height:1.9;
+
+    }
+
+    .hero-btn-primary{
+
+        padding:16px 34px;
+
+        border-radius:50px;
+
+        background:linear-gradient(
+            135deg,
+            #7c3aed,
+            #06b6d4,
+            #ec4899
+        );
+
+        color:white;
+
+        text-decoration:none;
+
+        font-weight:700;
+
+        transition:0.3s;
+
+    }
+
+    .hero-btn-primary:hover{
+
+        transform:translateY(-3px);
+
+        color:white;
+
+    }
+
+    .hero-btn-outline{
+
+        padding:16px 34px;
+
+        border-radius:50px;
+
+        border:1px solid rgba(255,255,255,0.15);
+
+        background:rgba(255,255,255,0.05);
+
+        color:white;
+
+        text-decoration:none;
+
+        font-weight:700;
+
+        backdrop-filter:blur(10px);
+
+    }
+
+    .hero-image{
+
+        width:100%;
+
+        height:600px;
+
+        object-fit:cover;
+
+        border-radius:35px;
+
+    }
+
+    .hero-image-wrapper{
+
+        position:relative;
+
+    }
+
+    .floating-card{
+
+        position:absolute;
+
+        bottom:-30px;
+
+        left:-30px;
+
+        background:white;
+
+        border-radius:28px;
+
+        padding:25px;
+
+        width:280px;
+
+        box-shadow:0 25px 50px rgba(0,0,0,0.25);
+
+    }
+
+    .floating-icon{
+
+        width:60px;
+
+        height:60px;
+
+        border-radius:50%;
+
+        background:#f1f5f9;
+
+        display:flex;
+
+        align-items:center;
+
+        justify-content:center;
+
+    }
+
+    .stats-card,
+    .feature-card,
+    .team-card{
+
+        background:rgba(255,255,255,0.05);
+
+        border:1px solid rgba(255,255,255,0.08);
+
+        border-radius:30px;
+
+        backdrop-filter:blur(15px);
+
+        transition:0.3s;
+
+    }
+
+    .stats-card{
+
+        padding:40px 30px;
+
+    }
+
+    .feature-card{
+
+        padding:45px 35px;
+
+    }
+
+    .team-card{
+
+        overflow:hidden;
+
+    }
+
+    .stats-card:hover,
+    .feature-card:hover,
+    .team-card:hover{
+
+        transform:translateY(-10px);
+
+        border-color:#06b6d4;
+
+    }
+
+    .feature-icon{
+
+        width:90px;
+
+        height:90px;
+
+        border-radius:50%;
+
+        margin:auto;
+
+        display:flex;
+
+        align-items:center;
+
+        justify-content:center;
+
+        font-size:2rem;
+
+    }
+
+    .section-title{
+
+        font-size:3rem;
+
+    }
+
+    .section-desc{
+
+        max-width:650px;
+
+        color:#cbd5e1;
+
+        font-size:1.1rem;
+
+    }
+
+    .team-image{
+
+        width:100%;
+
+        height:320px;
+
+        object-fit:cover;
+
+    }
+
+    .team-body{
+
+        padding:30px;
+
+    }
+
+    .social-icons{
+
+        display:flex;
+
+        justify-content:center;
+
+        gap:18px;
+
+        font-size:1.2rem;
+
+        color:white;
+
+    }
+
+    .social-icons i{
+
+        cursor:pointer;
+
+        transition:0.3s;
+
+    }
+
+    .social-icons i:hover{
+
+        color:#06b6d4;
+
+    }
+
+    @media(max-width:991px){
+
+        .about-hero{
+
+            padding:100px 0 70px;
+
+        }
+
+        .hero-title{
+
+            font-size:3rem;
+
+        }
+
+        .hero-image{
+
+            height:450px;
+
+        }
+
+        .floating-card{
+
+            position:relative;
+
+            left:0;
+
+            bottom:0;
+
+            width:100%;
+
+            margin-top:20px;
+
+        }
+
+        .section-title{
+
+            font-size:2.3rem;
+
+        }
+
+    }
+
+</style>
 
 {% endblock %}

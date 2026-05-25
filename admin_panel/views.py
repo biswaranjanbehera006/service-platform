@@ -746,6 +746,36 @@ def add_service(request):
         }
     )
 
+# =====================================================
+# Edit Service
+# =====================================================
+def edit_service(request, id):
+
+    service = Service.objects.get(id=id)
+
+    if request.method == "POST":
+
+        service.name = request.POST.get("name")
+
+        service.description = request.POST.get("description")
+
+        # IMAGE UPDATE
+        if request.FILES.get("image"):
+
+            service.image = request.FILES.get("image")
+
+        service.save()
+
+        messages.success(
+            request,
+            "Service updated successfully"
+        )
+
+        return redirect("manage_services")
+
+    return redirect("manage_services")
+
+
 
 # =====================================================
 # ❌ DELETE SERVICE

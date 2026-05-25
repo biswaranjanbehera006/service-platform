@@ -2,12 +2,619 @@
 
 {% block content %}
 
-<div class="container-fluid py-4 px-lg-4 px-3 bg-light min-vh-100">
+<style>
+
+    /* ===================================== */
+    /* BODY */
+    /* ===================================== */
+
+    body{
+
+        background:
+        linear-gradient(
+            135deg,
+            #020617,
+            #0f172a,
+            #111827
+        );
+
+        min-height:
+        100vh;
+
+        color:
+        white;
+
+        overflow-x:
+        hidden;
+
+    }
+
+    /* ===================================== */
+    /* WRAPPER */
+    /* ===================================== */
+
+    .admin-wrapper{
+
+        min-height:
+        100vh;
+
+    }
+
+    /* ===================================== */
+    /* GLASS CARD */
+    /* ===================================== */
+
+    .glass-card{
+
+        background:
+        rgba(255,255,255,0.05);
+
+        border:
+        1px solid rgba(255,255,255,0.08);
+
+        backdrop-filter:
+        blur(18px);
+
+        -webkit-backdrop-filter:
+        blur(18px);
+
+        border-radius:
+        28px;
+
+        box-shadow:
+        0 10px 30px rgba(0,0,0,0.25);
+
+    }
+
+    /* ===================================== */
+    /* TEXT */
+    /* ===================================== */
+
+    .text-muted{
+
+        color:
+        rgba(255,255,255,0.65) !important;
+
+    }
+
+    h1,h2,h3,h4,h5,h6{
+
+        color:
+        white;
+
+    }
+
+    /* ===================================== */
+    /* BUTTONS */
+    /* ===================================== */
+
+    .custom-btn{
+
+        background:
+        rgba(255,255,255,0.06);
+
+        border:
+        1px solid rgba(255,255,255,0.08);
+
+        color:
+        white;
+
+        border-radius:
+        50px;
+
+        padding:
+        12px 24px;
+
+        text-decoration:
+        none;
+
+        transition:
+        0.3s ease;
+
+        font-weight:
+        600;
+
+        display:
+        inline-flex;
+
+        align-items:
+        center;
+
+        justify-content:
+        center;
+
+    }
+
+    .custom-btn:hover{
+
+        background:
+        linear-gradient(
+            135deg,
+            #7c3aed,
+            #06b6d4
+        );
+
+        color:
+        white;
+
+        transform:
+        translateY(-2px);
+
+    }
+
+    /* ===================================== */
+    /* SEARCH */
+    /* ===================================== */
+
+    .search-box{
+
+        background:
+        rgba(255,255,255,0.05);
+
+        border:
+        1px solid rgba(255,255,255,0.08);
+
+        border-radius:
+        50px;
+
+        overflow:
+        hidden;
+
+        backdrop-filter:
+        blur(10px);
+
+    }
+
+    .search-box input{
+
+        background:
+        transparent !important;
+
+        border:
+        none !important;
+
+        color:
+        white !important;
+
+        box-shadow:
+        none !important;
+
+        padding:
+        12px 16px;
+
+    }
+
+    .search-box input::placeholder{
+
+        color:
+        rgba(255,255,255,0.45);
+
+    }
+
+    .search-box .input-group-text{
+
+        background:
+        transparent;
+
+        border:
+        none;
+
+        color:
+        white;
+
+        padding-left:
+        18px;
+
+    }
+
+    .search-btn{
+
+        border:
+        none;
+
+        background:
+        linear-gradient(
+            135deg,
+            #7c3aed,
+            #06b6d4
+        );
+
+        color:
+        white;
+
+        padding:
+        0 24px;
+
+        font-weight:
+        600;
+
+    }
+
+    /* ===================================== */
+    /* STATS CARD */
+    /* ===================================== */
+
+    .stat-card{
+
+        background:
+        rgba(255,255,255,0.05);
+
+        border:
+        1px solid rgba(255,255,255,0.08);
+
+        border-radius:
+        28px;
+
+        padding:
+        28px;
+
+        height:
+        100%;
+
+        transition:
+        0.3s ease;
+
+        backdrop-filter:
+        blur(14px);
+
+    }
+
+    .stat-card:hover{
+
+        transform:
+        translateY(-4px);
+
+    }
+
+    .icon-box{
+
+        width:
+        72px;
+
+        height:
+        72px;
+
+        border-radius:
+        22px;
+
+        display:
+        flex;
+
+        align-items:
+        center;
+
+        justify-content:
+        center;
+
+        font-size:
+        1.8rem;
+
+        color:
+        white;
+
+    }
+
+    .bg-blue{
+
+        background:
+        linear-gradient(
+            135deg,
+            #3b82f6,
+            #2563eb
+        );
+
+    }
+
+    .bg-green{
+
+        background:
+        linear-gradient(
+            135deg,
+            #22c55e,
+            #15803d
+        );
+
+    }
+
+    .bg-red{
+
+        background:
+        linear-gradient(
+            135deg,
+            #ef4444,
+            #b91c1c
+        );
+
+    }
+
+    /* ===================================== */
+    /* TABLE CARD */
+    /* ===================================== */
+
+    .table-card{
+
+        background:
+        rgba(255,255,255,0.05);
+
+        border:
+        1px solid rgba(255,255,255,0.08);
+
+        border-radius:
+        28px;
+
+        overflow:
+        hidden;
+
+        backdrop-filter:
+        blur(16px);
+
+    }
+
+    /* ===================================== */
+    /* TABLE */
+    /* ===================================== */
+
+    .custom-table{
+
+        width:
+        100%;
+
+        margin-bottom:
+        0;
+
+        border-collapse:
+        collapse;
+
+        background:
+        transparent !important;
+
+    }
+
+    /* ===================================== */
+    /* TABLE HEADER */
+    /* ===================================== */
+
+    .custom-table thead{
+
+        background:
+        linear-gradient(
+            135deg,
+            rgba(124,58,237,0.35),
+            rgba(6,182,212,0.20)
+        ) !important;
+
+    }
+
+    .custom-table thead tr{
+
+        background:
+        transparent !important;
+
+    }
+
+    .custom-table thead th{
+
+        background:
+        transparent !important;
+
+        color:
+        white !important;
+
+        border:
+        none !important;
+
+        padding:
+        22px 18px !important;
+
+        font-size:
+        0.95rem;
+
+        font-weight:
+        700;
+
+        text-transform:
+        uppercase;
+
+        letter-spacing:
+        0.7px;
+
+        white-space:
+        nowrap;
+
+    }
+
+    /* ===================================== */
+    /* TABLE BODY */
+    /* ===================================== */
+
+    .custom-table tbody td{
+
+        border-color:
+        rgba(255,255,255,0.06);
+
+        padding:
+        20px 18px;
+
+        vertical-align:
+        middle;
+
+        background:
+        transparent !important;
+
+        color:
+        rgba(255,255,255,0.88);
+
+    }
+
+    .custom-table tbody tr{
+
+        transition:
+        0.3s ease;
+
+    }
+
+    .custom-table tbody tr:hover{
+
+        background:
+        rgba(255,255,255,0.04);
+
+    }
+
+    /* ===================================== */
+    /* BADGES */
+    /* ===================================== */
+
+    .badge{
+
+        padding:
+        10px 18px;
+
+        border-radius:
+        50px;
+
+        font-weight:
+        600;
+
+        font-size:
+        0.82rem;
+
+    }
+
+    /* ===================================== */
+    /* ACTION BUTTONS */
+    /* ===================================== */
+
+    .action-btn{
+
+        border:
+        none;
+
+        border-radius:
+        50px;
+
+        padding:
+        10px 18px;
+
+        color:
+        white;
+
+        font-size:
+        0.88rem;
+
+        font-weight:
+        600;
+
+        text-decoration:
+        none;
+
+        transition:
+        0.3s ease;
+
+        display:
+        inline-flex;
+
+        align-items:
+        center;
+
+        justify-content:
+        center;
+
+    }
+
+    .action-btn:hover{
+
+        transform:
+        translateY(-2px);
+
+        color:
+        white;
+
+    }
+
+    .review-btn{
+
+        background:
+        linear-gradient(
+            135deg,
+            #06b6d4,
+            #0e7490
+        );
+
+    }
+
+    .block-btn{
+
+        background:
+        linear-gradient(
+            135deg,
+            #f59e0b,
+            #d97706
+        );
+
+    }
+
+    .unblock-btn{
+
+        background:
+        linear-gradient(
+            135deg,
+            #22c55e,
+            #15803d
+        );
+
+    }
+
+    .delete-btn{
+
+        background:
+        linear-gradient(
+            135deg,
+            #ef4444,
+            #b91c1c
+        );
+
+    }
+
+    /* ===================================== */
+    /* EMPTY */
+    /* ===================================== */
+
+    .empty-box{
+
+        padding:
+        70px 20px;
+
+    }
+
+    /* ===================================== */
+    /* MOBILE */
+    /* ===================================== */
+
+    @media(max-width:991px){
+
+        .custom-btn{
+
+            width:
+            100%;
+
+        }
+
+        .search-box{
+
+            width:
+            100%;
+
+        }
+
+    }
+
+</style>
+
+<div class="container-fluid py-4 px-lg-4 px-3 admin-wrapper">
 
     <!-- HEADER -->
     <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
 
-        <!-- LEFT -->
         <div>
 
             <h1 class="fw-bold mb-1">
@@ -24,13 +631,12 @@
 
         </div>
 
-        <!-- RIGHT -->
         <div class="d-flex flex-wrap gap-2">
 
-            <!-- BACK BUTTON -->
+            <!-- BACK -->
             <a
                 href="/admin-panel/dashboard/"
-                class="btn btn-outline-dark rounded-pill px-4"
+                class="custom-btn"
             >
 
                 <i class="bi bi-arrow-left me-2"></i>
@@ -42,9 +648,9 @@
             <!-- SEARCH -->
             <form method="GET" class="d-flex">
 
-                <div class="input-group">
+                <div class="input-group search-box">
 
-                    <span class="input-group-text bg-white border-end-0">
+                    <span class="input-group-text">
 
                         <i class="bi bi-search"></i>
 
@@ -54,11 +660,14 @@
                         type="text"
                         name="q"
                         placeholder="Search provider..."
-                        class="form-control border-start-0"
+                        class="form-control"
                         value="{{ request.GET.q }}"
                     >
 
-                    <button class="btn btn-dark px-4">
+                    <button
+                        type="submit"
+                        class="search-btn"
+                    >
 
                         Search
 
@@ -75,36 +684,32 @@
     <!-- STATS -->
     <div class="row g-4 mb-4">
 
-        <!-- TOTAL PROVIDERS -->
+        <!-- TOTAL -->
         <div class="col-xl-4 col-md-6">
 
-            <div class="card border-0 shadow-sm rounded-4 h-100">
+            <div class="stat-card">
 
-                <div class="card-body p-4">
+                <div class="d-flex justify-content-between align-items-center">
 
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div>
 
-                        <div>
+                        <small class="text-muted fw-semibold">
 
-                            <small class="text-muted fw-semibold">
+                            Total Providers
 
-                                Total Providers
+                        </small>
 
-                            </small>
+                        <h2 class="fw-bold mt-2">
 
-                            <h2 class="fw-bold mt-2">
+                            {{ providers|length }}
 
-                                {{ providers|length }}
+                        </h2>
 
-                            </h2>
+                    </div>
 
-                        </div>
+                    <div class="icon-box bg-blue">
 
-                        <div class="bg-primary bg-opacity-10 p-3 rounded-circle">
-
-                            <i class="bi bi-tools text-primary fs-2"></i>
-
-                        </div>
+                        <i class="bi bi-tools"></i>
 
                     </div>
 
@@ -117,33 +722,29 @@
         <!-- ACTIVE -->
         <div class="col-xl-4 col-md-6">
 
-            <div class="card border-0 shadow-sm rounded-4 h-100">
+            <div class="stat-card">
 
-                <div class="card-body p-4">
+                <div class="d-flex justify-content-between align-items-center">
 
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div>
 
-                        <div>
+                        <small class="text-muted fw-semibold">
 
-                            <small class="text-muted fw-semibold">
+                            Active Providers
 
-                                Active Providers
+                        </small>
 
-                            </small>
+                        <h2 class="fw-bold mt-2 text-success">
 
-                            <h2 class="fw-bold mt-2 text-success">
+                            {{ active_providers }}
 
-                                {{ active_providers }}
+                        </h2>
 
-                            </h2>
+                    </div>
 
-                        </div>
+                    <div class="icon-box bg-green">
 
-                        <div class="bg-success bg-opacity-10 p-3 rounded-circle">
-
-                            <i class="bi bi-person-check-fill text-success fs-2"></i>
-
-                        </div>
+                        <i class="bi bi-person-check-fill"></i>
 
                     </div>
 
@@ -156,33 +757,29 @@
         <!-- BLOCKED -->
         <div class="col-xl-4 col-md-12">
 
-            <div class="card border-0 shadow-sm rounded-4 h-100">
+            <div class="stat-card">
 
-                <div class="card-body p-4">
+                <div class="d-flex justify-content-between align-items-center">
 
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div>
 
-                        <div>
+                        <small class="text-muted fw-semibold">
 
-                            <small class="text-muted fw-semibold">
+                            Blocked Providers
 
-                                Blocked Providers
+                        </small>
 
-                            </small>
+                        <h2 class="fw-bold mt-2 text-danger">
 
-                            <h2 class="fw-bold mt-2 text-danger">
+                            {{ blocked_providers }}
 
-                                {{ blocked_providers }}
+                        </h2>
 
-                            </h2>
+                    </div>
 
-                        </div>
+                    <div class="icon-box bg-red">
 
-                        <div class="bg-danger bg-opacity-10 p-3 rounded-circle">
-
-                            <i class="bi bi-person-x-fill text-danger fs-2"></i>
-
-                        </div>
+                        <i class="bi bi-person-x-fill"></i>
 
                     </div>
 
@@ -194,31 +791,31 @@
 
     </div>
 
-    <!-- PROVIDERS TABLE -->
-    <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+    <!-- TABLE CARD -->
+    <div class="table-card">
 
-        <!-- TABLE HEADER -->
-        <div class="card-header bg-white border-0 p-4">
+        <!-- TOP -->
+        <div class="p-4 border-bottom border-secondary">
 
             <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
 
                 <div>
 
-                    <h4 class="fw-bold mb-1">
+                    <h2 class="fw-bold mb-1 text-white">
 
                         Providers List
 
-                    </h4>
+                    </h2>
 
-                    <small class="text-muted">
+                    <p class="text-muted mb-0">
 
                         Complete provider management panel
 
-                    </small>
+                    </p>
 
                 </div>
 
-                <span class="badge bg-dark rounded-pill px-3 py-2">
+                <span class="badge bg-dark px-4 py-3">
 
                     {{ providers|length }} Providers
 
@@ -231,9 +828,10 @@
         <!-- TABLE -->
         <div class="table-responsive">
 
-            <table class="table align-middle text-center mb-0">
+            <table class="table custom-table align-middle text-center">
 
-                <thead class="table-dark">
+                <!-- HEAD -->
+                <thead>
 
                     <tr>
 
@@ -255,6 +853,7 @@
 
                 </thead>
 
+                <!-- BODY -->
                 <tbody>
 
                     {% for provider in providers %}
@@ -262,7 +861,7 @@
                     <tr>
 
                         <!-- ID -->
-                        <td class="fw-semibold">
+                        <td class="fw-semibold text-white">
 
                             {{ forloop.counter }}
 
@@ -271,13 +870,13 @@
                         <!-- PROVIDER -->
                         <td>
 
-                            <div class="fw-semibold">
+                            <div class="fw-semibold text-white">
 
                                 {{ provider.user.username }}
 
                             </div>
 
-                            <small class="text-muted">
+                            <small class="text-light">
 
                                 {{ provider.user.email }}
 
@@ -300,7 +899,7 @@
 
                                 {% empty %}
 
-                                    <span class="text-muted">
+                                    <span class="text-light">
 
                                         No Service
 
@@ -315,7 +914,7 @@
                         <!-- EXPERIENCE -->
                         <td>
 
-                            <span class="badge bg-secondary rounded-pill px-3 py-2">
+                            <span class="badge bg-secondary">
 
                                 {{ provider.experience }} yrs
 
@@ -328,7 +927,7 @@
 
                             {% if provider.rating %}
 
-                                <span class="badge bg-warning text-dark rounded-pill px-3 py-2">
+                                <span class="badge bg-warning text-dark">
 
                                     ⭐ {{ provider.rating }}/5
 
@@ -336,7 +935,7 @@
 
                             {% else %}
 
-                                <span class="text-muted">
+                                <span class="text-light">
 
                                     No Rating
 
@@ -351,7 +950,7 @@
 
                             {% if provider.user.is_active %}
 
-                                <span class="badge bg-success rounded-pill px-3 py-2">
+                                <span class="badge bg-success">
 
                                     Active
 
@@ -359,7 +958,7 @@
 
                             {% else %}
 
-                                <span class="badge bg-danger rounded-pill px-3 py-2">
+                                <span class="badge bg-danger">
 
                                     Blocked
 
@@ -372,12 +971,12 @@
                         <!-- ACTIONS -->
                         <td>
 
-                            <div class="d-flex flex-column gap-2">
+                            <div class="d-flex flex-column gap-2 align-items-center">
 
-                                <!-- REVIEWS -->
+                                <!-- REVIEW -->
                                 <a
                                     href="{% url 'provider_reviews' provider.id %}"
-                                    class="btn btn-info btn-sm rounded-pill text-white"
+                                    class="action-btn review-btn"
                                 >
 
                                     <i class="bi bi-star-fill me-1"></i>
@@ -389,7 +988,7 @@
                                 <!-- BLOCK -->
                                 <a
                                     href="{% url 'toggle_provider' provider.id %}"
-                                    class="btn btn-sm rounded-pill {% if provider.user.is_active %}btn-warning{% else %}btn-success{% endif %}"
+                                    class="action-btn {% if provider.user.is_active %}block-btn{% else %}unblock-btn{% endif %}"
                                 >
 
                                     {% if provider.user.is_active %}
@@ -411,7 +1010,7 @@
                                 <!-- DELETE -->
                                 <a
                                     href="{% url 'delete_provider' provider.id %}"
-                                    class="btn btn-danger btn-sm rounded-pill"
+                                    class="action-btn delete-btn"
                                     onclick="return confirm('Delete this provider?');"
                                 >
 
@@ -434,19 +1033,19 @@
 
                     <tr>
 
-                        <td colspan="7" class="py-5">
+                        <td colspan="7">
 
-                            <div class="text-center">
+                            <div class="empty-box text-center">
 
-                                <i class="bi bi-tools display-1 text-muted"></i>
+                                <i class="bi bi-tools display-1 text-secondary"></i>
 
-                                <h4 class="mt-3">
+                                <h4 class="mt-4 text-white">
 
                                     No Providers Found
 
                                 </h4>
 
-                                <p class="text-muted mb-0">
+                                <p class="text-light mb-0">
 
                                     Try adjusting your search
 
@@ -468,7 +1067,7 @@
 
     </div>
 
-    <!-- SPACE BEFORE FOOTER -->
+    <!-- SPACING -->
     <div class="py-5"></div>
 
 </div>

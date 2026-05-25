@@ -2,24 +2,522 @@
 
 {% block content %}
 
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+>
+
+<style>
+
+    /* ===================================== */
+    /* PAGE */
+    /* ===================================== */
+
+    body{
+
+        background:
+        radial-gradient(circle at top left,#312e81 0%,transparent 30%),
+        radial-gradient(circle at bottom right,#0ea5e9 0%,transparent 30%),
+        linear-gradient(
+            135deg,
+            #020617,
+            #06142f,
+            #020617
+        );
+
+        min-height:
+        100vh;
+
+        overflow-x:
+        hidden;
+
+    }
+
+    /* ===================================== */
+    /* HEADER */
+    /* ===================================== */
+
+    .top-badge{
+
+        background:
+        rgba(255,255,255,0.08);
+
+        border:
+        1px solid rgba(255,255,255,0.08);
+
+        backdrop-filter:
+        blur(10px);
+
+        color:
+        white;
+
+        border-radius:
+        50px;
+
+        padding:
+        12px 24px;
+
+        font-size:
+        14px;
+
+        font-weight:
+        600;
+
+        display:
+        inline-block;
+
+    }
+
+    .main-title{
+
+        color:
+        white;
+
+        font-weight:
+        800;
+
+    }
+
+    .main-text{
+
+        color:
+        rgba(255,255,255,0.70);
+
+    }
+
+    /* ===================================== */
+    /* GLASS CARD */
+    /* ===================================== */
+
+    .glass-card{
+
+        background:
+        rgba(15,23,42,0.85);
+
+        border:
+        1px solid rgba(255,255,255,0.08);
+
+        backdrop-filter:
+        blur(20px);
+
+        border-radius:
+        32px;
+
+        overflow:
+        hidden;
+
+        box-shadow:
+        0 10px 40px rgba(0,0,0,0.35);
+
+    }
+
+    .glass-top{
+
+        background:
+        linear-gradient(
+            135deg,
+            rgba(124,58,237,0.20),
+            rgba(6,182,212,0.18)
+        );
+
+        border-bottom:
+        1px solid rgba(255,255,255,0.08);
+
+    }
+
+    /* ===================================== */
+    /* FORM */
+    /* ===================================== */
+
+    .form-label{
+
+        color:
+        white;
+
+        font-weight:
+        600;
+
+        margin-bottom:
+        10px;
+
+    }
+
+    input,
+    textarea,
+    select{
+
+        width:
+        100%;
+
+        background:
+        rgba(255,255,255,0.05) !important;
+
+        border:
+        1px solid rgba(255,255,255,0.08) !important;
+
+        color:
+        white !important;
+
+        border-radius:
+        18px !important;
+
+        padding:
+        16px 18px !important;
+
+        box-shadow:
+        none !important;
+
+        transition:
+        0.3s ease;
+
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus{
+
+        border-color:
+        #06b6d4 !important;
+
+        box-shadow:
+        0 0 15px rgba(6,182,212,0.20) !important;
+
+    }
+
+    input::placeholder,
+    textarea::placeholder{
+
+        color:
+        rgba(255,255,255,0.45);
+
+    }
+
+    select option{
+
+        background:
+        #0f172a;
+
+        color:
+        white;
+
+    }
+
+    small{
+
+        color:
+        rgba(255,255,255,0.60) !important;
+
+    }
+
+    /* ===================================== */
+    /* BUTTON */
+    /* ===================================== */
+
+    .booking-btn{
+
+        width:
+        100%;
+
+        border:
+        none;
+
+        border-radius:
+        18px;
+
+        padding:
+        16px;
+
+        color:
+        white;
+
+        font-size:
+        16px;
+
+        font-weight:
+        700;
+
+        background:
+        linear-gradient(
+            135deg,
+            #7c3aed,
+            #06b6d4,
+            #ec4899
+        );
+
+        transition:
+        0.3s;
+
+        box-shadow:
+        0 10px 30px rgba(124,58,237,0.30);
+
+    }
+
+    .booking-btn:hover{
+
+        transform:
+        translateY(-3px);
+
+        box-shadow:
+        0 15px 35px rgba(6,182,212,0.30);
+
+    }
+
+    /* ===================================== */
+    /* ERROR */
+    /* ===================================== */
+
+    .custom-alert{
+
+        background:
+        rgba(239,68,68,0.10);
+
+        border:
+        1px solid rgba(239,68,68,0.20);
+
+        border-radius:
+        20px;
+
+        color:
+        #fecaca;
+
+        backdrop-filter:
+        blur(15px);
+
+    }
+
+    /* ===================================== */
+    /* SIDE CARD */
+    /* ===================================== */
+
+    .side-card{
+
+        background:
+        rgba(255,255,255,0.05);
+
+        border:
+        1px solid rgba(255,255,255,0.08);
+
+        border-radius:
+        28px;
+
+        backdrop-filter:
+        blur(20px);
+
+        overflow:
+        hidden;
+
+        transition:
+        0.3s;
+
+    }
+
+    .side-card:hover{
+
+        transform:
+        translateY(-4px);
+
+        border-color:
+        rgba(6,182,212,0.30);
+
+    }
+
+    /* ===================================== */
+    /* ICON BOX */
+    /* ===================================== */
+
+    .icon-box{
+
+        width:
+        100px;
+
+        height:
+        100px;
+
+        border-radius:
+        28px;
+
+        display:
+        flex;
+
+        align-items:
+        center;
+
+        justify-content:
+        center;
+
+        margin:
+        auto;
+
+        background:
+        linear-gradient(
+            135deg,
+            #22c55e,
+            #15803d
+        );
+
+        color:
+        white;
+
+        font-size:
+        3rem;
+
+        box-shadow:
+        0 10px 30px rgba(34,197,94,0.30);
+
+    }
+
+    /* ===================================== */
+    /* TIPS */
+    /* ===================================== */
+
+    .tip-item{
+
+        background:
+        rgba(255,255,255,0.04);
+
+        border:
+        1px solid rgba(255,255,255,0.06);
+
+        border-radius:
+        18px;
+
+        padding:
+        16px;
+
+        display:
+        flex;
+
+        align-items:
+        center;
+
+        gap:
+        14px;
+
+        transition:
+        0.3s;
+
+    }
+
+    .tip-item:hover{
+
+        background:
+        rgba(6,182,212,0.08);
+
+        border-color:
+        rgba(6,182,212,0.20);
+
+    }
+
+    .tip-icon{
+
+        width:
+        44px;
+
+        height:
+        44px;
+
+        border-radius:
+        14px;
+
+        display:
+        flex;
+
+        align-items:
+        center;
+
+        justify-content:
+        center;
+
+        color:
+        white;
+
+        font-size:
+        1rem;
+
+        flex-shrink:
+        0;
+
+    }
+
+    .tip-green{
+
+        background:
+        linear-gradient(
+            135deg,
+            #22c55e,
+            #15803d
+        );
+
+    }
+
+    .tip-blue{
+
+        background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #1d4ed8
+        );
+
+    }
+
+    .tip-yellow{
+
+        background:
+        linear-gradient(
+            135deg,
+            #f59e0b,
+            #d97706
+        );
+
+    }
+
+    .tip-purple{
+
+        background:
+        linear-gradient(
+            135deg,
+            #7c3aed,
+            #6d28d9
+        );
+
+    }
+
+    /* ===================================== */
+    /* MOBILE */
+    /* ===================================== */
+
+    @media(max-width:991px){
+
+        .main-title{
+
+            font-size:
+            2.5rem;
+
+        }
+
+    }
+
+</style>
+
 <div class="container py-5">
 
     <!-- HEADER -->
     <div class="text-center mb-5">
 
-        <span class="badge bg-primary px-4 py-2 mb-3 fs-6">
+        <span class="top-badge">
 
-            Service Booking
+            🚀 Service Booking
 
         </span>
 
-        <h1 class="fw-bold display-5">
+        <h1 class="display-4 main-title mt-4">
 
-            Book Your Service 🚀
+            Book Your Service
 
         </h1>
 
-        <p class="text-muted fs-5">
+        <p class="main-text fs-5 mt-3">
 
             Fill in the details below to confirm your booking
 
@@ -27,30 +525,37 @@
 
     </div>
 
-    <!-- ERROR MESSAGE -->
+    <!-- ERROR -->
     {% if form.errors %}
 
     <div class="row justify-content-center mb-4">
 
         <div class="col-lg-8">
 
-            <div class="alert alert-danger alert-dismissible fade show shadow-sm">
+            <div class="custom-alert p-4">
 
-                <strong>
+                <div class="fw-bold mb-3">
 
-                    Please fix these errors:
+                    ⚠️ Please fix these errors:
 
-                </strong>
+                </div>
 
-                <ul class="mb-0 mt-2">
+                <ul class="mb-0 ps-3">
 
                     {% for field in form %}
 
                         {% for error in field.errors %}
 
-                            <li>
+                            <li class="mb-1">
 
-                                <strong>{{ field.label }}</strong> :
+                                <strong>
+
+                                    {{ field.label }}
+
+                                </strong>
+
+                                :
+
                                 {{ error }}
 
                             </li>
@@ -61,12 +566,6 @@
 
                 </ul>
 
-                <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="alert"
-                ></button>
-
             </div>
 
         </div>
@@ -75,23 +574,24 @@
 
     {% endif %}
 
+    <!-- MAIN -->
     <div class="row g-4 justify-content-center">
 
         <!-- FORM -->
         <div class="col-lg-7">
 
-            <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+            <div class="glass-card">
 
                 <!-- TOP -->
-                <div class="bg-dark text-white p-4">
+                <div class="glass-top p-4">
 
-                    <h3 class="fw-bold mb-1">
+                    <h3 class="fw-bold text-white mb-1">
 
                         Booking Details
 
                     </h3>
 
-                    <p class="mb-0 text-light">
+                    <p class="mb-0 text-light opacity-75">
 
                         Complete your booking information
 
@@ -100,7 +600,7 @@
                 </div>
 
                 <!-- BODY -->
-                <div class="card-body p-4 p-lg-5">
+                <div class="p-4 p-lg-5">
 
                     <form method="POST">
 
@@ -109,7 +609,7 @@
                         <!-- SERVICE -->
                         <div class="mb-4">
 
-                            <label class="form-label fw-semibold">
+                            <label class="form-label">
 
                                 Service
 
@@ -122,7 +622,7 @@
                         <!-- DATE -->
                         <div class="mb-4">
 
-                            <label class="form-label fw-semibold">
+                            <label class="form-label">
 
                                 Booking Date
 
@@ -132,7 +632,6 @@
                                 type="date"
                                 name="date"
                                 id="booking-date"
-                                class="form-control form-control-lg"
                                 required
                             >
 
@@ -141,7 +640,7 @@
                         <!-- TIME -->
                         <div class="mb-4">
 
-                            <label class="form-label fw-semibold">
+                            <label class="form-label">
 
                                 Booking Time
 
@@ -151,11 +650,10 @@
                                 type="time"
                                 name="time"
                                 id="booking-time"
-                                class="form-control form-control-lg"
                                 required
                             >
 
-                            <small class="text-muted">
+                            <small class="d-block mt-2">
 
                                 Booking time must be at least 1 hour from current time
 
@@ -166,7 +664,7 @@
                         <!-- PHONE -->
                         <div class="mb-4">
 
-                            <label class="form-label fw-semibold">
+                            <label class="form-label">
 
                                 Phone Number
 
@@ -179,7 +677,7 @@
                         <!-- ADDRESS -->
                         <div class="mb-4">
 
-                            <label class="form-label fw-semibold">
+                            <label class="form-label">
 
                                 Address
 
@@ -192,10 +690,10 @@
                         <!-- BUTTON -->
                         <button
                             type="submit"
-                            class="btn btn-primary btn-lg w-100 py-3 fw-bold shadow-sm"
+                            class="booking-btn"
                         >
 
-                            <i class="bi bi-calendar-check-fill"></i>
+                            <i class="bi bi-calendar-check-fill me-2"></i>
 
                             Confirm Booking
 
@@ -209,23 +707,27 @@
 
         </div>
 
-        <!-- SIDE INFO -->
+        <!-- RIGHT -->
         <div class="col-lg-4">
 
-            <!-- HELP CARD -->
-            <div class="card border-0 shadow-lg rounded-4 mb-4">
+            <!-- SAFE CARD -->
+            <div class="side-card mb-4">
 
-                <div class="card-body p-4 text-center">
+                <div class="p-4 text-center">
 
-                    <i class="bi bi-shield-check text-success display-3"></i>
+                    <div class="icon-box mb-4">
 
-                    <h4 class="fw-bold mt-3">
+                        <i class="bi bi-shield-check"></i>
+
+                    </div>
+
+                    <h4 class="fw-bold text-white">
 
                         Safe & Secure Booking
 
                     </h4>
 
-                    <p class="text-muted mt-3">
+                    <p class="main-text mt-3 mb-0">
 
                         All providers are verified for
                         quality and trusted services.
@@ -237,43 +739,87 @@
             </div>
 
             <!-- TIPS -->
-            <div class="card border-0 shadow-lg rounded-4">
+            <div class="side-card">
 
-                <div class="card-body p-4">
+                <div class="p-4">
 
-                    <h5 class="fw-bold mb-4">
+                    <h5 class="fw-bold text-white mb-4">
 
                         Booking Tips 💡
 
                     </h5>
 
-                    <ul class="list-group list-group-flush">
+                    <div class="d-flex flex-column gap-3">
 
-                        <li class="list-group-item">
+                        <!-- TIP -->
+                        <div class="tip-item">
 
-                            Choose correct booking date.
+                            <div class="tip-icon tip-green">
 
-                        </li>
+                                <i class="bi bi-calendar-check"></i>
 
-                        <li class="list-group-item">
+                            </div>
 
-                            Enter complete address.
+                            <div class="text-white">
 
-                        </li>
+                                Choose correct booking date.
 
-                        <li class="list-group-item">
+                            </div>
 
-                            Keep your phone active.
+                        </div>
 
-                        </li>
+                        <!-- TIP -->
+                        <div class="tip-item">
 
-                        <li class="list-group-item">
+                            <div class="tip-icon tip-blue">
 
-                            Providers may contact you.
+                                <i class="bi bi-geo-alt-fill"></i>
 
-                        </li>
+                            </div>
 
-                    </ul>
+                            <div class="text-white">
+
+                                Enter complete address.
+
+                            </div>
+
+                        </div>
+
+                        <!-- TIP -->
+                        <div class="tip-item">
+
+                            <div class="tip-icon tip-yellow">
+
+                                <i class="bi bi-telephone-fill"></i>
+
+                            </div>
+
+                            <div class="text-white">
+
+                                Keep your phone active.
+
+                            </div>
+
+                        </div>
+
+                        <!-- TIP -->
+                        <div class="tip-item">
+
+                            <div class="tip-icon tip-purple">
+
+                                <i class="bi bi-person-lines-fill"></i>
+
+                            </div>
+
+                            <div class="text-white">
+
+                                Providers may contact you.
+
+                            </div>
+
+                        </div>
+
+                    </div>
 
                 </div>
 
@@ -285,9 +831,8 @@
 
 </div>
 
-
 <!-- ========================================= -->
-<!-- 🔥 DATE & TIME VALIDATION -->
+<!-- DATE & TIME VALIDATION -->
 <!-- ========================================= -->
 
 <script>
@@ -308,11 +853,9 @@ document.addEventListener(
             "booking-time"
         );
 
-        // TODAY DATE
         const today =
         new Date();
 
-        // FORMAT DATE
         const yyyy =
         today.getFullYear();
 
@@ -329,15 +872,12 @@ document.addEventListener(
         const minDate =
         `${yyyy}-${mm}-${dd}`;
 
-        // DISABLE PREVIOUS DATE
         dateInput.min =
         minDate;
 
-        // DEFAULT TODAY
         dateInput.value =
         minDate;
 
-        // TIME FUNCTION
         function updateMinTime() {
 
             const selectedDate =
@@ -346,7 +886,6 @@ document.addEventListener(
             const currentDate =
             minDate;
 
-            // IF TODAY
             if (
                 selectedDate === currentDate
             ) {
@@ -354,7 +893,6 @@ document.addEventListener(
                 const now =
                 new Date();
 
-                // ADD 1 HOUR
                 now.setHours(
                     now.getHours() + 1
                 );
@@ -382,10 +920,8 @@ document.addEventListener(
             }
         }
 
-        // RUN
         updateMinTime();
 
-        // ON DATE CHANGE
         dateInput.addEventListener(
 
             "change",
