@@ -33,6 +33,8 @@ DEBUG = config(
     cast=bool
 )
 
+# DEBUG = True
+
 
 #Resend OTP
 RESEND_API_KEY = config('RESEND_API_KEY')

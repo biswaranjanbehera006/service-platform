@@ -2,156 +2,143 @@
 
 {% block content %}
 
-<div class="container py-5">
+<div class="rating-page">
 
-    <div class="row justify-content-center">
+    <div class="container">
 
-        <div class="col-lg-7">
+        <div class="row justify-content-center">
 
-            <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+            <div class="col-lg-8 col-md-10">
 
-                <!-- HEADER -->
-                <div class="bg-dark text-white text-center p-4">
+                <div class="rating-card">
 
-                    <h2 class="fw-bold mb-2">
+                    <!-- HEADER -->
+                    <div class="rating-header">
 
-                        ⭐ Rate Your Experience
+                        <h2>
 
-                    </h2>
-
-                    <p class="mb-0 text-light">
-
-                        Share your feedback about the service
-
-                    </p>
-
-                </div>
-
-                <!-- BODY -->
-                <div class="card-body p-4 p-lg-5">
-
-                    <!-- SERVICE -->
-                    <div class="text-center mb-5">
-
-                        <div class="mb-3">
-
-                            <i class="bi bi-tools display-2 text-primary"></i>
-
-                        </div>
-
-                        <h2 class="fw-bold">
-
-                            {{ booking.service.name }}
+                            ⭐ Rate Your Experience
 
                         </h2>
 
-                        <p class="text-muted">
+                        <p>
 
-                            Provider:
-                            {{ booking.provider.user.username }}
+                            Share your feedback about the service
 
                         </p>
 
                     </div>
 
-                    <!-- FORM -->
-                    <form method="POST">
+                    <!-- BODY -->
+                    <div class="rating-body">
 
-                        {% csrf_token %}
+                        <!-- SERVICE INFO -->
+                        <div class="service-info">
 
-                        <!-- STAR RATING -->
-                        <div class="mb-5 text-center">
+                            <div class="service-icon">
 
-                            <label class="form-label fw-bold fs-5 d-block mb-4">
-
-                                Your Rating
-
-                            </label>
-
-                            <!-- HIDDEN INPUT -->
-                            <input
-                                type="hidden"
-                                name="rating"
-                                id="rating-value"
-                                required
-                            >
-
-                            <!-- STARS -->
-                            <div class="d-flex justify-content-center gap-2">
-
-                                <i
-                                    class="bi bi-star fs-1 text-warning rating-star"
-                                    data-value="1"
-                                ></i>
-
-                                <i
-                                    class="bi bi-star fs-1 text-warning rating-star"
-                                    data-value="2"
-                                ></i>
-
-                                <i
-                                    class="bi bi-star fs-1 text-warning rating-star"
-                                    data-value="3"
-                                ></i>
-
-                                <i
-                                    class="bi bi-star fs-1 text-warning rating-star"
-                                    data-value="4"
-                                ></i>
-
-                                <i
-                                    class="bi bi-star fs-1 text-warning rating-star"
-                                    data-value="5"
-                                ></i>
+                                <i class="bi bi-tools"></i>
 
                             </div>
 
-                            <small class="text-muted d-block mt-3">
+                            <h3>
 
-                                Click stars to rate
+                                {{ booking.service.name }}
 
-                            </small>
+                            </h3>
 
-                        </div>
+                            <p>
 
-                        <!-- REVIEW -->
-                        <div class="mb-4">
+                                Provider:
+                                {{ booking.provider.user.username }}
 
-                            <label class="form-label fw-bold">
-
-                                Write Review
-
-                            </label>
-
-                            <textarea
-                                name="review"
-                                class="form-control"
-                                rows="5"
-                                placeholder="Share your experience with the service..."
-                            ></textarea>
+                            </p>
 
                         </div>
 
-                        <!-- BUTTON -->
-                        <button
-                            type="submit"
-                            class="btn btn-success w-100 py-3 fw-bold"
-                        >
+                        <!-- FORM -->
+                        <form method="POST">
 
-                            <i class="bi bi-star-fill"></i>
+                            {% csrf_token %}
 
-                            Submit Review
+                            <!-- RATING -->
+                            <div class="rating-section">
 
-                        </button>
+                                <label class="rating-label">
 
-                    </form>
+                                    Your Rating
 
-                    <!-- FOOTER NOTE -->
-                    <div class="alert alert-light border mt-4 mb-0">
+                                </label>
 
-                        <i class="bi bi-info-circle-fill text-primary"></i>
+                                <input
+                                    type="hidden"
+                                    name="rating"
+                                    id="rating-value"
+                                    required
+                                >
 
-                        Thank you! Your feedback helps us improve our services.
+                                <div class="star-wrapper">
+
+                                    <i class="bi bi-star rating-star" data-value="1"></i>
+
+                                    <i class="bi bi-star rating-star" data-value="2"></i>
+
+                                    <i class="bi bi-star rating-star" data-value="3"></i>
+
+                                    <i class="bi bi-star rating-star" data-value="4"></i>
+
+                                    <i class="bi bi-star rating-star" data-value="5"></i>
+
+                                </div>
+
+                                <small>
+
+                                    Click stars to rate
+
+                                </small>
+
+                            </div>
+
+                            <!-- REVIEW -->
+                            <div class="mb-4">
+
+                                <label class="form-label">
+
+                                    Write Review
+
+                                </label>
+
+                                <textarea
+                                    name="review"
+                                    class="form-control review-box"
+                                    rows="5"
+                                    placeholder="Share your experience with the service..."
+                                ></textarea>
+
+                            </div>
+
+                            <!-- BUTTON -->
+                            <button
+                                type="submit"
+                                class="submit-btn"
+                            >
+
+                                <i class="bi bi-star-fill me-2"></i>
+
+                                Submit Review
+
+                            </button>
+
+                        </form>
+
+                        <!-- FOOTER -->
+                        <div class="info-box">
+
+                            <i class="bi bi-info-circle-fill me-2"></i>
+
+                            Thank you! Your feedback helps us improve our services.
+
+                        </div>
 
                     </div>
 
@@ -165,72 +152,366 @@
 
 </div>
 
-<!-- STAR SCRIPT -->
+<style>
+
+body{
+
+    background:#050816;
+
+}
+
+/* PAGE */
+
+.rating-page{
+
+    min-height:100vh;
+
+    padding:60px 15px;
+
+    background:
+    radial-gradient(circle at top left,#00f5ff22,transparent 30%),
+    radial-gradient(circle at top right,#ff00ff22,transparent 30%),
+    #050816;
+
+}
+
+/* CARD */
+
+.rating-card{
+
+    border-radius:30px;
+
+    overflow:hidden;
+
+    background:
+    rgba(255,255,255,0.05);
+
+    border:
+    1px solid rgba(255,255,255,0.08);
+
+    backdrop-filter:blur(20px);
+
+    box-shadow:
+    0 0 20px rgba(0,255,255,.25),
+    0 0 40px rgba(255,0,255,.15);
+
+}
+
+/* HEADER */
+
+.rating-header{
+
+    text-align:center;
+
+    padding:40px;
+
+    color:white;
+
+    background:
+    linear-gradient(
+        135deg,
+        #00f5ff,
+        #7b2cff,
+        #ff0080
+    );
+
+}
+
+.rating-header h2{
+
+    font-weight:800;
+
+    margin-bottom:10px;
+
+}
+
+.rating-header p{
+
+    margin:0;
+
+}
+
+/* BODY */
+
+.rating-body{
+
+    padding:40px;
+
+    color:white;
+
+}
+
+/* SERVICE */
+
+.service-info{
+
+    text-align:center;
+
+    margin-bottom:40px;
+
+}
+
+.service-icon{
+
+    width:120px;
+
+    height:120px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:3rem;
+
+    color:white;
+
+    background:
+    linear-gradient(
+        135deg,
+        #00f5ff,
+        #7b2cff
+    );
+
+    box-shadow:
+    0 0 25px rgba(0,255,255,.5);
+
+    margin-bottom:20px;
+
+}
+
+/* RATING */
+
+.rating-section{
+
+    text-align:center;
+
+    margin-bottom:40px;
+
+}
+
+.rating-label{
+
+    font-size:1.2rem;
+
+    font-weight:700;
+
+    display:block;
+
+    margin-bottom:20px;
+
+}
+
+.star-wrapper{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:10px;
+
+}
+
+.rating-star{
+
+    font-size:3rem;
+
+    color:#ffd700;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.rating-star:hover{
+
+    transform:scale(1.2);
+
+}
+
+/* REVIEW */
+
+.review-box{
+
+    background:
+    rgba(255,255,255,0.05);
+
+    border:
+    1px solid rgba(255,255,255,0.1);
+
+    color:white;
+
+    border-radius:20px;
+
+}
+
+.review-box:focus{
+
+    background:
+    rgba(255,255,255,0.08);
+
+    color:white;
+
+    border-color:#00f5ff;
+
+    box-shadow:
+    0 0 15px rgba(0,255,255,.3);
+
+}
+
+/* BUTTON */
+
+.submit-btn{
+
+    width:100%;
+
+    border:none;
+
+    padding:16px;
+
+    border-radius:18px;
+
+    color:white;
+
+    font-weight:700;
+
+    background:
+    linear-gradient(
+        135deg,
+        #00f5ff,
+        #7b2cff,
+        #ff0080
+    );
+
+    transition:.3s;
+
+}
+
+.submit-btn:hover{
+
+    transform:translateY(-3px);
+
+}
+
+/* FOOTER */
+
+.info-box{
+
+    margin-top:25px;
+
+    padding:18px;
+
+    border-radius:15px;
+
+    background:
+    rgba(255,255,255,0.05);
+
+    border:
+    1px solid rgba(255,255,255,0.08);
+
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    .rating-body{
+
+        padding:25px;
+
+    }
+
+    .rating-header{
+
+        padding:25px;
+
+    }
+
+    .service-icon{
+
+        width:90px;
+
+        height:90px;
+
+        font-size:2rem;
+
+    }
+
+    .rating-star{
+
+        font-size:2.2rem;
+
+    }
+
+}
+
+</style>
+
 <script>
 
-    const stars = document.querySelectorAll('.rating-star');
+const stars = document.querySelectorAll('.rating-star');
 
-    const ratingInput = document.getElementById('rating-value');
+const ratingInput = document.getElementById('rating-value');
 
-    let currentRating = 0;
+let currentRating = 0;
 
-    stars.forEach((star) => {
+stars.forEach((star) => {
 
-        star.addEventListener('click', () => {
+    star.addEventListener('click', () => {
 
-            const clickedValue = parseInt(
+        const clickedValue = parseInt(
+            star.getAttribute('data-value')
+        );
 
-                star.getAttribute('data-value')
+        if(currentRating === clickedValue){
 
+            currentRating = 0;
+
+            ratingInput.value = '';
+
+        }
+
+        else{
+
+            currentRating = clickedValue;
+
+            ratingInput.value = clickedValue;
+
+        }
+
+        stars.forEach((s) => {
+
+            const value = parseInt(
+                s.getAttribute('data-value')
             );
 
-            // REMOVE RATING IF SAME STAR CLICKED
-            if (currentRating === clickedValue) {
+            if(value <= currentRating){
 
-                currentRating = 0;
+                s.classList.remove('bi-star');
 
-                ratingInput.value = '';
-
-            }
-
-            else {
-
-                currentRating = clickedValue;
-
-                ratingInput.value = clickedValue;
+                s.classList.add('bi-star-fill');
 
             }
 
-            // UPDATE STARS
-            stars.forEach((s) => {
+            else{
 
-                const value = parseInt(
+                s.classList.remove('bi-star-fill');
 
-                    s.getAttribute('data-value')
+                s.classList.add('bi-star');
 
-                );
-
-                if (value <= currentRating) {
-
-                    s.classList.remove('bi-star');
-
-                    s.classList.add('bi-star-fill');
-
-                }
-
-                else {
-
-                    s.classList.remove('bi-star-fill');
-
-                    s.classList.add('bi-star');
-
-                }
-
-            });
+            }
 
         });
 
     });
+
+});
 
 </script>
 
